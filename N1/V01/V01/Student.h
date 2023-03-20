@@ -25,6 +25,8 @@ public:
     char getGender() const;
     const char* getDateOfBirth() const;
 	const char* getSocialID() const;
+
+	friend ostream& operator<<(ostream& os, const Student& s);
 	//const Scoreboard& getScoreboard() const;
 };
 

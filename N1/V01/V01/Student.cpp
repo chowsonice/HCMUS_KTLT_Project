@@ -56,6 +56,10 @@ const char* Student::getSocialID() const {
     return socialID;
 }
 
+ostream& operator<<(ostream& os, const Student& s) {
+    os << s.no << " " << s.studentID << " " << s.firstName << " " << s.gender << s.dateOfBirth << " " << s.socialID << endl;
+    return os;
+}
 //const Scoreboard& Student::getScoreboard() const {
 //    return scoreboard;
 //}
