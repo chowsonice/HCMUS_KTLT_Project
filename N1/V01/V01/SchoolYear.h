@@ -2,12 +2,11 @@
 #include <iostream>
 using namespace std;
 
-class SchoolYear
-{
-    private:
-        int _start;
-        int _end;
-    public:
-    SchoolYear() : _start(2020), _end(2021);
+class SchoolYear {
+private:
+    int _start;
+    int _end;
+public:
+    SchoolYear() : _start(2022), _end(2023) {}
     SchoolYear(int start, int end);
 };

@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#pragma once
+#include <iostream>
 using namespace std;
 template<typename T>
 struct Node
@@ -14,12 +15,19 @@ struct Node
 //Nếu muốn khai báo một node thuộc class Student thì dùng Node<Student>* n = new Node<Student>;
 //Tương tự nếu muốn node cho một course thì dùng Node<Course>* n = new Node<Course>;
 
+
+//Dùng linked list cho cái gì thì LinkedList<Student> list;
+//Thêm thì list.add(...)
+//Xóa thì list.remove(số thứ tự, bắt đầu là 1)
+
 template<typename T>
 struct LinkedList {
 	Node<T>* head;
 
 public:
 	LinkedList() : head(nullptr) {}
+	LinkedList(Node<T>* nodeData) : head(new Node<T>(*nodeData)) {}
+	LinkedList(const LinkedList<T> &list) : head(list.head) {}
 	~LinkedList() {
 		delete head;
 		head = nullptr;

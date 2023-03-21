@@ -26,7 +26,7 @@ public:
     char getGender() const;
     const char* getDateOfBirth() const;
 	const char* getSocialID() const;
-
+	void readStudentFromCSVLine(char* buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
 	//const Scoreboard& getScoreboard() const;
 };

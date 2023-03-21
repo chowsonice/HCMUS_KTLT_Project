@@ -1,5 +1,7 @@
+#pragma once
 #include "Student.h"
 #include <string>
+#include <sstream>
 using namespace std;
 
 Student::Student(int no, const char* id, const char* firstName, const char* lastName, char gender, const char* dateOfBirth, const char* socialID){
@@ -72,6 +74,43 @@ ostream& operator<<(ostream& os, const Student& s) {
     for (int i = 0; i < strlen(s.socialID); i++) os << s.socialID[i];
     return os;
 }
+void Student::readStudentFromCSVLine(char* line) {
+    char* buffer = nullptr;
+    int n;
+    for (int i = 0; i < 7; i++) {
+        buffer = strtok_s(line, ",",nullptr);
+        n = strlen(buffer);
+        switch (i) {
+        case 0:
+            no = stoi(buffer);
+            break;
+        case 1:
+            studentID = new char[n + 1];
+            strcpy_s(studentID, n + 1, buffer);
+            break;
+        case 2:
+            firstName = new char[n + 1];
+            strcpy_s(firstName, n + 1, buffer);
+            break;
+        case 3:
+            lastName = new char[n + 1];
+            strcpy_s(lastName, n + 1, buffer);
+            break;
+        case 4:
+            gender = buffer[0];
+            break;
+        case 5:
+            dateOfBirth = new char[n + 1];
+            strcpy_s(dateOfBirth, n + 1, buffer);
+            break;
+        case 6:
+            socialID = new char[n + 1];
+            strcpy_s(socialID, n + 1, buffer);
+            break;
+        }
+    }
+}
+
 //const Scoreboard& Student::getScoreboard() const {
 //    return scoreboard;
 //}

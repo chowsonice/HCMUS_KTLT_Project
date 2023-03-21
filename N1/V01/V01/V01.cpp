@@ -2,7 +2,12 @@
 //
 
 #include <iostream>
+#include "SchoolYear.h"
+#include "Semester.h"
 #include "Course.h"
+#include "Class.h"
+#include "Student.h"
+#include "Node.h"
 int main()
 {
 

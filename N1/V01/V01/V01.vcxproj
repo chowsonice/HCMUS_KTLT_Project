@@ -127,15 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Classes.cpp" />
+    <ClCompile Include="Class.cpp" />
     <ClCompile Include="Course.cpp" />
+    <ClCompile Include="SchoolYear.cpp" />
+    <ClCompile Include="Semester.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="V01.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes.h" />
+    <ClInclude Include="Class.h" />
     <ClInclude Include="Course.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="SchoolYear.h" />
+    <ClInclude Include="Semester.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,20 +1,20 @@
-#include "Classes.h"
+#include "Class.h"
 
-//Classes::Classes() {
-//    listOfStudents = nullptr;
-//    numberOfStudents = 0;
-//    strcpy_s(className, 50, "none");
-//}
+Class::Class() {
+    listOfStudents = nullptr;
+    numberOfStudents = 0;
+    strcpy_s(className, 50, "none");
+}
 
-void Classes::setClassName(const char* name) {
+void Class::setClassName(const char* name) {
     strcpy_s(className, 50, name);
 }
 
-char* Classes::getClassName() {
+char* Class::getClassName() const {
     return className;
 }
 
-//void Classes::addStudent(char* name) {
+//void Class::addStudent(char* name) {
 //    StudentNode* newNode = new StudentNode;
 //    strcpy_s(newNode->name, 50, name);
 //    newNode->next = nullptr;
@@ -32,12 +32,12 @@ char* Classes::getClassName() {
 //
 //    numberOfStudents++;
 //}
-//
-//int Classes::getNumberOfStudents() {
-//    return numberOfStudents;
-//}
-//
-//void Classes::printClassInfo() {
+
+int Class::getNumberOfStudents() {
+    return numberOfStudents;
+}
+
+//void Class::printClassInfo() {
 //    cout << "Class Name: " << className << endl;
 //    cout << "Number of Students: " << numberOfStudents << endl;
 //    cout << "List of Students: ";
