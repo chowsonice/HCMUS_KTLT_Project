@@ -1,7 +1,11 @@
 #pragma once
 #include "Node.h"
 #include "Student.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
+using namespace std;
 class Class {
 private:
     char* className;
@@ -17,6 +21,7 @@ public:
 
     int getNumberOfStudents();
 
+    void importStudentsFromCSV(const char* filenameInfoStu);
     //void printClassInfo();
 };
 
