@@ -9,7 +9,7 @@ using namespace std;
 class Class {
 private:
     char* className;
-    Student* listOfStudents;
+    LinkedList<Student> list;
     int numberOfStudents;
 
 public:
@@ -22,6 +22,6 @@ public:
     int getNumberOfStudents();
 
     void importStudentsFromCSV(const char* filenameInfoStu);
-    //void printClassInfo();
+    void printClass();
 };
 
