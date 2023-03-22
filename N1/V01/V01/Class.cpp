@@ -1,4 +1,5 @@
 #include "Class.h"
+#include <cstring>
 
 Class::Class() {
     list = nullptr;
@@ -80,4 +81,9 @@ void Class::printClass() {
     //    }
     //    cout << endl;
     //}
+}
+
+void Class::printListOfStudents() 
+{
+    cout << this->list << endl;
 }

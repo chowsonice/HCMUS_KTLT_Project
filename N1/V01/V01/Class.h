@@ -23,5 +23,6 @@ public:
 
     void importStudentsFromCSV(const char* filenameInfoStu);
     void printClass();
+    void printListOfStudents();
 };
 
