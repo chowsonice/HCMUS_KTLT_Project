@@ -1,11 +1,15 @@
 #pragma once
 #include "Node.h"
 #include "Student.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
+using namespace std;
 class Class {
 private:
     char* className;
-    Student* listOfStudents;
+    LinkedList<Student> list;
     int numberOfStudents;
 
 public:
@@ -17,6 +21,8 @@ public:
 
     int getNumberOfStudents();
 
-    //void printClassInfo();
+    void importStudentsFromCSV(const char* filenameInfoStu);
+    void printClass();
+    void printListOfStudents();
 };
 
