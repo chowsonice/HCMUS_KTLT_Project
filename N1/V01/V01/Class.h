@@ -15,14 +15,14 @@ private:
 public:
     Class();
 
-    void setClassName(const char* name);
+    void setClassName(const char* name); //TDat
 
-    char* getClassName() const;
+    char* getClassName() const; //TDat
 
-    int getNumberOfStudents();
+    int getNumberOfStudents();//TDat
 
     void importStudentsFromCSV(const char* filenameInfoStu);
-    void printClass();
+    void printListOfClasses();//TDat
     void printListOfStudents();
 };
 
