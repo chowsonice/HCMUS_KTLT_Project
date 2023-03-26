@@ -130,6 +130,7 @@
     <ClCompile Include="Class.cpp" />
     <ClCompile Include="Course.cpp" />
     <ClCompile Include="SchoolYear.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Semester.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="V01.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Course.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="SchoolYear.h" />
+    <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="Semester.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>

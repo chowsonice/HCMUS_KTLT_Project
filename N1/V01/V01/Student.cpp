@@ -4,7 +4,7 @@
 #include <sstream>
 using namespace std;
 
-Student::Student(int no, const char* id, const char* firstName, const char* lastName, char gender, const char* dateOfBirth, const char* socialID){
+Student::Student(int no, const char* id, const char* firstName, const char* lastName, char gender, const char* dateOfBirth, const char* socialID, const Scoreboard& scoreboard){
     this->no = no;
 
     this->studentID = new char[strlen(id) + 1];
@@ -23,6 +23,8 @@ Student::Student(int no, const char* id, const char* firstName, const char* last
 
     this->socialID = new char[strlen(socialID) + 1];
     strcpy_s(this->socialID, strlen(socialID) + 1, socialID);
+
+    this->scoreboard = scoreboard;
 }
 Student::~Student() {
     delete[] studentID;
@@ -58,6 +60,10 @@ const char* Student::getDateOfBirth() const {
 
 const char* Student::getSocialID() const {
     return socialID;
+}
+
+const Scoreboard& Student::getScoreboard() const {
+    return scoreboard;
 }
 
 void Student::setNo(int no)
@@ -109,7 +115,9 @@ void Student::setSocialID(const char* socialID)
     this->socialID = new char[strlen(socialID) + 1];
     strcpy_s(this->socialID, strlen(socialID) + 1, socialID);
 }
-
+void Student::setScoreboard(const Scoreboard& scoreboard) {
+    this->scoreboard = scoreboard;
+}
 
 ostream& operator<<(ostream& os, const Student& s) {
     if (s.no == 0) return os;
@@ -165,6 +173,3 @@ void Student::readStudentFromCSVLine(char* line) {
     }
 }
 
-//const Scoreboard& Student::getScoreboard() const {
-//    return scoreboard;
-//}
