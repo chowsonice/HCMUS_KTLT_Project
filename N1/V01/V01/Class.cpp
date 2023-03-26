@@ -13,6 +13,11 @@ void Class::setClassName(const char* name) {
 char* Class::getClassName() const {
     return className;
 }
+
+int Class::getNumberOfStudents() {
+    return numberOfStudents;
+}
+
 void Class::importStudentsFromCSV(const char* filenameInfoStu) {
     ifstream file(filenameInfoStu);
     if (!file.is_open()) {
@@ -57,11 +62,7 @@ void Class::importStudentsFromCSV(const char* filenameInfoStu) {
 //    numberOfStudents++;
 //}
 
-int Class::getNumberOfStudents() {
-    return numberOfStudents;
-}
-
-void Class::printClass() {
+void Class::printListOfClasses() {
     cout << "Class Name: " << className << endl;
     cout << "Number of Students: " << numberOfStudents << endl;
     cout << "List of Students: ";
