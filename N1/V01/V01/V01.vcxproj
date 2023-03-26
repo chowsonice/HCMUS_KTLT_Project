@@ -142,6 +142,15 @@
     <ClInclude Include="Semester.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="csv_file\21CLC01_CSC10001.csv" />
+    <None Include="csv_file\21CLC01_info.csv" />
+    <None Include="csv_file\21CLC01_score.csv" />
+    <None Include="csv_file\21CLC02_CSC10002.csv" />
+    <None Include="csv_file\21CLC02_info.csv" />
+    <None Include="csv_file\21CLC02_score.csv" />
+    <None Include="csv_file\students.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

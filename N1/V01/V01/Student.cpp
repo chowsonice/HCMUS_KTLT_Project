@@ -112,6 +112,7 @@ void Student::setSocialID(const char* socialID)
 
 
 ostream& operator<<(ostream& os, const Student& s) {
+    if (s.no == 0) return os;
     os << to_string(s.no) << " ";
     for (int i = 0; i < strlen(s.studentID); i++) os << s.studentID[i];
     os << " ";
@@ -126,10 +127,11 @@ ostream& operator<<(ostream& os, const Student& s) {
     return os;
 }
 void Student::readStudentFromCSVLine(char* line) {
-    char* buffer = nullptr;
+    char* buffer = nullptr, *next_token = nullptr;
+    const char* delim = ",";
     int n;
+    buffer = strtok_s(line, delim, &next_token);
     for (int i = 0; i < 7; i++) {
-        buffer = strtok_s(line, ",",nullptr);
         n = strlen(buffer);
         switch (i) {
         case 0:
@@ -159,6 +161,7 @@ void Student::readStudentFromCSVLine(char* line) {
             strcpy_s(socialID, n + 1, buffer);
             break;
         }
+        if (i < 6) buffer = strtok_s(nullptr, delim, &next_token);
     }
 }
 

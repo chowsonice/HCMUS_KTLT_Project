@@ -1,18 +1,14 @@
 #include "Semester.h"
 
-Semester::Semester(SchoolYear schoolYear, int number, Course* listOfCourses)
+Semester::Semester(int number, LinkedList<Course> listOfCourses)
 {
-    this->schoolYear = schoolYear;
     this->number = number;
-    size_t count = sizeof(listOfCourses) / sizeof(listOfCourses[0]);
-    cout << count << endl;
-    this->listOfCourses = new Course [count];
-    for (int i = 0; i < count; i++) {
-        this->listOfCourses[i] = listOfCourses[i];
-    }
+    this->listOfCourses = LinkedList<Course>(listOfCourses);
 }
-
 Semester::~Semester()
-{
-    delete[] listOfCourses;
+{}
+void Semester::addCourse() {
+    Node<Course>* temp = new Node<Course>();
+    temp->data.input();
+    listOfCourses.add(temp);
 }
