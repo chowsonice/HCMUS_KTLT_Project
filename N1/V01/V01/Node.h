@@ -33,6 +33,7 @@ public:
 		head = nullptr;
 	}
 	void add(T data);
+	void add(Node<T>* data);
 	void remove(const int& no);
 	void removeHead();
 	friend ostream& operator<<(ostream& os, LinkedList<T> const &l) {
@@ -42,6 +43,15 @@ public:
 			cur = cur->next;
 		}
 		return os;
+	}
+	int size() {
+		int count = 0;
+		Node<T>* cur = head;
+		while (cur) {
+			count++;
+			cur = cur->next;
+		}
+		return count;
 	}
 };
 
@@ -58,10 +68,22 @@ void LinkedList<T>::add(T data) {
 }
 
 template<typename T>
+void LinkedList<T>::add(Node<T>* data) {
+	if (!head) {
+		head = data;
+		return;
+	}
+	Node<T>* cur = head;
+	while (cur->next) cur = cur->next;
+	cur->next = data;
+	return;
+}
+
+template<typename T>
 void LinkedList<T>::removeHead() {
 	Node<T>* cur = head;
 	head = head->next;
-	cur->next = nullptr;
+	delete cur;
 }
 
 template<typename T>
@@ -69,18 +91,15 @@ void LinkedList<T>::remove(const int& no) {
 	// no là số thứ tự của học sinh cần xóa
 	if (!head) return;
 
-	if (no == 0) return removeHead();
-	
 	Node<T>* cur = head;
 	int count = 0;
 
-	while (cur->next && count+1 < no - 1) {
-		cur = cur->next;
-		count++;
-	}
+	while (cur->next && ++count + 1 < no) cur = cur->next; 
+	// check if next student's number exists, and if it is the student we need to remove
 
-	if (!cur->next || count < no - 1) return;
-	
+	if (!cur->next) return;
+	// if the next student doesn't exist (fewer than no students) 
+
 	Node<T>* temp = cur->next;
 	cur->next = temp->next;
 

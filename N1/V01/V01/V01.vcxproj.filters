@@ -33,6 +33,9 @@
     <ClCompile Include="Student.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scoreboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
@@ -53,5 +56,17 @@
     <ClInclude Include="Student.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Scoreboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="csv_file\21CLC01_CSC10001.csv" />
+    <None Include="csv_file\21CLC01_info.csv" />
+    <None Include="csv_file\21CLC01_score.csv" />
+    <None Include="csv_file\21CLC02_CSC10002.csv" />
+    <None Include="csv_file\21CLC02_info.csv" />
+    <None Include="csv_file\21CLC02_score.csv" />
+    <None Include="csv_file\students.csv" />
   </ItemGroup>
 </Project>

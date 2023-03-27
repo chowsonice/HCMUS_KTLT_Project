@@ -2,9 +2,8 @@
 #include <cstring>
 
 Class::Class() {
-    list = nullptr;
     numberOfStudents = 0;
-    strcpy_s(className, 50, "none");
+    className = nullptr;
 }
 
 void Class::setClassName(const char* name) {
@@ -27,23 +26,20 @@ void Class::importStudentsFromCSV(const char* filenameInfoStu) {
     }
 
     string line;
+    getline(file, line, '\n');
 
-    getline(file, line);
-    int numberOfStudents = stoi(line);
+    numberOfStudents = 0;
 
-    int index = 0;
     while (getline(file, line)) {
+        numberOfStudents++;
         char* buffer = new char[line.length() + 1];
         strcpy_s(buffer, line.length() + 1, line.c_str());
-        
-        LinkedList<Student> listOfStudents;
         Student newStudent;
         newStudent.readStudentFromCSVLine(buffer);
-        listOfStudents.add(newStudent);
+        list.add(newStudent);
 
         delete[] buffer;
     }
-
     file.close();
 }
 
@@ -69,10 +65,16 @@ void Class::importStudentsFromCSV(const char* filenameInfoStu) {
 void Class::printListOfClasses() {
     cout << "Class Name: " << className << endl;
     cout << "Number of Students: " << numberOfStudents << endl;
-    cout << list << endl;
+    cout << "List of Students: ";
+    if (list.head == nullptr) {
+        cout << "None" << endl;
+    }
+    else {
+        printListOfStudents();
+    }
 }
 
 void Class::printListOfStudents() 
 {
-    cout << this->list << endl;
+    cout << list << endl;
 }
