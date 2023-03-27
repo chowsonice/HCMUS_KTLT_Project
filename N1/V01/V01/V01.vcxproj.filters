@@ -33,7 +33,7 @@
     <ClCompile Include="Student.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Account.cpp">
+    <ClCompile Include="Scoreboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,7 +56,7 @@
     <ClInclude Include="Student.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Account.h">
+    <ClInclude Include="Scoreboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -67,5 +67,6 @@
     <None Include="csv_file\21CLC02_CSC10002.csv" />
     <None Include="csv_file\21CLC02_info.csv" />
     <None Include="csv_file\21CLC02_score.csv" />
+    <None Include="csv_file\students.csv" />
   </ItemGroup>
 </Project>

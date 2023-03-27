@@ -127,20 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Account.cpp" />
     <ClCompile Include="Class.cpp" />
     <ClCompile Include="Course.cpp" />
     <ClCompile Include="SchoolYear.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Semester.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="V01.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Account.h" />
     <ClInclude Include="Class.h" />
     <ClInclude Include="Course.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="SchoolYear.h" />
+    <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="Semester.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>
@@ -151,6 +151,7 @@
     <None Include="csv_file\21CLC02_CSC10002.csv" />
     <None Include="csv_file\21CLC02_info.csv" />
     <None Include="csv_file\21CLC02_score.csv" />
+    <None Include="csv_file\students.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
