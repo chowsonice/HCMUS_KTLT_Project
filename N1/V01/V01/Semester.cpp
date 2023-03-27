@@ -12,3 +12,8 @@ void Semester::addCourse() {
     temp->data.input();
     listOfCourses.add(temp);
 }
+
+void Class::printListOfCourse() 
+{
+    cout << this->listOfCourses << endl;
+}

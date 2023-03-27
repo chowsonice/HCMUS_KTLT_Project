@@ -93,6 +93,87 @@ void Course::input() {
 	session = stoi(buffer);
 }
 
+void Course::setCourseId(const char* courseId)
+{
+    if (this->courseId != nullptr)
+        delete[] this->courseId;
+    this->courseId = new char[strlen(courseId) + 1];
+    strcpy_s(this->courseId, strlen(courseId) + 1, courseId);
+}
+
+void Course::setCourseName(const char* name)
+{
+    if (this->name != nullptr)
+        delete[] this->name;
+    this->name = new char[strlen(name) + 1];
+    strcpy_s(this->name, strlen(name) + 1, name);
+}
+
+void Course::setClassId(const char* classId)
+{
+    if (this->classId != nullptr)
+        delete[] this->classId;
+    this->classId = new char[strlen(classId) + 1];
+    strcpy_s(this->classId, strlen(classId) + 1, classId);
+}
+
+void Course::setTeacherName(const char* teacherName)
+{
+    if (this->teacherName != nullptr)
+        delete[] this->teacherName;
+    this->teacherName = new char[strlen(teacherName) + 1];
+    strcpy_s(this->teacherName, strlen(teacherName) + 1, teacherName);
+}
+
+void Course::setNumOfCredits(int noCredits)
+{
+    this->noCredits = noCredits;
+}
+
+void Course::setMaxStudents(int maxNoStudents)
+{
+    this->maxNoStudents = maxNoStudents;
+}
+
+void Course::setDayOfWeek(const char* dayOfTheWeek)
+{
+    if (this->dayOfTheWeek != nullptr)
+        delete[] this->dayOfTheWeek;
+    this->dayOfTheWeek = new char[strlen(dayOfTheWeek) + 1];
+    strcpy_s(this->dayOfTheWeek, strlen(dayOfTheWeek) + 1, dayOfTheWeek);
+}
+
+void Course::setSession(int session)
+{
+    this->session = session;
+}
+
+void Course::setListOfStudents(LinkedList<Student> listOfStudents)
+{
+	this->listOfStudents = listOfStudents;
+}
+
 void Course::printListOfStudents() {
 	cout << listOfStudents;
+}
+
+ostream& operator<<(ostream& os, const Course& s) 
+{
+    os << "Course ID: " << s.courseId << endl;
+	os << " ";
+    os << "Name: " << s.name << endl;
+	os << " ";
+    os << "Class ID: " << s.classId << endl;
+	os << " ";
+    os << "Teacher's name: " << s.teacherName << endl;
+	os << " ";
+    os << "Number of credits: " << s.noCredits << endl;
+	os << " ";
+    os << "Number of students: " << s.maxNoStudents << endl;
+	os << " ";
+	os << "Day of the week: " << s.dayOfTheWeek << endl;
+	os << " ";
+	os << "Session: " <<s.session << endl;
+	os << " ";
+    return os;
 }
