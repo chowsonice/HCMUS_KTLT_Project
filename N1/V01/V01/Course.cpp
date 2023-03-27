@@ -159,21 +159,20 @@ void Course::printListOfStudents() {
 
 ostream& operator<<(ostream& os, const Course& s) 
 {
-    os << "Course ID: " << s.courseId << endl;
+	for (int i = 0; i < strlen(s.courseId); i++) os << s.courseId[i];
+    os << " ";
+    for (int i = 0; i < strlen(s.name); i++) os << s.name[i];
+    os << " ";
+    for (int i = 0; i < strlen(s.classId); i++) os << s.classId[i];
+    os << " ";
+    for (int i = 0; i < strlen(s.teacherName); i++) os << s.teacherName[i];
 	os << " ";
-    os << "Name: " << s.name << endl;
+	os << s.noCredits << endl;
 	os << " ";
-    os << "Class ID: " << s.classId << endl;
+    os << s.maxNoStudents << endl;
 	os << " ";
-    os << "Teacher's name: " << s.teacherName << endl;
+    for (int i = 0; i < strlen(s.dayOfTheWeek); i++) os << s.dayOfTheWeek[i];
 	os << " ";
-    os << "Number of credits: " << s.noCredits << endl;
-	os << " ";
-    os << "Number of students: " << s.maxNoStudents << endl;
-	os << " ";
-	os << "Day of the week: " << s.dayOfTheWeek << endl;
-	os << " ";
-	os << "Session: " <<s.session << endl;
-	os << " ";
+    os << s.session
     return os;
 }
