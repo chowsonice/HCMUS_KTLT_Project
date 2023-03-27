@@ -1,7 +1,5 @@
 #pragma once
 #include <iostream>
-#include "Scoreboard.h"
-
 using namespace std;
 
 class Student
@@ -14,12 +12,12 @@ private:
 	char gender;
 	char* dateOfBirth;
 	char* socialID;
-	Scoreboard scoreboard;
+	//Scoreboard scoreboard;
 public:
 	Student() : no(0), studentID(nullptr), firstName(nullptr), lastName(nullptr), gender('X'), dateOfBirth(nullptr), socialID(nullptr) {}
-	Student(int no, const char* studentID, const char* firstName, const char* lastName, char gender, const char* dateOfBirth, const char* socialID, const Scoreboard& scoreboard);
-	Student(const Student& s) : Student(s.no, s.studentID, s.firstName, s.lastName, s.gender, s.dateOfBirth, s.socialID, s.scoreboard) {}
-	~Student();
+	Student(int no, const char* studentID, const char* firstName, const char* lastName, char gender, const char* dateOfBirth, const char* socialID);
+	Student(const Student& s) : Student(s.no, s.studentID, s.firstName, s.lastName, s.gender, s.dateOfBirth, s.socialID) {}
+    ~Student();
 
     int getNo() const;
     const char* getId() const;
@@ -28,7 +26,6 @@ public:
     char getGender() const;
     const char* getDateOfBirth() const;
 	const char* getSocialID() const;
-	const Scoreboard& getScoreboard() const;
 
 	void setNo(int no);
 	void setId(const char* studentID);
@@ -37,9 +34,10 @@ public:
 	void setGender(char gender);
 	void setDateOfBirth(const char* dateOfBirth);
 	void setSocialID(const char* socialID);
-	void setScoreboard(const Scoreboard& scoreboard);
+
 
 	void readStudentFromCSVLine(char* buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
+	//const Scoreboard& getScoreboard() const;
 };
 

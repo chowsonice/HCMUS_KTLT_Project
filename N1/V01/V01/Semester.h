@@ -1,15 +1,16 @@
 #pragma once
+#include "SchoolYear.h"
 #include "Course.h"
 using namespace std;
 
 class Semester 
 {
-    LinkedList<Course> listOfCourses;
+    SchoolYear schoolYear;
+    Course *listOfCourses;
     int number;
 public:
-    Semester() : number(0) {}
-    Semester(int number, LinkedList<Course> listOfCourses);
-    Semester(int number) : number(number) {}
+    Semester() : number(0), listOfCourses(nullptr) {}
+    Semester(SchoolYear schoolYear, int number, Course *listOfCourses);
+    Semester(SchoolYear schoolYear, int number) : Semester(schoolYear, number, nullptr) {}
     ~Semester();
-    void addCourse();
 };

@@ -4,7 +4,7 @@
 #include <sstream>
 using namespace std;
 
-Student::Student(int no, const char* id, const char* firstName, const char* lastName, char gender, const char* dateOfBirth, const char* socialID, const Scoreboard& scoreboard){
+Student::Student(int no, const char* id, const char* firstName, const char* lastName, char gender, const char* dateOfBirth, const char* socialID){
     this->no = no;
 
     this->studentID = new char[strlen(id) + 1];
@@ -23,8 +23,6 @@ Student::Student(int no, const char* id, const char* firstName, const char* last
 
     this->socialID = new char[strlen(socialID) + 1];
     strcpy_s(this->socialID, strlen(socialID) + 1, socialID);
-
-    this->scoreboard = scoreboard;
 }
 Student::~Student() {
     delete[] studentID;
@@ -60,10 +58,6 @@ const char* Student::getDateOfBirth() const {
 
 const char* Student::getSocialID() const {
     return socialID;
-}
-
-const Scoreboard& Student::getScoreboard() const {
-    return scoreboard;
 }
 
 void Student::setNo(int no)
@@ -115,12 +109,9 @@ void Student::setSocialID(const char* socialID)
     this->socialID = new char[strlen(socialID) + 1];
     strcpy_s(this->socialID, strlen(socialID) + 1, socialID);
 }
-void Student::setScoreboard(const Scoreboard& scoreboard) {
-    this->scoreboard = scoreboard;
-}
+
 
 ostream& operator<<(ostream& os, const Student& s) {
-    if (s.no == 0) return os;
     os << to_string(s.no) << " ";
     for (int i = 0; i < strlen(s.studentID); i++) os << s.studentID[i];
     os << " ";
@@ -135,11 +126,10 @@ ostream& operator<<(ostream& os, const Student& s) {
     return os;
 }
 void Student::readStudentFromCSVLine(char* line) {
-    char* buffer = nullptr, *next_token = nullptr;
-    const char* delim = ",";
+    char* buffer = nullptr;
     int n;
-    buffer = strtok_s(line, delim, &next_token);
     for (int i = 0; i < 7; i++) {
+        buffer = strtok_s(line, ",",nullptr);
         n = strlen(buffer);
         switch (i) {
         case 0:
@@ -169,7 +159,9 @@ void Student::readStudentFromCSVLine(char* line) {
             strcpy_s(socialID, n + 1, buffer);
             break;
         }
-        if (i < 6) buffer = strtok_s(nullptr, delim, &next_token);
     }
 }
 
+//const Scoreboard& Student::getScoreboard() const {
+//    return scoreboard;
+//}

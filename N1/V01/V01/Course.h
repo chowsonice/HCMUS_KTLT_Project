@@ -37,7 +37,6 @@ public:
 	void setMaxStudents(int max);
 	void setDayOfWeek(char* day);
 	void setSession(string sess);
-	void input();
 };
 
 
