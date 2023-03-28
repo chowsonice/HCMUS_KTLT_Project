@@ -7,8 +7,8 @@ Semester::Semester(int number, LinkedList<Course> listOfCourses)
 }
 Semester::~Semester()
 {}
-void Semester::addCourse() {
-    Node<Course>* temp = new Node<Course>();
-    temp->data.input();
-    listOfCourses.add(temp);
-}
+//void Semester::addCourse() {
+//    Course temp;
+//    temp.input();
+//    listOfCourses.add(temp);
+//}

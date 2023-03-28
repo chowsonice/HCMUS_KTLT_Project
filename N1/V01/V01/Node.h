@@ -32,7 +32,7 @@ public:
 		delete head;
 		head = nullptr;
 	}
-	void add(T data);
+	void add(T &data);
 	void add(Node<T>* data);
 	void remove(const int& no);
 	void removeHead();
@@ -56,7 +56,7 @@ public:
 };
 
 template<typename T>
-void LinkedList<T>::add(T data) {
+void LinkedList<T>::add(T &data) {
 	if (!head) {
 		head = new Node<T>(data);
 		return;
