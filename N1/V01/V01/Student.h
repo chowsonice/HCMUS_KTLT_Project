@@ -39,6 +39,10 @@ public:
 	void setSocialID(const char* socialID);
 	void setScoreboard(const Scoreboard& scoreboard);
 
+	//void UpdateScoreboard(Scoreboard& scoreboard);
+	//void PrintScoreboard(const Scoreboard& scoreboard);
+
+
 	void readStudentFromCSVLine(char* buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
 };

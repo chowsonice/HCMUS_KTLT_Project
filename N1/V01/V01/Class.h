@@ -13,16 +13,24 @@ private:
     int numberOfStudents;
 
 public:
-    Class();
+    Class() : className(nullptr), numberOfStudents(0), list(nullptr) {}
+    Class(char* nameOfClass, LinkedList<Student> listData, int numOfStudents);
+    Class(const Class& cl) : Class(cl.className, cl.list, cl.numberOfStudents) {}
+    ~Class()
+    {
+        delete[] className, list;
+        className = nullptr;
+        list = nullptr;
+    }
 
-    void setClassName(const char* name); //TDat
+    void setClassName(const char* name);
 
-    char* getClassName() const; //TDat
+    char* getClassName() const;
 
-    int getNumberOfStudents();//TDat
+    int getNumberOfStudents();
 
     void importStudentsFromCSV(const char* filenameInfoStu);
-    void printListOfClasses();//TDat
+    void printListOfClasses();
     void printListOfStudents();
 };
 

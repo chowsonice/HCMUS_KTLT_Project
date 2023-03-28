@@ -1,9 +1,11 @@
 #include "Class.h"
 #include <cstring>
 
-Class::Class() {
-    numberOfStudents = 0;
-    className = nullptr;
+Class::Class(char* nameOfClass, LinkedList<Student> listData, int numOfStudents) {
+    className = new char[strlen(nameOfClass) + 1];
+    strcpy_s(className, strlen(nameOfClass) + 1, nameOfClass);
+    list = LinkedList<Student>(listData);
+    numberOfStudents = numOfStudents;
 }
 
 void Class::setClassName(const char* name) {
