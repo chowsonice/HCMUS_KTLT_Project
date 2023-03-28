@@ -36,6 +36,12 @@
     <ClCompile Include="Scoreboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
@@ -57,6 +63,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scoreboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Account.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
