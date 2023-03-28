@@ -12,3 +12,7 @@ Semester::~Semester()
 //    temp.input();
 //    listOfCourses.add(temp);
 //}
+void Class::printListOfCourse()
+{
+    cout << this->listOfCourses << endl;
+}

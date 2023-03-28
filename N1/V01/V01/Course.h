@@ -38,6 +38,9 @@ public:
 	void setDayOfWeek(char* day);
 	void setSession(string sess);
 	void input();
+
+	
+	friend ostream& operator<<(ostream& os, const Course& s);
 };
 
 
