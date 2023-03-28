@@ -4,6 +4,8 @@ class Account
 	char* username;
 	char* password;
 	int typeOfUsers;
+	// if 1 -> is a student
+	// if 2 -> is a staff member
 public:
 	Account() : username(nullptr), password(nullptr), typeOfUsers(0) {}
 	Account(char *usrname, char *pass): typeOfUsers(0) {
@@ -12,5 +14,6 @@ public:
 		password = new char[strlen(pass)];
 		strcpy_s(password, 100, pass);
 	}
-	void checkLogin(char* username, char* password);
+	char *checkLogin(char* username, char* password);
 };
+
