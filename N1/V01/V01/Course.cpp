@@ -4,45 +4,45 @@
 using namespace std;
 
 Course::Course(char* idData, char* nameData, char* classIdData, char* teacherNameData, int noCreditsData, int maxStudentData, char* weekDayData, int sessionData, LinkedList<Student> listData) {
-	courseId = new char [strlen(idData) + 1];
+	courseId = new char[strlen(idData) + 1];
 	strcpy_s(courseId, strlen(idData) + 1, idData);
-	name = new char [strlen(nameData) + 1];
+	name = new char[strlen(nameData) + 1];
 	strcpy_s(name, strlen(nameData) + 1, nameData);
-	classId = new char [strlen(classIdData) + 1];
+	classId = new char[strlen(classIdData) + 1];
 	strcpy_s(classId, strlen(classIdData) + 1, classIdData);
-	teacherName = new char [strlen(teacherNameData) + 1];
+	teacherName = new char[strlen(teacherNameData) + 1];
 	strcpy_s(teacherName, strlen(teacherNameData) + 1, teacherNameData);
 	noCredits = noCreditsData;
 	maxNoStudents = maxStudentData;
-	dayOfTheWeek = new char [strlen(weekDayData) + 1];
+	dayOfTheWeek = new char[strlen(weekDayData) + 1];
 	session = sessionData;
 	strcpy_s(dayOfTheWeek, strlen(weekDayData) + 1, weekDayData);
 	listOfStudents = LinkedList<Student>(listData); //remember to add copy constructor for linked list
 }
 
 bool Course::importStudentsFromCSV(char* filename) {
-    ifstream fin(filename);
-    if (!fin.is_open()) {
-        cout << "Cannot open file" << endl;
-        return false;
-    }
+	ifstream fin(filename);
+	if (!fin.is_open()) {
+		cout << "Cannot open file" << endl;
+		return false;
+	}
 
-    string line;
-    getline(fin, line, '\n');
+	string line;
+	getline(fin, line, '\n');
 
-    LinkedList<Student> listOfStudents;
+	LinkedList<Student> listOfStudents;
 
-    while (getline(fin, line)) {
-        char* buffer = new char[line.length() + 1];
-        strcpy_s(buffer, line.length() + 1, line.c_str());
-        Student newStudent;
-        newStudent.readStudentFromCSVLine(buffer);
-        listOfStudents.add(newStudent);
+	while (getline(fin, line)) {
+		char* buffer = new char[line.length() + 1];
+		strcpy_s(buffer, line.length() + 1, line.c_str());
+		Student newStudent;
+		newStudent.readStudentFromCSVLine(buffer);
+		listOfStudents.add(newStudent);
 
-        delete[] buffer;
-    }
-    fin.close();
-    return true;
+		delete[] buffer;
+	}
+	fin.close();
+	return true;
 }
 
 void Course::input() {
@@ -95,57 +95,57 @@ void Course::input() {
 
 void Course::setCourseId(const char* courseId)
 {
-    if (this->courseId != nullptr)
-        delete[] this->courseId;
-    this->courseId = new char[strlen(courseId) + 1];
-    strcpy_s(this->courseId, strlen(courseId) + 1, courseId);
+	if (this->courseId != nullptr)
+		delete[] this->courseId;
+	this->courseId = new char[strlen(courseId) + 1];
+	strcpy_s(this->courseId, strlen(courseId) + 1, courseId);
 }
 
 void Course::setCourseName(const char* name)
 {
-    if (this->name != nullptr)
-        delete[] this->name;
-    this->name = new char[strlen(name) + 1];
-    strcpy_s(this->name, strlen(name) + 1, name);
+	if (this->name != nullptr)
+		delete[] this->name;
+	this->name = new char[strlen(name) + 1];
+	strcpy_s(this->name, strlen(name) + 1, name);
 }
 
 void Course::setClassId(const char* classId)
 {
-    if (this->classId != nullptr)
-        delete[] this->classId;
-    this->classId = new char[strlen(classId) + 1];
-    strcpy_s(this->classId, strlen(classId) + 1, classId);
+	if (this->classId != nullptr)
+		delete[] this->classId;
+	this->classId = new char[strlen(classId) + 1];
+	strcpy_s(this->classId, strlen(classId) + 1, classId);
 }
 
 void Course::setTeacherName(const char* teacherName)
 {
-    if (this->teacherName != nullptr)
-        delete[] this->teacherName;
-    this->teacherName = new char[strlen(teacherName) + 1];
-    strcpy_s(this->teacherName, strlen(teacherName) + 1, teacherName);
+	if (this->teacherName != nullptr)
+		delete[] this->teacherName;
+	this->teacherName = new char[strlen(teacherName) + 1];
+	strcpy_s(this->teacherName, strlen(teacherName) + 1, teacherName);
 }
 
-void Course::setNumOfCredits(int noCredits)
+void Course::setNumOfCredits(const int noCredits)
 {
-    this->noCredits = noCredits;
+	this->noCredits = noCredits;
 }
 
-void Course::setMaxStudents(int maxNoStudents)
+void Course::setMaxStudents(const int maxNoStudents)
 {
-    this->maxNoStudents = maxNoStudents;
+	this->maxNoStudents = maxNoStudents;
 }
 
 void Course::setDayOfWeek(const char* dayOfTheWeek)
 {
-    if (this->dayOfTheWeek != nullptr)
-        delete[] this->dayOfTheWeek;
-    this->dayOfTheWeek = new char[strlen(dayOfTheWeek) + 1];
-    strcpy_s(this->dayOfTheWeek, strlen(dayOfTheWeek) + 1, dayOfTheWeek);
+	if (this->dayOfTheWeek != nullptr)
+		delete[] this->dayOfTheWeek;
+	this->dayOfTheWeek = new char[strlen(dayOfTheWeek) + 1];
+	strcpy_s(this->dayOfTheWeek, strlen(dayOfTheWeek) + 1, dayOfTheWeek);
 }
 
-void Course::setSession(int session)
+void Course::setSession(const int session)
 {
-    this->session = session;
+	this->session = session;
 }
 
 void Course::setListOfStudents(LinkedList<Student> listOfStudents)
@@ -157,22 +157,22 @@ void Course::printListOfStudents() {
 	cout << listOfStudents;
 }
 
-ostream& operator<<(ostream& os, const Course& s) 
+ostream& operator<<(ostream& os, const Course& s)
 {
 	for (int i = 0; i < strlen(s.courseId); i++) os << s.courseId[i];
-    os << " ";
-    for (int i = 0; i < strlen(s.name); i++) os << s.name[i];
-    os << " ";
-    for (int i = 0; i < strlen(s.classId); i++) os << s.classId[i];
-    os << " ";
-    for (int i = 0; i < strlen(s.teacherName); i++) os << s.teacherName[i];
+	os << " ";
+	for (int i = 0; i < strlen(s.name); i++) os << s.name[i];
+	os << " ";
+	for (int i = 0; i < strlen(s.classId); i++) os << s.classId[i];
+	os << " ";
+	for (int i = 0; i < strlen(s.teacherName); i++) os << s.teacherName[i];
 	os << " ";
 	os << s.noCredits << endl;
 	os << " ";
-    os << s.maxNoStudents << endl;
+	os << s.maxNoStudents << endl;
 	os << " ";
-    for (int i = 0; i < strlen(s.dayOfTheWeek); i++) os << s.dayOfTheWeek[i];
+	for (int i = 0; i < strlen(s.dayOfTheWeek); i++) os << s.dayOfTheWeek[i];
 	os << " ";
-    os << s.session
-    return os;
+	os << s.session;
+	return os;
 }

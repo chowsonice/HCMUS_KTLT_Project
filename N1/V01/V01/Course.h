@@ -29,19 +29,17 @@ public:
 	}
 	bool importStudentsFromCSV(char* filename);
 	void printListOfStudents();
-	void setCourseId(char* id);
-	void setCourseName(char* name);
-	void setClassName(char* className);
-	void setTeacherName(char* teacherName);
-	void setNumOfCredits(int credits);
-	void setMaxStudents(int max);
-	void setDayOfWeek(char* day);
-	void setSession(string sess);
+	void setCourseId(const char* id);
+	void setCourseName(const char* name);
+	void setClassId(const char* classId);
+	void setTeacherName(const char* teacherName);
+	void setNumOfCredits(const int credits);
+	void setMaxStudents(const int max);
+	void setDayOfWeek(const char* day);
+	void setSession(const int sess);
+	void setListOfStudents(LinkedList<Student> listOfStudents);
 	void input();
 
-	
+
 	friend ostream& operator<<(ostream& os, const Course& s);
 };
-
-
-

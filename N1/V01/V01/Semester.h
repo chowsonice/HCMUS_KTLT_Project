@@ -2,8 +2,9 @@
 #include "Course.h"
 using namespace std;
 
-class Semester 
+class Semester
 {
+private:
     LinkedList<Course> listOfCourses;
     int number;
 public:
@@ -12,4 +13,5 @@ public:
     Semester(int number) : number(number) {}
     ~Semester();
     void addCourse();
+    void printListOfCourse();
 };
