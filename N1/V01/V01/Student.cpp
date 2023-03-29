@@ -172,6 +172,47 @@ void Student::readStudentFromCSVLine(char* line) {
         if (i < 6) buffer = strtok_s(nullptr, delim, &next_token);
     }
 }
+
+
+//In process
+void Student::UpdateScoreboard(Scoreboard& scoreboard) {
+    char temp1[20], temp2[20], temp3[20];
+    int semester;
+    float totalMark, finalMark, midtermMark, otherMark;
+
+    cout << "input new CourseID: ";
+    cin >> temp1;
+    scoreboard.setCourseId(temp1);
+
+    cout << "input new StudentID: ";
+    cin >> temp2;
+    scoreboard.setStudentId(temp2);
+
+    cout << "input new Semester: ";
+    cin >> semester;
+    scoreboard.setSemester(semester);
+
+    cout << "input new SchoolYear: ";
+    cin >> temp3;
+    scoreboard.setSchoolYear(temp3);
+
+    cout << "input new TotalMark: ";
+    cin >> totalMark;
+    scoreboard.setTotalMark(totalMark);
+
+    cout << "input new FinalMark: ";
+    cin >> finalMark;
+    scoreboard.setFinalMark(finalMark);
+
+    cout << "input new MidtermMark: ";
+    cin >> midtermMark;
+    scoreboard.setMidtermMark(midtermMark);
+
+    cout << "input new OtherMark: ";
+    cin >> otherMark;
+    scoreboard.setOtherMark(otherMark);
+}
+
 void Student::PrintScoreboard() {
     cout << "Course ID: " << scoreboard.getCourseId() << endl;
     cout << "Student ID: " << scoreboard.getStudentId() << endl;

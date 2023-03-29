@@ -39,7 +39,7 @@ public:
 	void setSocialID(const char* socialID);
 	void setScoreboard(const Scoreboard& scoreboard);
 
-	//void UpdateScoreboard(Scoreboard& scoreboard);
+	void UpdateScoreboard(Scoreboard& scoreboard);
 	void PrintScoreboard();
 
 
