@@ -153,8 +153,71 @@ void Course::setListOfStudents(LinkedList<Student> listOfStudents)
 	this->listOfStudents = listOfStudents;
 }
 
+
 void Course::printListOfStudents() {
 	cout << listOfStudents;
+}
+
+void updateCourse(Course& course) {
+    int option;
+    char buffer[100];
+
+    cout << "Choose to update: " << endl;
+    cout << "1. Course ID" << endl;
+    cout << "2. Name" << endl;
+    cout << "3. Class ID" << endl;
+    cout << "4. Teacher's name" << endl;
+    cout << "5. Number of credits" << endl;
+    cout << "6. Max number of students" << endl;
+    cout << "7. Day of the week" << endl;
+    cout << "8. Session no" << endl;
+    cin >> option;
+
+    switch (option) {
+        case 1:
+            cout << "Enter new course ID: ";
+            cin >> buffer;
+            course.setCourseId(buffer);
+            break;
+        case 2:
+            cout << "Enter new course name: ";
+            cin >> buffer;
+            course.setCourseName(buffer);
+            break;
+        case 3:
+            cout << "Enter new class ID: ";
+            cin >> buffer;
+            course.setClassId(buffer);
+            break;
+        case 4:
+            cout << "Enter new teacher's name: ";
+            cin >> buffer;
+            course.setTeacherName(buffer);
+            break;
+        case 5:
+            cout << "Enter new number of credits: ";
+            cin >> buffer;
+            course.setNumOfCredits(stoi(buffer));
+            break;
+        case 6:
+            cout << "Enter new max number of students: ";
+            cin >> buffer;
+            course.setMaxStudents(stoi(buffer));
+            break;
+        case 7:
+            cout << "Enter new day of the week: ";
+            cin >> buffer;
+            course.setDayOfWeek(buffer);
+            break;
+        case 8:
+            cout << "Enter new session no: ";
+            cin >> buffer;
+            course.setSession(stoi(buffer));
+            break;
+        default:
+            cout << "Invalid option." << endl;
+            break;
+    }
 }
 
 ostream& operator<<(ostream& os, const Course& s) 
