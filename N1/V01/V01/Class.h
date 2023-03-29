@@ -1,6 +1,7 @@
 #pragma once
 #include "Node.h"
 #include "Student.h"
+#include "Scoreboard.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -32,5 +33,6 @@ public:
     void importStudentsFromCSV(const char* filenameInfoStu);
     void printListOfClasses();
     void printListOfStudents();
+    void printScoreboardOfClasses();
 };
 

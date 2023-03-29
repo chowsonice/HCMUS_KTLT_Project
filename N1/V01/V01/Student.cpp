@@ -172,4 +172,13 @@ void Student::readStudentFromCSVLine(char* line) {
         if (i < 6) buffer = strtok_s(nullptr, delim, &next_token);
     }
 }
-
+void Student::PrintScoreboard() {
+    cout << "Course ID: " << scoreboard.getCourseId() << endl;
+    cout << "Student ID: " << scoreboard.getStudentId() << endl;
+    cout << "Semester: " << scoreboard.getSemester() << endl;
+    cout << "School Year: " << scoreboard.getSchoolYear() << endl;
+    cout << "Mid-term: " << scoreboard.getMidtermMark() << endl;
+    cout << "Final Mark: " << scoreboard.getFinalMark() << endl;
+    cout << "Other Mark: " << scoreboard.getOtherMark() << endl;
+    cout << "Total Mark: " << scoreboard.getTotalMark() << endl;
+}
