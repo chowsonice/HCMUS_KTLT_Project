@@ -220,6 +220,50 @@ void updateCourse(Course& course) {
     }
 }
 
+void Course::addStudent(Student student)
+{
+	if (listOfStudents.size() >= maxNoStudents)
+	{
+		cout << "Cannot add more students to the course." << endl;
+		return;
+	}
+	listOfStudents.add(student);
+	cout << "Added student to the course." << endl;
+}
+
+void Course::removeStudent(Student student)
+{
+	if (listOfStudents.size() == 0)
+	{
+		cout << "No students in the course to remove." << endl;
+		return;
+	}
+	if (student.getNo())
+	{
+		listOfStudents.remove(student.getNo());
+		cout << "Removed student from the course." << endl;
+	}
+	else
+	{
+		cout << "Student not found in the course." << endl;
+	}
+}
+
+//void Course::viewScoreboard()
+//{
+//	if (listOfStudents.size() == 0)
+//	{
+//		cout << "No students in the course." << endl;
+//		return;
+//	}
+//	cout << "Scoreboard of course " << courseId << ": " << endl;
+//	for (int i = 0; i < listOfStudents.size(); i++)
+//	{
+//		Student student = listOfStudents;
+//		cout << student.getFirstName() << " " << student.getLastName() << " : " << student.getScoreboard() << endl;
+//	}
+//}
+
 ostream& operator<<(ostream& os, const Course& s) 
 {
 	for (int i = 0; i < strlen(s.courseId); i++) os << s.courseId[i];

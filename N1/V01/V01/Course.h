@@ -40,6 +40,10 @@ public:
 	void setListOfStudents(LinkedList<Student> listOfStudents);
 	void input();
 
+	void addStudent(Student student);
+	void removeStudent(Student student);
+	//void importScoreboard(char* filename);
+	//void viewScoreboard();
 
 	friend ostream& operator<<(ostream& os, const Course& s);
 };
