@@ -80,3 +80,24 @@ void Class::printListOfStudents()
 {
     cout << list << endl;
 }
+//void Class::printScoreboardOfClasses() {
+//    cout << "Class Name: " << className << endl;
+//    if (list.head == nullptr) {
+//        cout << "None" << endl;
+//    }
+//    else {
+//        for (int i = 0; i < list.size(); i++) {
+//            Student::PrintScoreboard(list)
+//        }
+//    }
+//}
+
+void Class::printScoreboardOfClasses()
+{
+    Node<Student>* curr = list.head;
+    while (curr != nullptr) {
+        cout << "Student ID: " << curr->data.getId() << endl;
+        curr->data.PrintScoreboard();
+        curr = curr->next;
+    }
+}
