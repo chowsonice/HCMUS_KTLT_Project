@@ -41,7 +41,7 @@ public:
 
 	void UpdateScoreboard(Scoreboard& scoreboard);
 	void PrintScoreboard();
-
+	void printStudentInfo();
 
 	void readStudentFromCSVLine(char* buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);

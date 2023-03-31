@@ -223,3 +223,14 @@ void Student::PrintScoreboard() {
     cout << "Other Mark: " << scoreboard.getOtherMark() << endl;
     cout << "Total Mark: " << scoreboard.getTotalMark() << endl;
 }
+
+void Student::printStudentInfo() {
+    ///Can thiet in student no khum?
+    //cout << "Number of student: " << no << endl;
+    cout << "Student ID: " << studentID << endl;
+    cout << "First name: " << firstName << endl;
+    cout << "Last name: " << lastName << endl;
+    cout << "Gender: " << gender << endl;
+    cout << "Birthday: " << dateOfBirth << endl;
+    cout << "Social ID: " << socialID << endl;
+}
