@@ -15,5 +15,6 @@ public:
 		strcpy_s(password, 100, pass);
 	}
 	char *checkLogin(char* username, char* password);
+	bool changePassword(char* oldPassword, char* newPassword);
 };
 

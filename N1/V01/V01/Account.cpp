@@ -2,6 +2,7 @@
 #include <fstream>
 #include "Account.h"
 #include <string>
+#include <iostream>
 using namespace std;
 
 char *Account::checkLogin(char* username, char* password) {
@@ -15,4 +16,20 @@ char *Account::checkLogin(char* username, char* password) {
 		} else continue;
 	}
 	return nullptr;
+}
+bool Account::changePassword(char* oldPassword, char* newPassword)
+{
+    if (strcmp(password, oldPassword) != 0)
+    {
+        cout << "Incorrect password." << endl;
+        return false;
+    }
+    else
+    {
+        delete[] password;
+        password = new char[strlen(newPassword) + 1];
+        strcpy_s(password, strlen(newPassword) + 1, newPassword);
+        cout << "Password changed success." << endl;
+        return true;
+    }
 }
