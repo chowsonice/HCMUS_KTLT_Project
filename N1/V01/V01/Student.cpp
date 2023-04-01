@@ -6,34 +6,27 @@ using namespace std;
 
 Student::~Student() {}
 
-//int Student::getNo() const {
-//    return no;
-//}
-//
-//const string Student::getId() const {
-//    return studentID;
-//}
-//
-//const string Student::getFirstName() const {
-//    return firstName;
-//}
-//
-//const string Student::getLastName() const {
-//    return lastName;
-//}
-//
-//char Student::getGender() const {
-//    return gender;
-//}
-//
-//const string Student::getDateOfBirth() const {
-//    return dateOfBirth;
-//}
-//
-//const string Student::getSocialID() const {
-//    return socialID;
-//}
-
+int Student::getNo() const {
+    return no;
+}
+const string Student::getId() const {
+    return studentID;
+}
+const string Student::getFirstName() const {
+    return firstName;
+}
+const string Student::getLastName() const {
+    return lastName;
+}
+char Student::getGender() const {
+    return gender;
+}
+const string Student::getDateOfBirth() const {
+    return dateOfBirth;
+}
+const string Student::getSocialID() const {
+    return socialID;
+}
 //const Scoreboard* Student::getScoreboard() const {
 //    return scoreboard;
 //}
@@ -129,55 +122,36 @@ void Student::readStudentFromCSVLine(string line) {
 }
 
 
-//In process
-void Student::UpdateScoreboard(Scoreboard& scoreboard) {
-    char temp1[20], temp2[20], temp3[20];
-    int semester;
-    float totalMark, finalMark, midtermMark, otherMark;
+// Khoan hay lam gi them nha, de t suy nghi them ve phan scoreboard r tinh tiep
+//void Student::UpdateScoreboard(Scoreboard& scoreboard) {
+//    char temp1[20], temp2[20], temp3[20];
+//    int semester;
+//    float totalMark, finalMark, midtermMark, otherMark;
+//
+//    cout << "input new CourseID: ";
+//    cin >> temp1;
+//    scoreboard.setCourseId(temp1);
+//
+//    cout << "input new TotalMark: ";
+//    cin >> totalMark;
+//    scoreboard.setTotalMark(totalMark);
+//
+//    cout << "input new FinalMark: ";
+//    cin >> finalMark;
+//    scoreboard.setFinalMark(finalMark);
+//
+//    cout << "input new MidtermMark: ";
+//    cin >> midtermMark;
+//    scoreboard.setMidtermMark(midtermMark);
+//
+//    cout << "input new OtherMark: ";
+//    cin >> otherMark;
+//    scoreboard.setOtherMark(otherMark);
+//}
 
-    cout << "input new CourseID: ";
-    cin >> temp1;
-    scoreboard.setCourseId(temp1);
-
-    cout << "input new StudentID: ";
-    cin >> temp2;
-    scoreboard.setStudentId(temp2);
-
-    cout << "input new Semester: ";
-    cin >> semester;
-    scoreboard.setSemester(semester);
-
-    cout << "input new SchoolYear: ";
-    cin >> temp3;
-    scoreboard.setSchoolYear(temp3);
-
-    cout << "input new TotalMark: ";
-    cin >> totalMark;
-    scoreboard.setTotalMark(totalMark);
-
-    cout << "input new FinalMark: ";
-    cin >> finalMark;
-    scoreboard.setFinalMark(finalMark);
-
-    cout << "input new MidtermMark: ";
-    cin >> midtermMark;
-    scoreboard.setMidtermMark(midtermMark);
-
-    cout << "input new OtherMark: ";
-    cin >> otherMark;
-    scoreboard.setOtherMark(otherMark);
-}
-
-void Student::PrintScoreboard() {
-    cout << "Course ID: " << scoreboard.getCourseId() << endl;
-    cout << "Student ID: " << scoreboard.getStudentId() << endl;
-    cout << "Semester: " << scoreboard.getSemester() << endl;
-    cout << "School Year: " << scoreboard.getSchoolYear() << endl;
-    cout << "Mid-term: " << scoreboard.getMidtermMark() << endl;
-    cout << "Final Mark: " << scoreboard.getFinalMark() << endl;
-    cout << "Other Mark: " << scoreboard.getOtherMark() << endl;
-    cout << "Total Mark: " << scoreboard.getTotalMark() << endl;
-}
+//void Student::PrintScoreboard() {
+//    cout << *scoreboard << endl;
+//}
 
 void Student::printStudentInfo() {
     ///Can thiet in student no khum?

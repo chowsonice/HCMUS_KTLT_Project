@@ -14,18 +14,18 @@ private:
 	char gender;
 	string dateOfBirth;
 	string socialID;
-	Scoreboard* scoreboard = nullptr;
+	//Scoreboard* scoreboard = nullptr;
 public:
 	Student() : no(0), studentID(""), firstName(""), lastName(""), gender('X'), dateOfBirth(""), socialID("") {}
 	~Student();
 
-    //int getNo() const;
-    //const string getId() const;
-    //const string getFirstName() const;
-    //const string getLastName() const;
-    //char getGender() const;
-    //const string getDateOfBirth() const;
-	//const string getSocialID() const;
+    int getNo() const;
+    const string getId() const;
+    const string getFirstName() const;
+    const string getLastName() const;
+    char getGender() const;
+    const string getDateOfBirth() const;
+	const string getSocialID() const;
 	//const Scoreboard* getScoreboard() const;
 
 	//void setNo(int no);
@@ -37,8 +37,8 @@ public:
 	//void setSocialID(const string socialID);
 	//void setScoreboard(const Scoreboard& scoreboard);
 
-	void UpdateScoreboard(Scoreboard& scoreboard);
-	void PrintScoreboard();
+	//void UpdateScoreboard(Scoreboard& scoreboard);
+	//void PrintScoreboard();
 	void printStudentInfo();
 
 	void readStudentFromCSVLine(string buffer);

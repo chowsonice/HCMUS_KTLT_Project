@@ -8,16 +8,16 @@ Semester::Semester(int number, list<Course*> listOfCourses)
 Semester::~Semester()
 {}
 
-void Class::printListOfCourse()
-{
-    os << "Term " << s.number << "\n";
-    for (Course* c : s.listOfCourses) os << *c << "\n";
-    return os;
-}
 void Semester::addCourse() {
     listOfCourses.push_back(new Course);
     Course* temp = listOfCourses.back();
     temp->input();
+}
+
+ostream& operator<<(ostream& os, const Semester& s) {
+    os << "Term " << s.number << "\n";
+    for (Course* c : s.listOfCourses) os << *c << "\n";
+    return os;
 }
 
 //void Course::printListOfCourse() (?)

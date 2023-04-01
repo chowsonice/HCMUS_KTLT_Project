@@ -1,12 +1,12 @@
 #include "Class.h"
 #include <cstring>
 
-Class::Class(char* nameOfClass, LinkedList<Student> listData, int numOfStudents) {
-    className = new char[strlen(nameOfClass) + 1];
-    strcpy_s(className, strlen(nameOfClass) + 1, nameOfClass);
-    list = LinkedList<Student>(listData);
-    numberOfStudents = numOfStudents;
-}
+//Class::Class(char* nameOfClass, LinkedList<Student> listData, int numOfStudents) {
+//    className = new char[strlen(nameOfClass) + 1];
+//    strcpy_s(className, strlen(nameOfClass) + 1, nameOfClass);
+//    list = LinkedList<Student>(listData);
+//    numberOfStudents = numOfStudents;
+//}
 
 void Class::setClassName(const char* name) {
     strcpy_s(className, 50, name);
@@ -94,12 +94,12 @@ void Class::printListOfStudents()
 //    }
 //}
 
-void Class::printScoreboardOfClasses()
-{
-    Node<Student>* curr = list.head;
-    while (curr != nullptr) {
-        cout << "Student ID: " << curr->data.getId() << endl;
-        curr->data.PrintScoreboard();
-        curr = curr->next;
-    }
-}
+//void Class::printScoreboardOfClasses()
+//{
+//    Node<Student>* curr = list.head;
+//    while (curr != nullptr) {
+//        cout << "Student ID: " << curr->data.getId() << endl;
+//        curr->data.PrintScoreboard();
+//        curr = curr->next;
+//    }
+//}

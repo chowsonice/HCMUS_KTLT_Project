@@ -1,4 +1,5 @@
 #include <string.h>
+using namespace std;
 class Account
 {
 	string username;

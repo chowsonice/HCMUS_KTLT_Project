@@ -9,7 +9,7 @@ private:
     int _start;
     int _end;
     list<Semester*> semesters;
-    Semester* curSem;
+    Semester* curSem = nullptr;
 public:
     SchoolYear() : _start(2022), _end(2023) {}
     SchoolYear(int start, int end);

@@ -7,6 +7,7 @@
 #include <list>
 
 using namespace std;
+
 class Class {
 private:
     char* className;
@@ -14,10 +15,9 @@ private:
     int numberOfStudents;
 
 public:
-    Class() : className(nullptr), numberOfStudents(0), list(nullptr) {}
-    Class(char* nameOfClass, LinkedList<Student> listData, int numOfStudents);
-    ~Class()
-    {}
+    Class() : className(nullptr), numberOfStudents(0) {}
+    Class(char* nameOfClass, std::list<Student*>listData(), int numOfStudents);
+    ~Class(){}
 
     void setClassName(const char* name);
 

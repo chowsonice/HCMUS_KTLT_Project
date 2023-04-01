@@ -22,12 +22,11 @@ public:
 	//float getMidtermMark() const;
 	//float getOtherMark() const;
 
-	//void setCourseId(const string courseId);
-	//void setStudentId(const string studentId);
-	//void setTotalMark(float totalMark);
-	//void setFinalMark(float finalMark);
-	//void setMidtermMark(float midtermMark);
-	//void setOtherMark(float otherMark);
+	void setCourseId(const string courseId);
+	void setTotalMark(float totalMark);
+	void setFinalMark(float finalMark);
+	void setMidtermMark(float midtermMark);
+	void setOtherMark(float otherMark);
 
 	void input();
 

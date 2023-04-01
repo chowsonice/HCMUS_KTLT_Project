@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <iostream>
 #include "Course.h"
 using namespace std;
 
@@ -11,7 +12,7 @@ public:
     Semester() : number(0) {}
     Semester(int number, list<Course*> listOfCourses);
     Semester(int number) : number(number) {}
-    friend ostream& operator<<(ostream& os, Semester s);
+    friend ostream& operator<<(ostream& os, const Semester &s);
     ~Semester();
     void addCourse();
     void printListOfCourses() {

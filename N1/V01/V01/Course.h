@@ -28,12 +28,11 @@ public:
 	void setMaxStudents(const int max);
 	void setDayOfWeek(const string day);
 	void setSession(const int sess);
-	void setListOfStudents(list<Student> listOfStudents);
 	void printListOfStudents();
 	void input();
 
-	void addStudent(Student student);
-	void removeStudent(Student student);
+	void addStudent(Student *student);
+	void removeStudent(Student *student);
 	//void importScoreboard(char* filename);
 	//void viewScoreboard();
 	void printListOfCourse();

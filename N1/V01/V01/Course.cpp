@@ -98,12 +98,6 @@ void Course::setSession(int session)
     this->session = session;
 }
 
-void Course::setListOfStudents(list<Student> listOfStudents)
-{
-	this->listOfStudents = listOfStudents;
-}
-
-
 void Course::printListOfStudents() {
     for (Student* s : listOfStudents) {
         cout << *s << "\n";
@@ -172,27 +166,27 @@ void updateCourse(Course& course) {
     }
 }
 
-void Course::addStudent(Student student)
+void Course::addStudent(Student *student)
 {
 	if (listOfStudents.size() >= maxNoStudents)
 	{
 		cout << "Cannot add more students to the course." << endl;
 		return;
 	}
-	listOfStudents.add(student);
+	listOfStudents.push_back(student);
 	cout << "Added student to the course." << endl;
 }
 
-void Course::removeStudent(Student student)
+void Course::removeStudent(Student *student)
 {
 	if (listOfStudents.size() == 0)
 	{
 		cout << "No students in the course to remove." << endl;
 		return;
 	}
-	if (student.getNo())
+	if (find(listOfStudents.begin(), listOfStudents.end(), student) != listOfStudents.end())
 	{
-		listOfStudents.remove(student.getNo());
+        listOfStudents.remove(student);
 		cout << "Removed student from the course." << endl;
 	}
 	else
@@ -218,20 +212,7 @@ void Course::removeStudent(Student student)
 
 ostream& operator<<(ostream& os, const Course& s) 
 {
-	for (int i = 0; i < strlen(s.courseId); i++) os << s.courseId[i];
-    os << " ";
-    for (int i = 0; i < strlen(s.name); i++) os << s.name[i];
-    os << " ";
-    for (int i = 0; i < strlen(s.classId); i++) os << s.classId[i];
-    os << " ";
-    for (int i = 0; i < strlen(s.teacherName); i++) os << s.teacherName[i];
-	os << " ";
-	os << s.noCredits << endl;
-	os << " ";
-    os << s.maxNoStudents << endl;
-	os << " ";
-    for (int i = 0; i < strlen(s.dayOfTheWeek); i++) os << s.dayOfTheWeek[i];
-	os << " ";
-    os << s.session
+	os << s.courseId << " " << s.name << " " << s.classId << " " << s.teacherName << " " << to_string(s.noCredits) << " "
+        << to_string(s.maxNoStudents) << " " << s.dayOfTheWeek << " " << s.session;
     return os;
 }
