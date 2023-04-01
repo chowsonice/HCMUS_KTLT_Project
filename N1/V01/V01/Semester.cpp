@@ -7,7 +7,8 @@ Semester::Semester(int number, list<Course*> listOfCourses)
 }
 Semester::~Semester()
 {}
-ostream& operator<<(ostream& os, Semester s)
+
+void Class::printListOfCourse()
 {
     os << "Term " << s.number << "\n";
     for (Course* c : s.listOfCourses) os << *c << "\n";

@@ -19,22 +19,23 @@ public:
 	Course() : courseId(""), name(""), classId(""), teacherName(""), noCredits(0), maxNoStudents(50), dayOfTheWeek(""), session(0) {}
 	~Course() {}
 	bool importStudentsFromCSV(string filename);
-	//void setCourseId(const string id);
-	//void setCourseName(const string name);
-	//void setClassName(const string className);
-	//void setClassId(const string classId);
-	//void setTeacherName(const string teacherName);
-	//void setNumOfCredits(int credits);
-	//void setMaxStudents(int max);
-	//void setDayOfWeek(const string day);
-	//void setSession(int sess);
-	//void setListOfStudents(list<Student> listOfStudents);
+	void setCourseId(const string id);
+	void setCourseName(const string name);
+	void setClassName(const string className);
+	void setClassId(const string classId);
+	void setTeacherName(const string teacherName);
+	void setNumOfCredits(const int credits);
+	void setMaxStudents(const int max);
+	void setDayOfWeek(const string day);
+	void setSession(const int sess);
+	void setListOfStudents(list<Student> listOfStudents);
 	void printListOfStudents();
 	void input();
+
+	void addStudent(Student student);
+	void removeStudent(Student student);
+	//void importScoreboard(char* filename);
+	//void viewScoreboard();
 	void printListOfCourse();
-	
 	friend ostream& operator<<(ostream& os, const Course& s);
 };
-
-
-

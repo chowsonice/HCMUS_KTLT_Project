@@ -1,9 +1,11 @@
 #include "Class.h"
 #include <cstring>
 
-Class::Class() {
-    numberOfStudents = 0;
-    className = nullptr;
+Class::Class(char* nameOfClass, LinkedList<Student> listData, int numOfStudents) {
+    className = new char[strlen(nameOfClass) + 1];
+    strcpy_s(className, strlen(nameOfClass) + 1, nameOfClass);
+    list = LinkedList<Student>(listData);
+    numberOfStudents = numOfStudents;
 }
 
 void Class::setClassName(const char* name) {
@@ -78,5 +80,26 @@ void Class::printListOfStudents()
 {
     for (Student* s : list) {
         cout << *s << "\n";
+    }
+}
+//void Class::printScoreboardOfClasses() {
+//    cout << "Class Name: " << className << endl;
+//    if (list.head == nullptr) {
+//        cout << "None" << endl;
+//    }
+//    else {
+//        for (int i = 0; i < list.size(); i++) {
+//            Student::PrintScoreboard(list)
+//        }
+//    }
+//}
+
+void Class::printScoreboardOfClasses()
+{
+    Node<Student>* curr = list.head;
+    while (curr != nullptr) {
+        cout << "Student ID: " << curr->data.getId() << endl;
+        curr->data.PrintScoreboard();
+        curr = curr->next;
     }
 }

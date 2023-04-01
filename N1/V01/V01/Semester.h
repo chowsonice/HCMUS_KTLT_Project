@@ -3,7 +3,7 @@
 #include "Course.h"
 using namespace std;
 
-struct Semester 
+class Semester 
 {
     list<Course*> listOfCourses;
     int number;

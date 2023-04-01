@@ -37,6 +37,10 @@ public:
 	//void setSocialID(const string socialID);
 	//void setScoreboard(const Scoreboard& scoreboard);
 
+	void UpdateScoreboard(Scoreboard& scoreboard);
+	void PrintScoreboard();
+	void printStudentInfo();
+
 	void readStudentFromCSVLine(string buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
 };

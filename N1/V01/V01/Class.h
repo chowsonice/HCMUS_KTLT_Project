@@ -1,5 +1,6 @@
 #pragma once
 #include "Student.h"
+#include "Scoreboard.h"
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -13,16 +14,20 @@ private:
     int numberOfStudents;
 
 public:
-    Class();
+    Class() : className(nullptr), numberOfStudents(0), list(nullptr) {}
+    Class(char* nameOfClass, LinkedList<Student> listData, int numOfStudents);
+    ~Class()
+    {}
 
-    void setClassName(const char* name); //TDat
+    void setClassName(const char* name);
 
-    char* getClassName() const; //TDat
+    char* getClassName() const;
 
-    int getNumberOfStudents();//TDat
+    int getNumberOfStudents();
 
     void importStudentsFromCSV(const char* filenameInfoStu);
-    //void printListOfClasses();//TDat
+    void printListOfClasses();//TDat
     void printListOfStudents();
+    void printScoreboardOfClasses();
 };
 

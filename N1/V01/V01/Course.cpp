@@ -3,6 +3,8 @@
 #include <fstream>
 using namespace std;
 
+
+
 bool Course::importStudentsFromCSV(string filename) {
     ifstream fin(filename);
     if (!fin.is_open()) {
@@ -14,8 +16,8 @@ bool Course::importStudentsFromCSV(string filename) {
     getline(fin, line, '\n');
 
     while (getline(fin, line)) {
- 
-        Student *newStudent = new Student;
+
+        Student* newStudent = new Student;
         newStudent->readStudentFromCSVLine(line);
         listOfStudents.push_back(newStudent);
 
@@ -55,65 +57,52 @@ void Course::input() {
 	session = stoi(buffer);
 }
 
-//void Course::setCourseId(const string courseId)
-//{
-//    if (this->courseId != nullptr)
-//        delete[] this->courseId;
-//    this->courseId = new char[strlen(courseId) + 1];
-//    strcpy_s(this->courseId, strlen(courseId) + 1, courseId);
-//}
 
-//void Course::setCourseName(const string name)
-//{
-//    if (this->name != nullptr)
-//        delete[] this->name;
-//    this->name = new char[strlen(name) + 1];
-//    strcpy_s(this->name, strlen(name) + 1, name);
-//}
-//
-//void Course::setClassId(const string classId)
-//{
-//    if (this->classId != nullptr)
-//        delete[] this->classId;
-//    this->classId = new char[strlen(classId) + 1];
-//    strcpy_s(this->classId, strlen(classId) + 1, classId);
-//}
-//
-//void Course::setTeacherName(const string teacherName)
-//{
-//    if (this->teacherName != nullptr)
-//        delete[] this->teacherName;
-//    this->teacherName = new char[strlen(teacherName) + 1];
-//    strcpy_s(this->teacherName, strlen(teacherName) + 1, teacherName);
-//}
+void Course::setCourseId(const string courseId)
+{
+    this->courseId = courseId;
+}
 
-//void Course::setNumOfCredits(int noCredits)
-//{
-//    this->noCredits = noCredits;
-//}
-//
-//void Course::setMaxStudents(int maxNoStudents)
-//{
-//    this->maxNoStudents = maxNoStudents;
-//}
+void Course::setCourseName(const string name)
+{
+    this->name = name;
+}
 
-//void Course::setDayOfWeek(const string dayOfTheWeek)
-//{
-//    if (this->dayOfTheWeek != nullptr)
-//        delete[] this->dayOfTheWeek;
-//    this->dayOfTheWeek = new char[strlen(dayOfTheWeek) + 1];
-//    strcpy_s(this->dayOfTheWeek, strlen(dayOfTheWeek) + 1, dayOfTheWeek);
-//}
+void Course::setClassId(const string classId)
+{
+    this->classId = classId;
+}
 
-//void Course::setSession(int session)
-//{
-//    this->session = session;
-//}
+void Course::setTeacherName(const string teacherName)
+{
+    this->teacherName = teacherName;
+}
 
-//void Course::setListOfStudents(list<Student> listOfStudents)
-//{
-//	this->listOfStudents = listOfStudents;
-//}
+void Course::setNumOfCredits(int noCredits)
+{
+    this->noCredits = noCredits;
+}
+
+void Course::setMaxStudents(int maxNoStudents)
+{
+    this->maxNoStudents = maxNoStudents;
+}
+
+void Course::setDayOfWeek(const string dayOfTheWeek)
+{
+    this->dayOfTheWeek = dayOfTheWeek;
+}
+
+void Course::setSession(int session)
+{
+    this->session = session;
+}
+
+void Course::setListOfStudents(list<Student> listOfStudents)
+{
+	this->listOfStudents = listOfStudents;
+}
+
 
 void Course::printListOfStudents() {
     for (Student* s : listOfStudents) {
@@ -121,9 +110,128 @@ void Course::printListOfStudents() {
     }
 }
 
+void updateCourse(Course& course) {
+    int option;
+    string buffer;
+
+    cout << "Choose to update: " << endl;
+    cout << "1. Course ID" << endl;
+    cout << "2. Name" << endl;
+    cout << "3. Class ID" << endl;
+    cout << "4. Teacher's name" << endl;
+    cout << "5. Number of credits" << endl;
+    cout << "6. Max number of students" << endl;
+    cout << "7. Day of the week" << endl;
+    cout << "8. Session no" << endl;
+    cin >> option;
+
+    switch (option) {
+        case 1:
+            cout << "Enter new course ID: ";
+            getline(cin, buffer);
+            course.setCourseId(buffer);
+            break;
+        case 2:
+            cout << "Enter new course name: ";
+            getline(cin, buffer);
+            course.setCourseName(buffer);
+            break;
+        case 3:
+            cout << "Enter new class ID: ";
+            getline(cin, buffer);
+            course.setClassId(buffer);
+            break;
+        case 4:
+            cout << "Enter new teacher's name: ";
+            getline(cin, buffer);
+            course.setTeacherName(buffer);
+            break;
+        case 5:
+            cout << "Enter new number of credits: ";
+            getline(cin, buffer);
+            course.setNumOfCredits(stoi(buffer));
+            break;
+        case 6:
+            cout << "Enter new max number of students: ";
+            getline(cin, buffer);
+            course.setMaxStudents(stoi(buffer));
+            break;
+        case 7:
+            cout << "Enter new day of the week: ";
+            getline(cin, buffer);
+            course.setDayOfWeek(buffer);
+            break;
+        case 8:
+            cout << "Enter new session no: ";
+            getline(cin, buffer);
+            course.setSession(stoi(buffer));
+            break;
+        default:
+            cout << "Invalid option." << endl;
+            break;
+    }
+}
+
+void Course::addStudent(Student student)
+{
+	if (listOfStudents.size() >= maxNoStudents)
+	{
+		cout << "Cannot add more students to the course." << endl;
+		return;
+	}
+	listOfStudents.add(student);
+	cout << "Added student to the course." << endl;
+}
+
+void Course::removeStudent(Student student)
+{
+	if (listOfStudents.size() == 0)
+	{
+		cout << "No students in the course to remove." << endl;
+		return;
+	}
+	if (student.getNo())
+	{
+		listOfStudents.remove(student.getNo());
+		cout << "Removed student from the course." << endl;
+	}
+	else
+	{
+		cout << "Student not found in the course." << endl;
+	}
+}
+
+//void Course::viewScoreboard()
+//{
+//	if (listOfStudents.size() == 0)
+//	{
+//		cout << "No students in the course." << endl;
+//		return;
+//	}
+//	cout << "Scoreboard of course " << courseId << ": " << endl;
+//	for (int i = 0; i < listOfStudents.size(); i++)
+//	{
+//		Student student = listOfStudents;
+//		cout << student.getFirstName() << " " << student.getLastName() << " : " << student.getScoreboard() << endl;
+//	}
+//}
+
 ostream& operator<<(ostream& os, const Course& s) 
 {
-	os << s.courseId << " " << s.name << " " << s.classId << " " << s.teacherName << " " << to_string(s.noCredits) << " " << to_string(s.maxNoStudents) 
-        << " " << s.dayOfTheWeek << " " << s.session;
+	for (int i = 0; i < strlen(s.courseId); i++) os << s.courseId[i];
+    os << " ";
+    for (int i = 0; i < strlen(s.name); i++) os << s.name[i];
+    os << " ";
+    for (int i = 0; i < strlen(s.classId); i++) os << s.classId[i];
+    os << " ";
+    for (int i = 0; i < strlen(s.teacherName); i++) os << s.teacherName[i];
+	os << " ";
+	os << s.noCredits << endl;
+	os << " ";
+    os << s.maxNoStudents << endl;
+	os << " ";
+    for (int i = 0; i < strlen(s.dayOfTheWeek); i++) os << s.dayOfTheWeek[i];
+	os << " ";
+    os << s.session
     return os;
 }
