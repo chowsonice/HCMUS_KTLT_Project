@@ -34,9 +34,9 @@ void Class::importStudentsFromCSV(const char* filenameInfoStu) {
         numberOfStudents++;
         char* buffer = new char[line.length() + 1];
         strcpy_s(buffer, line.length() + 1, line.c_str());
-        Student newStudent;
-        newStudent.readStudentFromCSVLine(buffer);
-        list.add(newStudent);
+        Student *newStudent = new Student;
+        newStudent->readStudentFromCSVLine(buffer);
+        list.push_back(newStudent);
 
         delete[] buffer;
     }
@@ -62,19 +62,21 @@ void Class::importStudentsFromCSV(const char* filenameInfoStu) {
 //    numberOfStudents++;
 //}
 
-void Class::printListOfClasses() {
-    cout << "Class Name: " << className << endl;
-    cout << "Number of Students: " << numberOfStudents << endl;
-    cout << "List of Students: ";
-    if (list.head == nullptr) {
-        cout << "None" << endl;
-    }
-    else {
-        printListOfStudents();
-    }
-}
+//void Class::printListOfClasses() {
+//    cout << "Class Name: " << className << endl;
+//    cout << "Number of Students: " << numberOfStudents << endl;
+//    cout << "List of Students: ";
+//    if (list.head == nullptr) {
+//        cout << "None" << endl;
+//    }
+//    else {
+//        printListOfStudents();
+//    }
+//}
 
 void Class::printListOfStudents() 
 {
-    cout << list << endl;
+    for (Student* s : list) {
+        cout << *s << "\n";
+    }
 }

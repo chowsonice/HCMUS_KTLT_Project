@@ -127,26 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Account.cpp" />
     <ClCompile Include="Class.cpp" />
     <ClCompile Include="Course.cpp" />
     <ClCompile Include="SchoolYear.cpp" />
-    <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Semester.cpp" />
     <ClCompile Include="Student.cpp" />
-    <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="V01.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Account.h" />
     <ClInclude Include="Class.h" />
     <ClInclude Include="Course.h" />
-    <ClInclude Include="Node.h" />
     <ClInclude Include="SchoolYear.h" />
-    <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="Semester.h" />
     <ClInclude Include="Student.h" />
-    <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="csv_file\21CLC01_CSC10001.csv" />

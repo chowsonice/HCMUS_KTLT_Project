@@ -3,20 +3,23 @@
 
 #include <iostream>
 #include "SchoolYear.h"
-#include "Semester.h"
+//#include "Semester.h"
 #include "Course.h"
 #include "Class.h"
 #include "Student.h"
-#include "Node.h"
 int main()
 {
-    SchoolYear curSchoolYear;
-    cout << curSchoolYear;
-    curSchoolYear.createNewSemester();
-    Node<Semester>* cur = curSchoolYear.getCurrentSemester();
-    Class class21CLC01;
-    class21CLC01.importStudentsFromCSV("csv_file/21CLC01_info.csv");
-    class21CLC01.printListOfStudents();
+    //SchoolYear curSchoolYear;
+    //cout << curSchoolYear << endl;
+    //curSchoolYear.createNewSemester();
+    //Semester *curSem = curSchoolYear.getCurrentSemester();
+
+    //Class class21CLC01;
+    //class21CLC01.importStudentsFromCSV("csv_file/21CLC01_info.csv");
+    //class21CLC01.printListOfStudents();
+
+    //curSem->addCourse();
+    //cout << *curSem << endl;
 
     return 0;
 }

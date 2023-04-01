@@ -4,7 +4,7 @@ SchoolYear::SchoolYear(int start, int end)
 {
     _start = start;
     _end = end;
-    semesters = nullptr;
+    curSem = nullptr;
 }
 
 ostream& operator<<(ostream& os, SchoolYear sy) {
