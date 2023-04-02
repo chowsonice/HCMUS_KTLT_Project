@@ -31,3 +31,17 @@ using namespace std;
 //        return true;
 //    }
 //}
+bool Account::changePassword(string& oldPassword, string& newPassword)
+{
+    if (password != oldPassword)
+    {
+        cout << "Incorrect password." << endl;
+        return false;
+    }
+    else
+    {
+        password = newPassword;
+        cout << "Password changed successfully." << endl;
+        return true;
+    }
+}
