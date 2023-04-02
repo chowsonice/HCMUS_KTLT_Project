@@ -10,18 +10,18 @@ using namespace std;
 
 class Class {
 private:
-    char* className;
+    string className;
     list<Student*> list;
     int numberOfStudents;
 
 public:
-    Class() : className(nullptr), numberOfStudents(0) {}
+    Class() : className(""), numberOfStudents(0) {}
     Class(char* nameOfClass, std::list<Student*>listData(), int numOfStudents);
     ~Class(){}
 
-    void setClassName(const char* name);
+    void setClassName(const string name);
 
-    char* getClassName() const;
+    string getClassName() const;
 
     int getNumberOfStudents();
 

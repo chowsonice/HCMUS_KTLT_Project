@@ -8,11 +8,11 @@
 //    numberOfStudents = numOfStudents;
 //}
 
-void Class::setClassName(const char* name) {
-    strcpy_s(className, 50, name);
+void Class::setClassName(const string name) {
+    this->className = name;
 }
 
-char* Class::getClassName() const {
+string Class::getClassName() const {
     return className;
 }
 
