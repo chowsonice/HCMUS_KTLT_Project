@@ -152,3 +152,42 @@ void Student::printStudentInfo() {
     cout << "Birthday: " << dateOfBirth << endl;
     cout << "Social ID: " << socialID << endl;
 }
+
+void Student::importStudentListFromCSV(const string& csvFileName, const string& accountFileName) {
+    ifstream csvFile(csvFileName);
+    if (!csvFile.is_open()) {
+        cerr << "Error: Could not open " << csvFileName << endl;
+        return;
+    }
+    ofstream accountFile(accountFileName);
+    if (!accountFile.is_open()) {
+        cerr << "Error: Could not create " << accountFileName << endl;
+        return;
+    }
+    string line;
+    getline(csvFile, line);
+    int count = 0;
+    while (getline(csvFile, line)) {
+        istringstream iss(line);
+        string no, studentID, firstName, lastName, gender, dob, socialID;
+        getline(iss, no, ',');
+        getline(iss, studentID, ',');
+        getline(iss, firstName, ',');
+        getline(iss, lastName, ',');
+        getline(iss, gender, ',');
+        getline(iss, dob, ',');
+        getline(iss, socialID, ',');
+        Student* student = new Student;
+        student->studentID = studentID;
+        student->dateOfBirth = dob;
+
+        string username = studentID;
+        string password = dob;
+        password.erase(remove(password.begin(), password.end(), '/'), password.end());
+        accountFile << username << " " << password << endl;
+        count++;
+    }
+    csvFile.close();
+    accountFile.close();
+    cout << "Imported " << count << " students from " << csvFileName << " to " << accountFileName << endl;
+}

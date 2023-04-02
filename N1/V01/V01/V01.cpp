@@ -9,7 +9,7 @@
 #include "Student.h"
 int main()
 {
-    SchoolYear curSchoolYear;
+    /*SchoolYear curSchoolYear;
     cout << curSchoolYear << endl;
     curSchoolYear.createNewSemester();
     Semester *curSem = curSchoolYear.getCurrentSemester();
@@ -17,7 +17,12 @@ int main()
     class21CLC01.importStudentsFromCSV("csv_file/21CLC01_info.csv");
     class21CLC01.printListOfStudents();
     curSem->addCourse();
-    cout << *curSem << endl;
+    cout << *curSem << endl;*/
+
+    string studentInfoFile("csv_file/21CLC01_info.csv");
+    string accountFile("account_student/AccountStudent21CLC01.txt");
+    Student s1;
+    s1.importStudentListFromCSV(studentInfoFile, accountFile);
 
     return 0;
 }

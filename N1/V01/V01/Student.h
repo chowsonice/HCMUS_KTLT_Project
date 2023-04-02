@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "Scoreboard.h"
 
 using namespace std;
@@ -16,7 +18,7 @@ private:
 	string socialID;
 	Scoreboard scoreboard;
 public:
-	Student() : no(0), studentID(""), firstName(""), lastName(""), gender('X'), dateOfBirth(""), socialID("") {}
+	Student() : no(0), studentID(""), firstName(""), lastName(""), gender('X'), dateOfBirth(""), socialID(""), scoreboard(Scoreboard()) {}
 	~Student();
 
     int getNo() const;
@@ -43,5 +45,7 @@ public:
 
 	void readStudentFromCSVLine(string buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
+	void importStudentListFromCSV(const string& csvFileName, const string& accountFileName);
+
 };
 
