@@ -10,7 +10,12 @@ class Account
 public:
 	Account() : username(""), password(""), typeOfUsers(0) {}
 	Account(string usrname, string pass): typeOfUsers(0), username(usrname), password(pass) {}
-	bool changePassword(char* oldPassword, char* newPassword);
+
+	string checkLogin(string username, string password);
+	bool changePassword(string& oldPassword, string& newPassword);
+	void input_change_password();
+
+	~Account() {}
 };
 
 bool checkLogin(string username, string password);

@@ -18,11 +18,11 @@ public:
 	Scoreboard(const Scoreboard& sb) : Scoreboard(sb.courseId, sb.midtermMark, sb.otherMark, sb.finalMark, sb.totalMark) {}
 	~Scoreboard();
 
-	//const string getCourseId() const;
-	//float getTotalMark() const;
-	//float getFinalMark() const;
-	//float getMidtermMark() const;
-	//float getOtherMark() const;
+	const string getCourseId() const;
+	float getTotalMark() const;
+	float getFinalMark() const;
+	float getMidtermMark() const;
+	float getOtherMark() const;
 
 	void setCourseId(const string courseId);
 	void setTotalMark(float totalMark);

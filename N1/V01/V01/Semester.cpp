@@ -27,4 +27,17 @@ ostream& operator<<(ostream& os, const Semester& s) {
 //    }
 //}
 
-
+void Course::printListOfCourse() {
+    cout << "Course ID: " << courseId << endl;
+    cout << "Course Name: " << name << endl;
+    cout << "Class ID: " << classId << endl;
+    cout << "Teacher Name: " << teacherName << endl;
+    cout << "Number of Credits: " << noCredits << endl;
+    cout << "Max Number of Students: " << maxNoStudents << endl;
+    cout << "Day of the Week: " << dayOfTheWeek << endl;
+    cout << "Session: " << session << endl;
+    cout << "List of Students:" << endl;
+    for (Student* s : listOfStudents) {
+        cout << s->getFirstName() << " " << s->getLastName() << endl;
+    }
+}

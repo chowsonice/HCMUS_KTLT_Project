@@ -33,20 +33,22 @@ public:
 
 	//const Scoreboard* getScoreboard() const;
 
-	//void setNo(int no);
-	//void setId(const string studentID);
-	//void setFirstName(const string firstName);
-	//void setLastName(const string lastName);
-	//void setGender(char gender);
-	//void setDateOfBirth(const string dateOfBirth);
-	//void setSocialID(const string socialID);
+	void setNo(int no);
+	void setId(string studentID);
+	void setFirstName(string firstName);
+	void setLastName(string lastName);
+	void setGender(char gender);
+	void setDateOfBirth(string dateOfBirth);
+	void setSocialID(string socialID);
 	//void setScoreboard(const Scoreboard& scoreboard);
 
-	void updateScoreboard(Scoreboard& scoreboard);
+	//void UpdateScoreboard(Scoreboard& scoreboard);
 	void printScoreboard();
 	void printStudentInfo();
 
 	void readStudentFromCSVLine(string buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
+	void importStudentListFromCSV(const string& csvFileName, const string& accountFileName);
+
 };
 

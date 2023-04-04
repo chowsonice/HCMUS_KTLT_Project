@@ -37,55 +37,40 @@ void Student::addScoreboard(string courseInfo) {
 //    return scoreboard;
 //}
 
-//void Student::setNo(int no)
-//{
-//    this->no = no;
-//}
-//
-//void Student::setId(const string studentID)
-//{
-//    if (this->studentID != nullptr)
-//        delete[] this->studentID;
-//    this->studentID = new char[strlen(studentID) + 1];
-//    strcpy_s(this->studentID, strlen(studentID) + 1, studentID);
-//}
-//
-//void Student::setFirstName(const string firstName)
-//{
-//    if (this->firstName != nullptr)
-//        delete[] this->firstName;
-//    this->firstName = new char[strlen(firstName) + 1];
-//    strcpy_s(this->firstName, strlen(firstName) + 1, firstName);
-//}
-//
-//void Student::setLastName(const string lastName)
-//{
-//    if (this->lastName != nullptr)
-//        delete[] this->lastName;
-//    this->lastName = new char[strlen(lastName) + 1];
-//    strcpy_s(this->lastName, strlen(lastName) + 1, lastName);
-//}
-//
-//void Student::setGender(char gender)
-//{
-//    this->gender = gender;
-//}
-//
-//void Student::setDateOfBirth(const string dateOfBirth)
-//{
-//    if (this->dateOfBirth != nullptr)
-//        delete[] this->dateOfBirth;
-//    this->dateOfBirth = new char[strlen(dateOfBirth) + 1];
-//    strcpy_s(this->dateOfBirth, strlen(dateOfBirth) + 1, dateOfBirth);
-//}
-//
-//void Student::setSocialID(const string socialID)
-//{
-//    if (this->socialID != nullptr)
-//        delete[] this->socialID;
-//    this->socialID = new char[strlen(socialID) + 1];
-//    strcpy_s(this->socialID, strlen(socialID) + 1, socialID);
-//}
+void Student::setNo(int no)
+{
+    this->no = no;
+}
+
+void Student::setId(string studentID)
+{
+    this->studentID = studentID;
+}
+
+void Student::setFirstName(string firstName)
+{
+    this->firstName = firstName;
+}
+
+void Student::setLastName(string lastName)
+{
+    this->lastName = lastName;
+}
+
+void Student::setGender(char gender)
+{
+    this->gender = gender;
+}
+
+void Student::setDateOfBirth(string dateOfBirth)
+{
+    this->dateOfBirth = dateOfBirth;
+}
+
+void Student::setSocialID(string socialID)
+{
+    this->socialID = socialID;
+}
 //void Student::setScoreboard(const Scoreboard& scoreboard) {
 //    this->scoreboard = new Scoreboard(scoreboard);
 //}
@@ -165,4 +150,43 @@ void Student::printStudentInfo() {
     cout << "Gender: " << gender << endl;
     cout << "Birthday: " << dateOfBirth << endl;
     cout << "Social ID: " << socialID << endl;
+}
+
+void Student::importStudentListFromCSV(const string& csvFileName, const string& accountFileName) {
+    ifstream csvFile(csvFileName);
+    if (!csvFile.is_open()) {
+        cerr << "Error: Could not open " << csvFileName << endl;
+        return;
+    }
+    ofstream accountFile(accountFileName);
+    if (!accountFile.is_open()) {
+        cerr << "Error: Could not create " << accountFileName << endl;
+        return;
+    }
+    string line;
+    getline(csvFile, line);
+    int count = 0;
+    while (getline(csvFile, line)) {
+        istringstream iss(line);
+        string no, studentID, firstName, lastName, gender, dob, socialID;
+        getline(iss, no, ',');
+        getline(iss, studentID, ',');
+        getline(iss, firstName, ',');
+        getline(iss, lastName, ',');
+        getline(iss, gender, ',');
+        getline(iss, dob, ',');
+        getline(iss, socialID, ',');
+        Student* student = new Student;
+        student->studentID = studentID;
+        student->dateOfBirth = dob;
+
+        string username = studentID;
+        string password = dob;
+        password.erase(remove(password.begin(), password.end(), '/'), password.end());
+        accountFile << username << " " << password << endl;
+        count++;
+    }
+    csvFile.close();
+    accountFile.close();
+    cout << "Imported " << count << " students from " << csvFileName << " to " << accountFileName << endl;
 }
