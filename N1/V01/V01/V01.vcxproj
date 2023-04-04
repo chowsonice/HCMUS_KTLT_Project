@@ -134,6 +134,7 @@
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Semester.cpp" />
     <ClCompile Include="Student.cpp" />
+    <ClCompile Include="University.cpp" />
     <ClCompile Include="V01.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="Semester.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="University.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="csv_file\21CLC01_CSC10001.csv" />
