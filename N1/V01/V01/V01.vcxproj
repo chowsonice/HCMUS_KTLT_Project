@@ -156,6 +156,9 @@
     <None Include="csv_file\21CLC02_score.csv" />
     <None Include="csv_file\students.csv" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Account.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
