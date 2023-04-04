@@ -69,7 +69,7 @@ int main()
     s->printScoreboard();
 
     cout << "\n-----List of classes-----\n";
-    s->printScoreboard();
+    uni.printListOfClasses();
 
     return 0;
 }
