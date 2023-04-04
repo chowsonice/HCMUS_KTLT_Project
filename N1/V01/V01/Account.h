@@ -13,6 +13,7 @@ public:
 
 	string checkLogin(string username, string password);
 	bool changePassword(string& oldPassword, string& newPassword);
+	void input_change_password();
 
 	~Account() {}
 };

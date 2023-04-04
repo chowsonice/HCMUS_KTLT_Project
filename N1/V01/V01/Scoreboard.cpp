@@ -57,3 +57,7 @@ ostream& operator<<(ostream& os, const Scoreboard& s){
 		<< "Other Mark: " << s.otherMark << endl;
 	return os;
 }
+
+void printScoreboard(const Scoreboard& scoreboard) {
+	cout << scoreboard;
+}
