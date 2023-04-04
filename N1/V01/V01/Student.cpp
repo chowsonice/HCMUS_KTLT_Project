@@ -6,6 +6,7 @@ using namespace std;
 
 Student::~Student() {}
 
+
 int Student::getNo() const {
     return no;
 }
@@ -27,6 +28,11 @@ const string Student::getDateOfBirth() const {
 const string Student::getSocialID() const {
     return socialID;
 }
+void Student::addScoreboard(string courseInfo) {
+    Scoreboard* s = new Scoreboard(courseInfo);
+    list.push_back(s);
+}
+
 //const Scoreboard* Student::getScoreboard() const {
 //    return scoreboard;
 //}
@@ -120,10 +126,8 @@ void Student::readStudentFromCSVLine(string line) {
         line.erase(0, token.length() + delim.length());
     }
 }
-
-
-// Khoan hay lam gi them nha, de t suy nghi them ve phan scoreboard r tinh tiep
-//void Student::UpdateScoreboard(Scoreboard& scoreboard) {
+// Nay de doc CSV mot dong, giong cai readCSVline cua Student
+//void Student::updateScoreboard(Scoreboard& scoreboard) {
 //    char temp1[20], temp2[20], temp3[20];
 //    int semester;
 //    float totalMark, finalMark, midtermMark, otherMark;
@@ -149,13 +153,12 @@ void Student::readStudentFromCSVLine(string line) {
 //    scoreboard.setOtherMark(otherMark);
 //}
 
-//void Student::PrintScoreboard() {
-//    cout << *scoreboard << endl;
-//}
-
+void Student::printScoreboard() {
+    for (Scoreboard* s : list) cout << *s;
+}
 void Student::printStudentInfo() {
-    ///Can thiet in student no khum?
-    //cout << "Number of student: " << no << endl;
+    ///Can thiet in student no khum? -> Khong !!!
+
     cout << "Student ID: " << studentID << endl;
     cout << "First name: " << firstName << endl;
     cout << "Last name: " << lastName << endl;

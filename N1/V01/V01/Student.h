@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <list>
 #include "Scoreboard.h"
 
 using namespace std;
@@ -14,9 +15,10 @@ private:
 	char gender;
 	string dateOfBirth;
 	string socialID;
-	//Scoreboard* scoreboard = nullptr;
+	list<Scoreboard*> list;
 public:
 	Student() : no(0), studentID(""), firstName(""), lastName(""), gender('X'), dateOfBirth(""), socialID("") {}
+	Student(int n, string id, string fname, string lname, char gen, string dob, string sid) : no(n), studentID(id), firstName(fname), lastName(lname), gender(gen), dateOfBirth(dob), socialID(sid) {}
 	~Student();
 
     int getNo() const;
@@ -26,6 +28,9 @@ public:
     char getGender() const;
     const string getDateOfBirth() const;
 	const string getSocialID() const;
+
+	void addScoreboard(string courseInfo);
+
 	//const Scoreboard* getScoreboard() const;
 
 	//void setNo(int no);
@@ -37,8 +42,8 @@ public:
 	//void setSocialID(const string socialID);
 	//void setScoreboard(const Scoreboard& scoreboard);
 
-	//void UpdateScoreboard(Scoreboard& scoreboard);
-	//void PrintScoreboard();
+	void updateScoreboard(Scoreboard& scoreboard);
+	void printScoreboard();
 	void printStudentInfo();
 
 	void readStudentFromCSVLine(string buffer);
