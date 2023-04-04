@@ -5,6 +5,7 @@ using namespace std;
 class Scoreboard
 {
 private:
+	bool updated = false;
 	string courseId;
 	float totalMark;
 	float finalMark;
@@ -12,6 +13,7 @@ private:
 	float otherMark;
 public:
 	Scoreboard() : courseId(""), totalMark(0), finalMark(0), midtermMark(0), otherMark(0) {}
+	Scoreboard(string courseId) : courseId(courseId), totalMark(0), finalMark(0), midtermMark(0), otherMark(0) {}
 	Scoreboard(string courseId, float midtermMark, float otherMark, float finalMark, float totalMark);
 	Scoreboard(const Scoreboard& sb) : Scoreboard(sb.courseId, sb.midtermMark, sb.otherMark, sb.finalMark, sb.totalMark) {}
 	~Scoreboard();
@@ -27,8 +29,6 @@ public:
 	void setFinalMark(float finalMark);
 	void setMidtermMark(float midtermMark);
 	void setOtherMark(float otherMark);
-
-	void input();
 
 	friend ostream& operator<<(ostream& os, const Scoreboard& s);
 

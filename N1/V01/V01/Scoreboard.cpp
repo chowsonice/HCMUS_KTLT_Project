@@ -39,8 +39,9 @@ void Scoreboard::setOtherMark(float otherMark) {
 	this->otherMark = otherMark; 
 }
 ostream& operator<<(ostream& os, const Scoreboard& s){
-	os << "Course ID: " << s.courseId << endl
-		<< "Total Mark: " << s.totalMark << endl
+	os	<< "Course ID: " << s.courseId << endl;
+	if (!s.updated) return os;
+	os	<< "Total Mark: " << s.totalMark << endl
 		<< "Final Mark: " << s.finalMark << endl
 		<< "Midterm Mark: " << s.midtermMark << endl
 		<< "Other Mark: " << s.otherMark << endl;
