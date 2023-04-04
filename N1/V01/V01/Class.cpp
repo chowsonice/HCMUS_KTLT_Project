@@ -8,11 +8,11 @@
 //    numberOfStudents = numOfStudents;
 //}
 
-void Class::setClassName(const char* name) {
-    strcpy_s(className, 50, name);
+void Class::setClassName(const string name) {
+    className = name;
 }
 
-char* Class::getClassName() const {
+string Class::getClassName() const {
     return className;
 }
 
@@ -20,29 +20,48 @@ int Class::getNumberOfStudents() {
     return numberOfStudents;
 }
 
-void Class::importStudentsFromCSV(const char* filenameInfoStu) {
+void Class::importStudentsFromCSV() {
+    string filenameInfoStu = "csv_file/" + className + "_info.csv";
     ifstream file(filenameInfoStu);
+    ofstream facc;
+    facc.open("Account.txt", fstream::app);
     if (!file.is_open()) {
         cout << "Cannot open file" << endl;
         return;
     }
-
     string line;
     getline(file, line, '\n');
-
     numberOfStudents = 0;
-
     while (getline(file, line)) {
         numberOfStudents++;
-        char* buffer = new char[line.length() + 1];
-        strcpy_s(buffer, line.length() + 1, line.c_str());
+
+        //adding students
         Student *newStudent = new Student;
-        newStudent->readStudentFromCSVLine(buffer);
+        newStudent->readStudentFromCSVLine(line);
         list.push_back(newStudent);
 
-        delete[] buffer;
+        //creating account
+        string username, password;
+        for (int i = 0; i < 6; i++) {
+            string token = line.substr(0, line.find(","));
+            switch (i) {
+            case 1:
+                username = token;
+                break;
+            case 5:
+                for (int i = 0; i < 3; i++) {
+                    string token2 = token.substr(0, token.find("/"));
+                    password += token2;
+                    token.erase(0, token2.length() + 1);
+                }
+                break;
+            }
+            line.erase(0, token.length() + 1);
+        }
+        facc << username << " " << password << endl;
     }
     file.close();
+    facc.close();
 }
 
 //void Class::addStudent(char* name) {

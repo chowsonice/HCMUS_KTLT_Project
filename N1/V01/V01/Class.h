@@ -10,23 +10,35 @@ using namespace std;
 
 class Class {
 private:
-    char* className;
+    string className;
     list<Student*> list;
     int numberOfStudents;
 
 public:
-    Class() : className(nullptr), numberOfStudents(0) {}
-    Class(char* nameOfClass, std::list<Student*>listData(), int numOfStudents);
+    Class() : className(""), numberOfStudents(0) {}
+    Class(string name) : className(name), numberOfStudents(0) {}
+    Class(string nameOfClass, std::list<Student*>listData(), int numOfStudents);
     ~Class(){}
 
-    void setClassName(const char* name);
-
-    char* getClassName() const;
-
+    void setClassName(const string name);
+    string getClassName() const;
     int getNumberOfStudents();
 
-    void importStudentsFromCSV(const char* filenameInfoStu);
-    void printListOfClasses();//TDat
+    Student* findStudent(string id) {
+        for (Student* s : list) {
+            if (s->getId().compare(id) == 0) {
+                return s;
+            }
+        }
+        return nullptr;
+    }
+    void importStudentsFromCSV();
+
+    //void printListOfClasses();//TDat
+
+    friend ostream& operator<<(ostream& os, Class c) {
+        os << "Class " << c.className << "\n" << "Number of students: " << c.numberOfStudents << "\n";
+    }
     void printListOfStudents();
     void printScoreboardOfClasses();
 };
