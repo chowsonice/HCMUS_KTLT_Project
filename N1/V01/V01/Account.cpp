@@ -35,48 +35,48 @@ bool checkLogin(string username, string password) {
 //        return true;
 //    }
 //}
-bool Account::changePassword(string& oldPassword, string& newPassword)
-{
-    if (password != oldPassword)
-    {
-        cout << "Incorrect password." << endl;
-        return false;
-    }
-    else
-    {
-        password = newPassword;
-        cout << "Password changed successfully." << endl;
-        return true;
-    }
-}
-
-void Account::input_change_password()
-{
-    string oldPassword, newPassword;
-    cout << "Please enter your old password: ";
-    cin >> oldPassword;
-    cout << "Please enter your new password: ";
-    cin >> newPassword;
-
-    if (changePassword(oldPassword, newPassword))
-    {
-        ifstream fin("Account.txt");
-        ofstream fout("temp.txt");
-        string buffer1, buffer2;
-        while (fin >> buffer1 >> buffer2)
-        {
-            if (buffer1 == username)
-            {
-                fout << username << " " << newPassword << endl;
-            }
-            else
-            {
-                fout << buffer1 << " " << buffer2 << endl;
-            }
-        }
-        fin.close();
-        fout.close();
-        remove("Account.txt");
-        rename("temp.txt", "Account.txt");
-    }
-}
+//bool Account::changePassword(string& oldPassword, string& newPassword)
+//{
+//    if (password != oldPassword)
+//    {
+//        cout << "Incorrect password." << endl;
+//        return false;
+//    }
+//    else
+//    {
+//        password = newPassword;
+//        cout << "Password changed successfully." << endl;
+//        return true;
+//    }
+//}
+//
+//void Account::input_change_password()
+//{
+//    string oldPassword, newPassword;
+//    cout << "Please enter your old password: ";
+//    cin >> oldPassword;
+//    cout << "Please enter your new password: ";
+//    cin >> newPassword;
+//
+//    if (changePassword(oldPassword, newPassword))
+//    {
+//        ifstream fin("Account.txt");
+//        ofstream fout("temp.txt");
+//        string buffer1, buffer2;
+//        while (fin >> buffer1 >> buffer2)
+//        {
+//            if (buffer1 == username)
+//            {
+//                fout << username << " " << newPassword << endl;
+//            }
+//            else
+//            {
+//                fout << buffer1 << " " << buffer2 << endl;
+//            }
+//        }
+//        fin.close();
+//        fout.close();
+//        remove("Account.txt");
+//        rename("temp.txt", "Account.txt");
+//    }
+//}
