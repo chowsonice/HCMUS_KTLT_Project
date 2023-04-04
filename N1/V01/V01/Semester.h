@@ -4,9 +4,10 @@
 #include "Course.h"
 using namespace std;
 
-class Semester 
+struct Semester 
 {
     list<Course*> listOfCourses;
+private:
     int number;
 public:
     Semester() : number(0) {}
