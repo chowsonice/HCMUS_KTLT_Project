@@ -1,5 +1,6 @@
 #pragma once
 #include "Student.h"
+#include "University.h"
 #include <list>
 
 using namespace std;
@@ -18,7 +19,7 @@ class Course
 public:
 	Course() : courseId(""), name(""), classId(""), teacherName(""), noCredits(0), maxNoStudents(50), dayOfTheWeek(""), session(0) {}
 	~Course() {}
-	bool importStudentsFromCSV(string filename);
+	bool importStudentsFromCSV(string filename, University& u);
 	void setCourseId(const string id);
 	void setCourseName(const string name);
 	void setClassName(const string className);

@@ -3,9 +3,7 @@
 #include <fstream>
 using namespace std;
 
-
-
-bool Course::importStudentsFromCSV(string filename) {
+bool Course::importStudentsFromCSV(string filename, University &u) {
     ifstream fin(filename);
     if (!fin.is_open()) {
         cout << "Cannot open file" << endl;
@@ -17,8 +15,15 @@ bool Course::importStudentsFromCSV(string filename) {
 
     while (getline(fin, line)) {
 
-        Student* newStudent = new Student;
-        newStudent->readStudentFromCSVLine(line);
+        const string delim = ",";
+        string token;
+        for (int i = 0; i < 3; i++) {
+            token = line.substr(0, line.find(delim));
+            line.erase(0, token.length() + 1);
+        }
+        Student* newStudent = u.findStudent(token);
+        newStudent->addScoreboard(courseId);
+        //newStudent->readStudentFromCSVLine(line);
         listOfStudents.push_back(newStudent);
 
     }
@@ -27,6 +32,7 @@ bool Course::importStudentsFromCSV(string filename) {
 }
 
 void Course::input() {
+    cin.ignore();
 
 	cout << "Course ID:";
     getline(cin, courseId);
