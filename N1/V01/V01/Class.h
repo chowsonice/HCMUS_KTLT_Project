@@ -38,8 +38,9 @@ public:
 
     friend ostream& operator<<(ostream& os, Class c) {
         os << "Class " << c.className << "\n" << "Number of students: " << c.numberOfStudents << "\n";
+        return os;
     }
     void printListOfStudents();
-    void printScoreboardOfClasses();
+    //void printScoreboardOfClasses();
 };
 
