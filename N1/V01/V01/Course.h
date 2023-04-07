@@ -2,6 +2,7 @@
 #include "Student.h"
 #include "University.h"
 #include <list>
+#include "Node.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ class Course
 	int maxNoStudents;
 	string dayOfTheWeek;
 	int session;
-	list<Student*> listOfStudents;
+	LinkedList<Student*> listOfStudents;
 public:
 	Course() : courseId(""), name(""), classId(""), teacherName(""), noCredits(0), maxNoStudents(50), dayOfTheWeek(""), session(0) {}
 	~Course() {}
