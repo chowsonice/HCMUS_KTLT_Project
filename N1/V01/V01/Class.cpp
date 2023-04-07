@@ -64,24 +64,18 @@ void Class::importStudentsFromCSV() {
     facc.close();
 }
 
-//void Class::addStudent(char* name) {
-//    StudentNode* newNode = new StudentNode;
-//    strcpy_s(newNode->name, 50, name);
-//    newNode->next = nullptr;
-//
-//    if (listOfStudents == nullptr) {
-//        listOfStudents = newNode;
-//    }
-//    else {
-//        StudentNode* currNode = listOfStudents;
-//        while (currNode->next != nullptr) {
-//            currNode = currNode->next;
-//        }
-//        currNode->next = newNode;
-//    }
-//
-//    numberOfStudents++;
-//}
+
+void Class::exportStudentsToCSV() {
+    string filenameInfoStu = "csv_file/" + className + "_info.csv";
+    ofstream file(filenameInfoStu);
+    if (!file.is_open()) {
+        cout << "Cannot open file" << endl;
+        return;
+    }
+    string line, buffer;
+    
+}
+
 
 //void Class::printListOfClasses() {
 //    cout << "Class Name: " << className << endl;

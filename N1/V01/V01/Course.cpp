@@ -23,7 +23,6 @@ bool Course::importStudentsFromCSV(string filename, University &u) {
         }
         Student* newStudent = u.findStudent(token);
         newStudent->addScoreboard(courseId);
-        //newStudent->readStudentFromCSVLine(line);
         listOfStudents.push_back(newStudent);
 
     }
@@ -104,11 +103,11 @@ void Course::setSession(int session)
     this->session = session;
 }
 
-void Course::printListOfStudents() {
-    for (Student* s : listOfStudents) {
-        cout << *s << "\n";
-    }
-}
+//void Course::printListOfStudents() {
+//    for (Student* s : listOfStudents) {
+//        cout << *s << "\n";
+//    }
+//}
 
 void updateCourse(Course& course) {
     int option;
