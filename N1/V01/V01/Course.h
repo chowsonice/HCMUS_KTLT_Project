@@ -37,6 +37,6 @@ public:
 	void removeStudent(Student *student);
 	//void importScoreboard(char* filename);
 	//void viewScoreboard();
-	void printListOfCourse();
+	void printListOfCourse(); // tai sao co list of course o day ? no o trong semester ma ? xoa di nha
 	friend ostream& operator<<(ostream& os, const Course& s);
 };

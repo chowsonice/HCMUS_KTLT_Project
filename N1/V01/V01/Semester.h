@@ -1,22 +1,18 @@
 #pragma once
-#include <list>
 #include <iostream>
 #include "Course.h"
 using namespace std;
 
 struct Semester 
 {
-    list<Course*> listOfCourses;
+    LinkedList<Course*> listOfCourses;
 private:
     int number;
 public:
     Semester() : number(0) {}
-    Semester(int number, list<Course*> listOfCourses);
+    Semester(int number, LinkedList<Course*> listOfCourses);
     Semester(int number) : number(number) {}
     friend ostream& operator<<(ostream& os, const Semester &s);
     ~Semester();
     void addCourse();
-    void printListOfCourses() {
-        for (Course* c : listOfCourses) cout << *c << endl;
-    }
 };

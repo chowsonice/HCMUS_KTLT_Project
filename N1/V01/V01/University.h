@@ -1,14 +1,14 @@
 #pragma once
-#include <list>
 #include "Class.h"
+#include "Node.h"
 using namespace std;
 
 struct University {
-	list<Class*> listOfClasses;
+	LinkedList<Class*> listOfClasses;
 public:
 	Student* findStudent(string id);
 	void addClass();
-	void printListOfClasses();
+	friend ostream& operator<<(ostream& os, const University& s);
 };
 
 

@@ -2,9 +2,12 @@
 
 Student* University::findStudent(string id)
 {
-	for (Class* c : listOfClasses) {
-		Student* s = c->findStudent(id);
+	Node<Class*>* node = listOfClasses.head;
+	while (node != nullptr)
+	{
+		Student* s = node->data->findStudent(id);
 		if (s != nullptr) return s;
+		node = node->next;
 	}
 }
 
@@ -20,9 +23,13 @@ void University::addClass()
 	listOfClasses.push_back(newclass);
 }
 
-void University::printListOfClasses()
+ostream& operator<<(ostream& os, const University& u) 
 {
-
-	for (Class* c : listOfClasses) cout << *c << "\n";
-
+	Node<Class*>* node = u.listOfClasses.head;
+	while (node != nullptr)
+	{
+		os << node << endl;
+		node = node->next;
+	}
+	return os;
 }
