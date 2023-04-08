@@ -1,12 +1,11 @@
 #include "Class.h"
 #include <cstring>
 
-//Class::Class(char* nameOfClass, LinkedList<Student> listData, int numOfStudents) {
-//    className = new char[strlen(nameOfClass) + 1];
-//    strcpy_s(className, strlen(nameOfClass) + 1, nameOfClass);
-//    list = LinkedList<Student>(listData);
-//    numberOfStudents = numOfStudents;
-//}
+Class::Class(string nameOfClass, LinkedList<Student*> listData(), int numOfStudents) {
+    className = nameOfClass;
+    list = listData();
+    numberOfStudents = numOfStudents;
+}
 
 void Class::setClassName(const string name) {
     className = name;
@@ -89,12 +88,13 @@ void Class::exportStudentsToCSV() {
 //    }
 //}
 
-void Class::printListOfStudents() 
-{
-    for (Student* s : list) {
-        cout << *s << "\n";
-    }
-}
+//void Class::printListOfStudents() 
+//{
+//    for (Student* s : list) {
+//        cout << *s << "\n";
+//    }
+//}
+
 //void Class::printScoreboardOfClasses() {
 //    cout << "Class Name: " << className << endl;
 //    if (list.head == nullptr) {
