@@ -34,7 +34,7 @@ public:
 	void input();
 
 	void addStudent(Student *student);
-	void removeStudent(Student *student);
+	void removeStudent(string id);
 	//void importScoreboard(char* filename);
 	//void viewScoreboard();
 	void printListOfCourse();
