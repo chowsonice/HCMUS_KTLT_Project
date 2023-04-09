@@ -1,8 +1,5 @@
 #pragma once
 #include "Student.h"
-#include <cstring>
-#include <sstream>
-using namespace std;
 
 Student::~Student() {}
 
@@ -139,11 +136,21 @@ void Student::readStudentFromCSVLine(string line) {
 //}
 
 void Student::printScoreboard() {
-    for (Scoreboard* s : list) cout << *s;
+    cout << "Scoreboard for student " << studentID << " - " << firstName
+        << " " << lastName << endl;
+    cout << "CourseId\tTotal Mark\tFinal Mark\tMidterm Mark\tOtherMark\n";
+    Node<Scoreboard*>* curr = list.head;
+    while (curr != nullptr) {
+        Scoreboard* scoreboard = curr->data;
+        cout << scoreboard->getCourseId() << "\t"
+            << scoreboard->getTotalMark() << "\t"
+            << scoreboard->getFinalMark() << "\t"
+            << scoreboard->getMidtermMark() << "\t"
+            << scoreboard->getOtherMark() << "\n";
+        curr = curr->next;
+    }
 }
 void Student::printStudentInfo() {
-    ///Can thiet in student no khum? -> Khong !!!
-
     cout << "Student ID: " << studentID << endl;
     cout << "First name: " << firstName << endl;
     cout << "Last name: " << lastName << endl;

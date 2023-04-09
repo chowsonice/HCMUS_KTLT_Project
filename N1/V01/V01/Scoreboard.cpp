@@ -6,6 +6,7 @@ Scoreboard::Scoreboard(string courseId, float midtermMark, float otherMark, floa
 	this->finalMark = finalMark;
 	this->midtermMark = midtermMark;
 	this->otherMark = otherMark;
+	this->updated = true;
 }
 
 Scoreboard::~Scoreboard() {}

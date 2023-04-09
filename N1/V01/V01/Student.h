@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
-#include <list>
+#include <cstring>
+#include <sstream>
+#include "Node.h"
 #include "Scoreboard.h"
 
 using namespace std;
@@ -15,7 +17,7 @@ private:
 	char gender;
 	string dateOfBirth;
 	string socialID;
-	list<Scoreboard*> list;
+	LinkedList<Scoreboard*> list;
 public:
 	Student() : no(0), studentID(""), firstName(""), lastName(""), gender('X'), dateOfBirth(""), socialID("") {}
 	Student(int n, string id, string fname, string lname, char gen, string dob, string sid) : no(n), studentID(id), firstName(fname), lastName(lname), gender(gen), dateOfBirth(dob), socialID(sid) {}
