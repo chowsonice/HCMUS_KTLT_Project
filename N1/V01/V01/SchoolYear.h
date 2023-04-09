@@ -8,7 +8,7 @@ class SchoolYear {
 private:
     int _start;
     int _end;
-    list<Semester*> semesters;
+    LinkedList<Semester*> semesters;
     Semester* curSem = nullptr;
 public:
     SchoolYear() : _start(2022), _end(2023) {}
@@ -16,11 +16,14 @@ public:
     friend ostream& operator<<(ostream& os, SchoolYear sy);
     void createNewSemester() {
         int n = semesters.size();
-        if (n >= 3) return;
+        if (n >= 3) {
+            cout << "Cannot add another semester to this school year!\n Create a new one and try again.\n";
+            return;
+        }
         curSem = new Semester(n + 1);
         semesters.push_back(curSem);
     }
-    Semester *getCurrentSemester() {
+    Semester* getCurrentSemester() {
         return curSem;
     }
 };
