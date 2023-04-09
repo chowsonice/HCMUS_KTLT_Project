@@ -1,22 +1,22 @@
 #include "Semester.h"
 
-Semester::Semester(int number, list<Course*> listOfCourses)
+Semester::Semester(int number, LinkedList<Course*> listOfCourses)
 {
     this->number = number;
-    this->listOfCourses = list<Course*>(listOfCourses);
+    this->listOfCourses = LinkedList<Course*>(listOfCourses);
 }
 Semester::~Semester()
 {}
 
 void Semester::addCourse() {
-    listOfCourses.push_back(new Course);
-    Course* temp = listOfCourses.back();
+    Course* temp = new Course;
     temp->input();
+    listOfCourses.push_back(temp);
 }
 
 ostream& operator<<(ostream& os, const Semester& s) {
     os << "Term " << s.number << "\n";
-    for (Course* c : s.listOfCourses) os << *c << "\n";
+    for (Node<Course*> c : s.listOfCourses) os << *c.data << "\n";
     return os;
 }
 
@@ -37,7 +37,7 @@ void Course::printListOfCourse() {
     cout << "Day of the Week: " << dayOfTheWeek << endl;
     cout << "Session: " << session << endl;
     cout << "List of Students:" << endl;
-    for (Student* s : listOfStudents) {
-        cout << s->getFirstName() << " " << s->getLastName() << endl;
+    for (Node<Student*> s : listOfStudents) {
+        cout << s.data->getFirstName() << " " << s.data->getLastName() << endl;
     }
 }
