@@ -65,54 +65,39 @@ void Class::importStudentsFromCSV() {
 
 
 void Class::exportStudentsToCSV() {
-    string filenameInfoStu = "csv_file/" + className + "_info.csv";
+    stringstream ss;
+    string filenameInfoStu = "output_file/" + className + "_info.csv";
     ofstream file(filenameInfoStu);
     if (!file.is_open()) {
         cout << "Cannot open file" << endl;
         return;
     }
-    string line, buffer;
-    
+    file << "No,id,firstName,lastName,gender,dob,socialID\n";
+    string line;
+    for (Node<Student*> s : list) {
+        ss << *s.data;
+        ss >> line;
+        file << line << "\n";
+    }
+    file.close();
 }
 
+void Class::printListOfStudents() {
+    for (Node<Student*> s : list) {
+        cout << *s.data << "\n";
+    }
+}
 
-//void Class::printListOfClasses() {
-//    cout << "Class Name: " << className << endl;
-//    cout << "Number of Students: " << numberOfStudents << endl;
-//    cout << "List of Students: ";
-//    if (list.head == nullptr) {
-//        cout << "None" << endl;
-//    }
-//    else {
-//        printListOfStudents();
-//    }
-//}
-
-//void Class::printListOfStudents() 
-//{
-//    for (Student* s : list) {
-//        cout << *s << "\n";
-//    }
-//}
-
-//void Class::printScoreboardOfClasses() {
-//    cout << "Class Name: " << className << endl;
-//    if (list.head == nullptr) {
-//        cout << "None" << endl;
-//    }
-//    else {
-//        for (int i = 0; i < list.size(); i++) {
-//            Student::PrintScoreboard(list)
-//        }
-//    }
-//}
-
-//void Class::printScoreboardOfClasses()
-//{
-//    Node<Student>* curr = list.head;
-//    while (curr != nullptr) {
-//        cout << "Student ID: " << curr->data.getId() << endl;
-//        curr->data.PrintScoreboard();
-//        curr = curr->next;
-//    }
-//}
+void Class::printScoreboardOfClass(string id)
+{
+    if (!updated) {
+        cout << "No updated scoreboard yet.\n";
+        return;
+    }
+    for (Node<Student*> cur : list) {
+        cout << "Student ID: " << cur.data->getId() << endl;
+        Scoreboard *s = cur.data->findScoreboard(id);
+        if (s == nullptr) cout << "00 00 00 00\n";
+        else s->print();
+    }
+}

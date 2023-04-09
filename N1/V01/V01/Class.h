@@ -5,12 +5,13 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <list>
+
 
 using namespace std;
 
 class Class {
 private:
+    bool updated = false;
     string className;
     LinkedList<Student*> list;
     int numberOfStudents;
@@ -25,16 +26,15 @@ public:
     string getClassName() const;
     int getNumberOfStudents();
 
-    //Student* findStudent(string id) {
-    //    for (Student* s : list) {
-    //        if (s->getId().compare(id) == 0) {
-    //            return s;
-    //        }
-    //    }
-    //    return nullptr;
-    //}
+    Student* findStudent(string id) {
+        for (Node<Student*> s : list) {
+            if (s.data->getId().compare(id) == 0) {
+                return s.data;
+            }
+        }
+        return nullptr;
+    }
     void importStudentsFromCSV();
-
     void exportStudentsToCSV();
 
     friend ostream& operator<<(ostream& os, Class c) {
@@ -43,7 +43,6 @@ public:
     }
 
     void printListOfStudents();
-
-    //void printScoreboardOfClasses();
+    void printScoreboardOfClass(string id);
 };
 
