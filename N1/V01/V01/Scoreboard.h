@@ -1,7 +1,10 @@
 #pragma once
 #include <iostream>
+#include <sstream>
+#include <string>
 
 using namespace std;
+
 class Scoreboard
 {
 private:
@@ -30,8 +33,26 @@ public:
 	void setMidtermMark(float midtermMark);
 	void setOtherMark(float otherMark);
 
+	bool updateScoreboard(string line) {
+		stringstream ss;
+		if (updated) {
+			cout << "Scoreboard of "<< courseId << " has already had values.\n Cannot update scoreboard!\n";
+			return false;
+		}
+		else {
+			ss << line;
+			if (!(ss >> midtermMark) || (midtermMark < 0 || midtermMark > 10)) throw "Invalid input!";
+			if (!(ss >> finalMark) || (finalMark < 0 || finalMark > 10)) throw "Invalid input!";
+			if (!(ss >> otherMark) || (otherMark < 0 || otherMark > 10)) throw "Invalid input!";
+			if (!(ss >> totalMark) || (totalMark < 0 || totalMark > 10)) throw "Invalid input!";
+			updated = true;
+		}
+	}
+	bool checkUpdated() {
+		return updated;
+	}
 	friend ostream& operator<<(ostream& os, const Scoreboard& s);
-
+	void print();
 
 };
 
