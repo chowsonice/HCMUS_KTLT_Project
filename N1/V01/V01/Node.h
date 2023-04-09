@@ -11,7 +11,7 @@ struct Node
 	Node<T>() : next(nullptr) {}
 	Node<T>(T tdata) : data(tdata), next(nullptr) {}
 	Node<T>(const Node<T>& n) : Node<T>(n.data) {}
-
+	// Do not use remove if unsure what you are doing
 	void remove() {
 		if constexpr (std::is_pointer_v<T>) { // check if T is a pointer type
 			delete data; // delete the data pointed to by the node
