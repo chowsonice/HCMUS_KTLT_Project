@@ -23,6 +23,6 @@ void University::addClass()
 void University::printListOfClasses()
 {
 
-	for (Class* c : listOfClasses) cout << *c << "\n";
+	for (Node<Class*> c : listOfClasses) cout << *c.data << "\n";
 
 }
