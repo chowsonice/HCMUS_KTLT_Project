@@ -68,10 +68,6 @@ void Student::setSocialID(string socialID)
 {
     this->socialID = socialID;
 }
-//void Student::setScoreboard(const Scoreboard& scoreboard) {
-//    this->scoreboard = new Scoreboard(scoreboard);
-//}
-
 ostream& operator<<(ostream& os, const Student& s) {
     if (s.no == 0) return os;
     os << to_string(s.no) << " " << s.studentID << " " << s.firstName << " " << s.lastName << " " << s.gender << " ";
@@ -109,45 +105,21 @@ void Student::readStudentFromCSVLine(string line) {
     }
 }
 // Nay de doc CSV mot dong, giong cai readCSVline cua Student o phia tren
-//void Student::updateScoreboard(Scoreboard& scoreboard) {
-//    char temp1[20], temp2[20], temp3[20];
-//    int semester;
-//    float totalMark, finalMark, midtermMark, otherMark;
-//
-//    cout << "input new CourseID: ";
-//    cin >> temp1;
-//    scoreboard.setCourseId(temp1);
-//
-//    cout << "input new TotalMark: ";
-//    cin >> totalMark;
-//    scoreboard.setTotalMark(totalMark);
-//
-//    cout << "input new FinalMark: ";
-//    cin >> finalMark;
-//    scoreboard.setFinalMark(finalMark);
-//
-//    cout << "input new MidtermMark: ";
-//    cin >> midtermMark;
-//    scoreboard.setMidtermMark(midtermMark);
-//
-//    cout << "input new OtherMark: ";
-//    cin >> otherMark;
-//    scoreboard.setOtherMark(otherMark);
-//}
+void Student::updateScoreboard(string courseId, string line) {
+    for (auto i = list.begin(); i != list.end(); ++i) {
+        if ((*i)->getCourseId().compare(courseId) == 0) {
+            (*i)->updateScoreboard(line);
+            return;
+        } 
+    }
+}
 
-void Student::printScoreboard() {
-    cout << "Scoreboard for student " << studentID << " - " << firstName
-        << " " << lastName << endl;
-    cout << "CourseId\tTotal Mark\tFinal Mark\tMidterm Mark\tOtherMark\n";
-    Node<Scoreboard*>* curr = list.head;
-    while (curr != nullptr) {
-        Scoreboard* scoreboard = curr->data;
-        cout << scoreboard->getCourseId() << "\t"
-            << scoreboard->getTotalMark() << "\t"
-            << scoreboard->getFinalMark() << "\t"
-            << scoreboard->getMidtermMark() << "\t"
-            << scoreboard->getOtherMark() << "\n";
-        curr = curr->next;
+void Student::printOneScoreboard(string courseId) {
+    for (auto i = list.begin(); i != list.end(); ++i) {
+        if ((*i)->getCourseId().compare(courseId) == 0) {
+            cout << *(*i);
+            return;
+        }
     }
 }
 void Student::printStudentInfo() {

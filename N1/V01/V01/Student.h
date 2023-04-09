@@ -42,15 +42,26 @@ public:
 	void setGender(char gender);
 	void setDateOfBirth(string dateOfBirth);
 	void setSocialID(string socialID);
-	//void setScoreboard(const Scoreboard& scoreboard);
 
-	//void UpdateScoreboard(Scoreboard& scoreboard);
-	void printScoreboard();
+	void removeScoreboard(string id) {
+		for (Node<Scoreboard*> s : list) {
+			if (s.data->getCourseId().compare(id) == 0) list.remove(s.data);
+		}
+	}
+	Scoreboard* findScoreboard(string courseId) {
+		for (Node<Scoreboard*> c : list) {
+			if (c.data->getCourseId().compare(courseId) == 0) {
+				return c.data;
+			}
+		}
+	}
+	void updateScoreboard(string courseId, string line);
+	void printOneScoreboard(string courseId);
+	void printAllScoreboard();
 	void printStudentInfo();
 
 	void readStudentFromCSVLine(string buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
-	void importStudentListFromCSV(const string& csvFileName, const string& accountFileName);
 
 };
 
