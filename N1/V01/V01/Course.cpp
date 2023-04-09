@@ -104,7 +104,7 @@ void Course::setSession(int session)
 
 void Course::printListOfStudents() {
     for (Node<Student*> s : listOfStudents) {
-        cout << s.data << "\n";
+        cout << *s.data << "\n";
     }
 }
 
@@ -190,6 +190,7 @@ void Course::removeStudent(string id)
 	}
     for (Node<Student*> s : listOfStudents) {
         if (s.data->getId().compare(id) == 0) {
+            //s.data->removeScoreboard(courseId);
             listOfStudents.remove(s.data);
             cout << "Removed student ID "<< id <<" from the course." << endl;
             return;
