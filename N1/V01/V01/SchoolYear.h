@@ -16,7 +16,10 @@ public:
     void createNewSemester() 
     {
         int n = semesters.size();
-        if (n >= 3) return;
+        if (n >= 3) {
+            cout << "Cannot add another semester to this school year!\n Create a new one and try again.\n";
+            return;
+        }
         curSem = new Semester(n + 1);
         semesters.push_back(curSem);
     }

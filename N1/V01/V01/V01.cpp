@@ -3,31 +3,77 @@
 
 #include <iostream>
 #include "SchoolYear.h"
-#include "Semester.h"
+//#include "Semester.h"
 #include "Course.h"
 #include "Class.h"
 #include "Student.h"
 #include "Account.h"
 #include "University.h"
-#include "Node.h"
-
-//void loginScreen() {
-//    string username, password;
-//    cout << "\n-----STUDENT LOGIN-----\n";
-//    cout << "Username: ";
-//    cin >> username;
-//    cout << "Password: ";
-//    cin >> password;
-//    Student* s;
-//        if (checkLogin(username, password)) {
-//            s = class21CLC01->findStudent(username);
-//        }
-//    }
 
 int main()
 {
+    cout << "Creating school year...\n";
+    SchoolYear curSchoolYear;
+    cout << "-----School year-----\n";
+    cout << curSchoolYear << endl;
+    University uni;
+    uni.addClass();
+    //uni.addClass();
+    Class* class21CLC01 = uni.findClass("21CLC01");
+    cout << "-----List of students in class 21CLC01-----\n";
+    class21CLC01->printListOfStudents();
+    cout << "\nCreating new semester...\n";
+    curSchoolYear.createNewSemester();
+    Semester* curSem = curSchoolYear.getCurrentSemester();
 
-    
+    cout << "Adding course 1...\n";
+    curSem->addCourse();
+    //cout << "Adding course 2...\n";
+    //curSem->addCourse();
+    cout << "\n-----This semester-----\n";
+    cout << *curSem << endl;
+
+    Course* c = curSem->findCourse("CSC0001");
+
+    cout << "\nImporting list of students from file...\n";
+    c->importStudentsFromCSV("csv_file/21CLC01_CSC10001.csv", uni);
+
+    cout << "\n-----List of students in course CSC001-----\n";
+    c->printListOfStudents();
+
+    Student* news = new Student;
+    news->readStudentFromCSVLine("1,SV5012,Hung,Truong,M,03/12/2003,214521");
+    cout << "\n-----Adding student to the class-----\n";
+    c->addStudent(news);
+    news->printStudentInfo();
+
+    cout << "\n-----Updated list of students in course CSC001-----\n";
+    c->printListOfStudents();
+
+    // !!! need to fix remove students, for ease of use arguments should be student id
+    //c->removeStudent("SV0001");
+
+    //cout << "\n-----Updated list of students in course CSC001-----\n";
+    //c->printListOfStudents();
+
+    //c = nullptr;
+    //string username, password;
+    //cout << "\n-----STUDENT LOGIN-----\n";
+    //cout << "Username: ";
+    //cin >> username;
+    //cout << "Password: ";
+    //cin >> password;
+    //Student* s;
+    //if (checkLogin(username, password)) {
+    //    cout << username << endl;
+    //    s = class21CLC01->findStudent("SV0001");
+    //}
+    //else return 0;
+
+    class21CLC01->printListOfStudents();
+    class21CLC01->printScoreboardOfClass("CSC0001");
+    //cout << "\n-----List of classes-----\n";
+    //uni.printListOfClasses();
 
     return 0;
 }

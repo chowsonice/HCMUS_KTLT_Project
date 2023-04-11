@@ -6,7 +6,6 @@ Scoreboard::Scoreboard(string courseId, float midtermMark, float otherMark, floa
 	this->finalMark = finalMark;
 	this->midtermMark = midtermMark;
 	this->otherMark = otherMark;
-	this->updated = true;
 }
 
 Scoreboard::~Scoreboard() {}
@@ -60,6 +59,14 @@ ostream& operator<<(ostream& os, const Scoreboard& s){
 	return os;
 }
 
-void printScoreboard(const Scoreboard& scoreboard) {
-	cout << scoreboard;
+void Scoreboard::print() {
+	cout << (midtermMark / 10 < 1) ? "0" : "" ;
+	cout << midtermMark << " ";
+	cout << (otherMark / 10 < 1) ? "0" : "";
+	cout << otherMark << " ";
+	cout << (finalMark / 10 < 1) ? "0" : "";
+	cout << finalMark << " ";
+	cout << (totalMark / 10 < 1) ? "0" : "";
+	cout << totalMark << " ";
+	cout << endl;
 }

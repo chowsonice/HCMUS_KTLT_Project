@@ -62,7 +62,6 @@ void Course::input() {
 	session = stoi(buffer);
 }
 
-
 void Course::setCourseId(const string courseId)
 {
     this->courseId = courseId;
@@ -103,11 +102,11 @@ void Course::setSession(int session)
     this->session = session;
 }
 
-//void Course::printListOfStudents() {
-//    for (Student* s : listOfStudents) {
-//        cout << *s << "\n";
-//    }
-//}
+void Course::printListOfStudents() {
+    for (Node<Student*> s : listOfStudents) {
+        cout << *s.data << "\n";
+    }
+}
 
 void updateCourse(Course& course) {
     int option;
@@ -182,22 +181,23 @@ void Course::addStudent(Student *student)
 	cout << "Added student to the course." << endl;
 }
 
-void Course::removeStudent(Student *student)
+void Course::removeStudent(string id)
 {
 	if (listOfStudents.size() == 0)
 	{
 		cout << "No students in the course to remove." << endl;
 		return;
 	}
-	if (find(listOfStudents.begin(), listOfStudents.end(), student) != listOfStudents.end())
-	{
-        listOfStudents.remove(student);
-		cout << "Removed student from the course." << endl;
-	}
-	else
-	{
-		cout << "Student not found in the course." << endl;
-	}
+    for (Node<Student*> s : listOfStudents) {
+        if (s.data->getId().compare(id) == 0) {
+            //s.data->removeScoreboard(courseId);
+            listOfStudents.remove(s.data);
+            cout << "Removed student ID "<< id <<" from the course." << endl;
+            return;
+        }
+    }
+	cout << "Student ID "<< id << " not found in the course." << endl;
+
 }
 
 //void Course::viewScoreboard()

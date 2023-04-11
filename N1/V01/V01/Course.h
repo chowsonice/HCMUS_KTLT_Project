@@ -1,7 +1,6 @@
 #pragma once
 #include "Student.h"
 #include "University.h"
-#include <list>
 #include "Node.h"
 
 using namespace std;
@@ -19,7 +18,9 @@ class Course
 	LinkedList<Student*> listOfStudents;
 public:
 	Course() : courseId(""), name(""), classId(""), teacherName(""), noCredits(0), maxNoStudents(50), dayOfTheWeek(""), session(0) {}
-	~Course() {}
+	~Course() {
+		listOfStudents.head = nullptr;
+	}
 	bool importStudentsFromCSV(string filename, University& u);
 	void setCourseId(const string id);
 	void setCourseName(const string name);
@@ -30,11 +31,15 @@ public:
 	void setMaxStudents(const int max);
 	void setDayOfWeek(const string day);
 	void setSession(const int sess);
+
+	string getCourseId() {
+		return courseId;
+	}
 	void printListOfStudents();
 	void input();
 
 	void addStudent(Student *student);
-	void removeStudent(Student *student);
+	void removeStudent(string id);
 	//void importScoreboard(char* filename);
 	//void viewScoreboard();
 	void printListOfCourse(); // tai sao co list of course o day ? no o trong semester ma ? xoa di nha

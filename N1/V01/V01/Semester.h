@@ -1,6 +1,7 @@
 #pragma once
-#include <iostream>
+#include "Node.h"
 #include "Course.h"
+#include <iostream>
 using namespace std;
 
 struct Semester 
@@ -15,4 +16,12 @@ public:
     friend ostream& operator<<(ostream& os, const Semester &s);
     ~Semester();
     void addCourse();
+    void printListOfCourses() {
+        for (Node<Course*> c : listOfCourses) cout << *c.data << endl;
+    }
+    Course* findCourse(string courseId) {
+        for (Node<Course*> c : listOfCourses) {
+            if (c.data->getCourseId().compare(courseId) == 0) return c.data;
+        }
+    }
 };
