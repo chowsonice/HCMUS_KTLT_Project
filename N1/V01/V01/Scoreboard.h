@@ -53,7 +53,6 @@ public:
 	}
 	friend ostream& operator<<(ostream& os, const Scoreboard& s);
 
-	void readScoreboard(string filename);
 	void print();
 
 };

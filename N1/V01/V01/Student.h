@@ -4,6 +4,7 @@
 #include <sstream>
 #include "Node.h"
 #include "Scoreboard.h"
+#include <fstream>
 
 using namespace std;
 
@@ -63,5 +64,6 @@ public:
 	void readStudentFromCSVLine(string buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
 
+	void readScoreboard(string filename);
 };
 
