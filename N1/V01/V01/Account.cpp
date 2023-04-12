@@ -7,7 +7,7 @@ using namespace std;
 
 int checkLogin(string username, string password) {
 
-	ifstream fin("StaffAccount.txt");
+	ifstream fin("staff_account/StaffAccount.txt");
 
 	string buffer1, buffer2;
 
@@ -21,7 +21,7 @@ int checkLogin(string username, string password) {
 		else continue;
 	}
 	fin.close();
-	fin.open("StudentAccount.txt");
+	fin.open("student_account/StudentAccount.txt");
 	
 	while (fin >> buffer1 >> buffer2) {
 		if (buffer1.compare(username) == 0) {
