@@ -14,6 +14,7 @@ int main()
 {
     Account main;
     University uni;
+    LinkedList<SchoolYear*> years;
     
     try {
         loginScreen(main);
@@ -24,6 +25,7 @@ int main()
     }
     if (main.getType() == 1) staffMenu();
     else if (main.getType() == 2) {
+
         // T nghĩ là mình cần chỉnh lại một chút phần student
         // Thông tin student t thấy là mình nên xuất ra thành file hết, rồi khi đăng nhập vào thì tìm file đó mà đọc thôi
         // Vậy nên chắc mình thêm:

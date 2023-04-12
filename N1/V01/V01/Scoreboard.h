@@ -47,6 +47,7 @@ public:
 			if (!(ss >> totalMark) || (totalMark < 0 || totalMark > 10)) throw "Invalid input!";
 			updated = true;
 		}
+		return true;
 	}
 	bool checkUpdated() {
 		return updated;
