@@ -5,51 +5,50 @@
 #include <iostream>
 using namespace std;
 
-bool checkLogin(string username, string password) {
-	ifstream fin("Account.txt");
-	
+int checkLogin(string username, string password) {
+
+	ifstream fin("StaffAccount.txt");
+
 	string buffer1, buffer2;
+
 	while (fin >> buffer1 >> buffer2) {
 		if (buffer1.compare(username) == 0) {
 			if (buffer2.compare(password) == 0) {
-				cout << "Successful login\n";
-				return true;
+				return 1;
+			}
+			else break;
+		}
+		else continue;
+	}
+	fin.close();
+	fin.open("StudentAccount.txt");
+	
+	while (fin >> buffer1 >> buffer2) {
+		if (buffer1.compare(username) == 0) {
+			if (buffer2.compare(password) == 0) {
+				return 2;
 			}
 			else break;
 		} else continue;
 	}
-	cout << "Student doesn't exist or entered wrong username.\n";
-	return false;
+	return -1;
 }
-//bool Account::changePassword(char* oldPassword, char* newPassword)
-//{
-//    if (strcmp(password, oldPassword) != 0)
-//    {
-//        cout << "Incorrect password." << endl;
-//        return false;
-//    }
-//    else
-//    {
-//        password = newPassword;
-//        cout << "Password changed success." << endl;
-//        return true;
-//    }
-//}
-//bool Account::changePassword(string& oldPassword, string& newPassword)
-//{
-//    if (password != oldPassword)
-//    {
-//        cout << "Incorrect password." << endl;
-//        return false;
-//    }
-//    else
-//    {
-//        password = newPassword;
-//        cout << "Password changed successfully." << endl;
-//        return true;
-//    }
-//}
-//
+
+bool Account::changePassword(string& oldPassword, string& newPassword)
+{
+    if (password != oldPassword)
+    {
+        cout << "Incorrect password." << endl;
+        return false;
+    }
+    else
+    {
+        password = newPassword;
+        cout << "Password changed successfully." << endl;
+        return true;
+    }
+}
+
 //void Account::input_change_password()
 //{
 //    string oldPassword, newPassword;

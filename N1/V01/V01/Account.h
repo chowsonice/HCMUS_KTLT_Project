@@ -1,21 +1,22 @@
 #include <string.h>
 using namespace std;
+
 class Account
 {
 	string username;
 	string password;
-	int typeOfUsers = 2;
-	// if 1 -> is a student
-	// if 2 -> is a staff member
+	int typeOfUsers;
+	// if 2 -> is a student
+	// if 1 -> is a staff member
 public:
 	Account() : username(""), password(""), typeOfUsers(0) {}
-	Account(string usrname, string pass): typeOfUsers(0), username(usrname), password(pass) {}
+	Account(string usrname, string pass, int type): username(usrname), password(pass), typeOfUsers(type) {}
 
-	string checkLogin(string username, string password);
 	bool changePassword(string& oldPassword, string& newPassword);
-	void input_change_password();
-
+	int getType() {
+		return typeOfUsers;
+	}
 	~Account() {}
 };
 
-bool checkLogin(string username, string password);
+int checkLogin(string username, string password);
