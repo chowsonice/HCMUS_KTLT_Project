@@ -52,6 +52,9 @@ public:
 		return updated;
 	}
 	friend ostream& operator<<(ostream& os, const Scoreboard& s);
+	string getCourseID() {
+		return courseId;
+	}
 	void print();
 
 };
