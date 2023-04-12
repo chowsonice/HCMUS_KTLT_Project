@@ -6,6 +6,7 @@ Student* University::findStudent(string id)
 		Student* s = c->findStudent(id);
 		if (s != nullptr) return s;
 	}
+	return nullptr;
 }
 
 void University::addClass()
