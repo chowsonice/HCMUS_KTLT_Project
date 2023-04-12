@@ -23,7 +23,7 @@ void Class::importStudentsFromCSV() {
     string filenameInfoStu = "csv_file/" + className + "_info.csv";
     ifstream file(filenameInfoStu);
     ofstream facc;
-    facc.open("Account.txt", fstream::app);
+    facc.open("StudentAccount.txt", fstream::app);
     if (!file.is_open()) {
         cout << "Cannot open file" << endl;
         return;
