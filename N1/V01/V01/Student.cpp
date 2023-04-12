@@ -132,3 +132,53 @@ void Student::printStudentInfo() {
 }
 
 
+void Student::readScoreboard(string filename)
+{
+    string no;
+    string gender;
+    string noCredits;
+
+    ifstream scorefile;
+    scorefile.open(filename);
+    //No, id, firstName, lastName, gender, dob, noCredits, courseID, midTerm, lab, endTerm, final
+    if (scorefile.is_open())
+    {
+        while (scorefile)
+        {
+            getline(scorefile, no, ',');
+            this->no = stoi(no);
+            getline(scorefile, studentID, ',');
+            getline(scorefile, firstName, ',');
+            getline(scorefile, lastName, ',');
+            getline(scorefile, gender, ',');
+            this->gender = (char)gender.c_str();
+            getline(scorefile, dateOfBirth, ',');
+            getline(scorefile, noCredits, ',');
+
+            Scoreboard* data = new Scoreboard();
+
+            string courseId;
+            getline(scorefile, courseId, ',');
+            data->setCourseId(courseId);
+
+            string midtermMark;
+            getline(scorefile, midtermMark, ',');  
+            data->setMidtermMark(stof(midtermMark));
+
+            string otherMark;
+            getline(scorefile, otherMark, ',');
+            data->setOtherMark(stof(otherMark));
+
+            string finalMark;
+            getline(scorefile, finalMark, ',');
+            data->setFinalMark(stof(finalMark));
+
+            string totalMark;
+            getline(scorefile, totalMark, ',');
+            data->setTotalMark(stof(totalMark));
+
+            list.push_back(data);
+        }
+    }
+    scorefile.close();
+}

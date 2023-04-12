@@ -1,5 +1,4 @@
 #pragma once
-#include "Node.h"
 #include "Class.h"
 #include "SchoolYear.h"
 using namespace std;
@@ -17,7 +16,7 @@ public:
 		}
 	}
 	void addClass();
-	void printListOfClasses();
+	friend ostream& operator<<(ostream& os, const University& s);
 };
 
 

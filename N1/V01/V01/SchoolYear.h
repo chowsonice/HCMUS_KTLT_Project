@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <list>
 #include "Semester.h"
 using namespace std;
 
@@ -14,7 +13,8 @@ public:
     SchoolYear() : _start(2022), _end(2023) {}
     SchoolYear(int start, int end);
     friend ostream& operator<<(ostream& os, SchoolYear sy);
-    void createNewSemester() {
+    void createNewSemester() 
+    {
         int n = semesters.size();
         if (n >= 3) {
             cout << "Cannot add another semester to this school year!\n Create a new one and try again.\n";
@@ -23,7 +23,8 @@ public:
         curSem = new Semester(n + 1);
         semesters.push_back(curSem);
     }
-    Semester* getCurrentSemester() {
+    Semester *getCurrentSemester() 
+    {
         return curSem;
     }
 };
