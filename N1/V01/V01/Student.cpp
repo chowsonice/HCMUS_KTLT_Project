@@ -182,3 +182,47 @@ void Student::readScoreboard(string filename)
     }
     scorefile.close();
 }
+
+Student* Student::readStudentFromFile(string studentID)
+{
+    string fileName = "student_data/" + studentID + ".txt";
+    ifstream file(fileName);
+
+    if (!file) {
+        cerr << "Can not opent Student data\n";
+        return nullptr;
+    }
+    string line, value;
+    Student* student = new Student(studentID, "", "", ' ', "", "");
+    while (getline(file, line)) {
+        istringstream iss(line);
+        iss >> value;
+        if (value == "Student ID") {
+            iss >> value;
+            student->studentID = value;
+        }
+        else if (value == "First name") {
+            iss >> value;
+            student->firstName = value;
+        }
+        else if (value == "Last name") {
+            iss >> value;
+            student->lastName = value;
+        }
+        else if (value == "Gender:") {
+            iss >> value;
+            student->gender = value[0];
+        }
+        else if (value == "Date of birth") {
+            iss >> value;
+            iss >> value;
+            student->dateOfBirth = value;
+        }
+        else if (value == "Social ID") {
+            iss >> value;
+            student->socialID = value;
+        }
+    }
+    file.close();
+    return student;
+}

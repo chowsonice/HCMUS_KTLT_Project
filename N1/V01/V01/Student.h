@@ -22,6 +22,7 @@ private:
 public:
 	Student() : no(0), studentID(""), firstName(""), lastName(""), gender('X'), dateOfBirth(""), socialID("") {}
 	Student(int n, string id, string fname, string lname, char gen, string dob, string sid) : no(n), studentID(id), firstName(fname), lastName(lname), gender(gen), dateOfBirth(dob), socialID(sid) {}
+	Student(string id, string fname, string lname, char gen, string dob, string sid) : studentID(id), firstName(fname), lastName(lname), gender(gen), dateOfBirth(dob), socialID(sid) {}
 	~Student();
 
     int getNo() const;
@@ -65,5 +66,6 @@ public:
 	friend ostream& operator<<(ostream& os, const Student& s);
 
 	void readScoreboard(string filename);
+	Student* readStudentFromFile(string studentID);
 };
 
