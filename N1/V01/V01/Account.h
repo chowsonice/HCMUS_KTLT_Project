@@ -1,4 +1,4 @@
-#include <string.h>
+#include <string>
 using namespace std;
 
 class Account
@@ -15,6 +15,9 @@ public:
 	bool changePassword(string& oldPassword, string& newPassword);
 	int getType() {
 		return typeOfUsers;
+	}
+	string getUsername() {
+		return username;
 	}
 	~Account() {}
 };

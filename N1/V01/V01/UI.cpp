@@ -53,6 +53,28 @@ void loginScreen(Account &main) {
 	return;
 }
 
+void change_passwordScreen(Account& main) {
+	string oldPassword, newPassword;
+	cout << "Change Password\n";
+	cout << "-------------------------------------------\n";
+	cout << "Please enter your old password: ";
+	getline(cin, oldPassword);
+	cout << "Please enter your new password: ";
+	getline(cin, newPassword);
+	
+	if (main.changePassword(oldPassword, newPassword))
+	{
+		ofstream fout("Account.txt", ios::out | ios::trunc);
+		fout << main.getUsername() << " " << newPassword << " " << main.getType() << endl;
+		fout.close();
+		cout << "Password changed successfully." << endl;
+	}
+	else
+	{
+		cout << "Password change failed." << endl;
+	}
+}
+
 void staffMenu() {
 	system("cls");
 	return;

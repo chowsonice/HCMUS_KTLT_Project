@@ -18,6 +18,7 @@ int main()
     
     try {
         loginScreen(main);
+        change_passwordScreen(main);
     }
     catch (const char* error) {
         cout << "ERROR: " << error << endl;
