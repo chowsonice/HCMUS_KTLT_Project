@@ -1,10 +1,10 @@
 #include <iostream>
 #include "UI.h"
-using namespace std;
+
 
 void loginScreen(Account &main) {
 	string usrn, pass;
-	int count = 0;
+	int count = 0, type = -1;
 	while (count < 3) {
 		cout << "Welcome to the University Management System!\n";
 		cout << "===========================================\n";
@@ -29,7 +29,7 @@ void loginScreen(Account &main) {
 			}
 		}
 		cout << endl;
-		int type = checkLogin(usrn, pass);
+		type = checkLogin(usrn, pass);
 		if (type != -1) {
 			cout << "Login successful. \nReturning to the main menu...\n";
 			break;
@@ -45,12 +45,8 @@ void loginScreen(Account &main) {
 			throw "Invalid login";
 			return;
 		}
-		else {
-			main = Account(usrn, pass, type);
-		}
 	}
-
-	return;
+	main = Account(usrn, pass, type);
 }
 
 void change_passwordScreen(Account& main) {
@@ -75,7 +71,126 @@ void change_passwordScreen(Account& main) {
 	}
 }
 
+void studentMenu(Account& main) {
+	int choice = 1;
+	Student* s = readStudentFromFile(main.getUsername());
+	while (choice != 0) {
+		system("cls");
+		cout << "Currently, it's ___" << endl;
+		cout << "=============================\n";
+		cout << "0. Log out\n";
+		cout << "1. View your courses this semester\n";
+		cout << "2. View your scoreboards\n";
+		cout << "3. View profile\n";
+		cout << "=============================\n";
+		cout << "YOUR CHOICE: ";
+		cin >> choice;
+		switch (choice) {
+		case 0:
+			return;
+		case 1:
+			s->printCourseThisSem();
+			_getch();
+			break;
+		case 2:
+			studentScoreboard(s);
+			_getch();
+			break;
+		case 3:
+			profile(s);
+			break;
+		default:
+			throw "Invalid option.\n";
+		}
+	}
+}
+void profile(Student*& s) {
+	int choice;
+	system("cls");
+	cout << "PROFILE\n";
+	cout << "=============================\n";
+	s->printStudentInfo();
+	cout << "=============================\n";
+	cout << "0. Return to menu\n";
+	cout << "1. Change password";
+	cout << "-----------------------------\n";
+	cout << "YOUR CHOICE: ";
+	cin >> choice;
+	switch (choice) {
+	case 0:
+		return;
+	case 1:
+		break;
+	default:
+		throw "Invalid option.\n";
+	}
+}
+
+void studentScoreboard(Student* s) {
+	int choice;
+	string buffer;
+	system("cls");
+	cout << "SCOREBOARD\n";
+	cout << "=============================\n";
+	cout << "0. Return to menu\n";
+	cout << "1. See all scoreboards\n";
+	cout << "2. Find scoreboard of a course\n";
+	cout << "-----------------------------\n";
+	cout << "YOUR CHOICE: ";
+	cin >> choice;
+	cin.ignore(1000, '\n');
+	Scoreboard* sb;
+	switch (choice) {
+	case 0:
+		return;
+	case 1:
+		s->printAllScoreboard();
+		break;
+	case 2:
+		cout << "Enter course ID of the course you want to see: ";
+		getline(cin, buffer);
+		sb = s->findScoreboard(buffer);
+		while (sb == nullptr) {
+			cout << "Such course doesn't exist.\nPlease try again or enter 0 to return to menu.\n";
+			getline(cin, buffer);
+			if (buffer == "0") return;
+			else sb = s->findScoreboard(buffer);
+		}
+		sb->print();
+		return;
+	default:
+		throw "Invalid option.\n";
+	}
+}
+
 void staffMenu() {
 	system("cls");
+	int choice = 1;
+	LinkedList<SchoolYear*> years;
+	University uni;
+	while (choice != 0) {
+		system("cls");
+		cout << "Currently, it's ___" << endl;
+		cout << "=============================\n";
+		cout << "0. Log out\n";
+		cout << "1. View your courses this semester\n";
+		cout << "2. View your scoreboards\n";
+		cout << "3. View profile\n";
+		cout << "=============================\n";
+		cout << "YOUR CHOICE: ";
+		cin >> choice;
+		switch (choice) {
+		case 0:
+			return;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		default:
+			throw "Invalid option.\n";
+		}
+	}
 	return;
 }

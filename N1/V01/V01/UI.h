@@ -3,10 +3,14 @@
 #include <conio.h>
 #include "Account.h"
 #include "Student.h"
+#include "University.h"
+#include "Semester.h"
+#include "SchoolYear.h"
 using namespace std;
 
 void loginScreen(Account& main);
 void change_passwordScreen(Account& main);
 void staffMenu();
-void studentMenu(Student*& s);
+void studentMenu(Account& main);
 void profile(Student*& s);
+void studentScoreboard(Student* s);
