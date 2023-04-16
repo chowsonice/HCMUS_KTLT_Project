@@ -1,6 +1,7 @@
 #include "Course.h"
 #include <string>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 bool Course::importStudentsFromCSV(string filename, University &u) {
@@ -22,7 +23,8 @@ bool Course::importStudentsFromCSV(string filename, University &u) {
             line.erase(0, token.length() + 1);
         }
         Student* newStudent = u.findStudent(token);
-        newStudent->addScoreboard(courseId);
+        string time = dayOfTheWeek + " " + "S" + to_string(session);
+        newStudent->addScoreboard(courseId, name, time);
         listOfStudents.push_back(newStudent);
 
     }
@@ -200,20 +202,46 @@ void Course::removeStudent(string id)
 
 }
 
-//void Course::viewScoreboard()
-//{
-//	if (listOfStudents.size() == 0)
-//	{
-//		cout << "No students in the course." << endl;
-//		return;
-//	}
-//	cout << "Scoreboard of course " << courseId << ": " << endl;
-//	for (int i = 0; i < listOfStudents.size(); i++)
-//	{
-//		Student student = listOfStudents;
-//		cout << student.getFirstName() << " " << student.getLastName() << " : " << student.getScoreboard() << endl;
-//	}
-//}
+void Course::importScoreboard() {
+    string filename = classId + "_" + ".csv", buffer;
+
+    ifstream fin(filename);
+    fin.ignore(1000, '\n');
+
+    int ib = 0; string id; char c;
+    for (Student* s : listOfStudents) {
+        getline(fin, buffer);
+        stringstream ss(buffer);
+        ss >> ib >> c;
+        getline(ss, id, ',');
+        buffer.erase(0, id.length() + 1);
+        cout << buffer;
+        if (s->getId() != id) {
+            throw "Scoreboard is unsuitable for this course.\n";
+            return;
+        }
+        else 
+            s->updateScoreboard(courseId, buffer);
+    }
+}
+
+void Course::viewScoreboard()
+{
+	if (listOfStudents.size() == 0)
+	{
+		cout << "No students in the course." << endl;
+		return;
+	}
+	cout << "Scoreboard of course " << courseId << ": " << endl;
+    cout << "|" << setw(10) << "  ID  " << "|" << setw(15) << "  First name  " << "|" << setw(15) << "  Last name  " << "|" << setw(10) << " Midterm "
+        << "|" << setw(10) << " Other " << "|" << setw(10) << " Final " << "|" << setw(10) << " Total " << endl;
+
+    for (Student* s : listOfStudents) {
+        cout << "| " << setw(10) << s->getId() << "| " << setw(15) << s->getFirstName() << "| " << setw(15) << s->getLastName() << "| ";
+        s->printScoreboard(courseId);
+        cout << "\n";
+    }
+}
 
 ostream& operator<<(ostream& os, const Course& s) 
 {

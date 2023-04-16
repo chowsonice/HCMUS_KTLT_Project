@@ -5,6 +5,7 @@
 #include "Node.h"
 #include "Scoreboard.h"
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -21,8 +22,9 @@ private:
 	LinkedList<Scoreboard*> list;
 public:
 	Student() : no(0), studentID(""), firstName(""), lastName(""), gender('X'), dateOfBirth(""), socialID("") {}
+	Student(string id): no(0), studentID(id), firstName(""), lastName(""), gender('X'), dateOfBirth(""), socialID("") {}
 	Student(int n, string id, string fname, string lname, char gen, string dob, string sid) : no(n), studentID(id), firstName(fname), lastName(lname), gender(gen), dateOfBirth(dob), socialID(sid) {}
-	Student(string id, string fname, string lname, char gen, string dob, string sid) : studentID(id), firstName(fname), lastName(lname), gender(gen), dateOfBirth(dob), socialID(sid) {}
+	Student(string id, string fname, string lname, char gen, string dob, string sid) : no(0), studentID(id), firstName(fname), lastName(lname), gender(gen), dateOfBirth(dob), socialID(sid) {}
 	~Student();
 
     int getNo() const;
@@ -33,7 +35,8 @@ public:
     const string getDateOfBirth() const;
 	const string getSocialID() const;
 
-	void addScoreboard(string courseInfo);
+	void addScoreboard(string courseInfo, string courseName, string time);
+	void addScoreboard(Scoreboard* s);
 
 	//const Scoreboard* getScoreboard() const;
 
@@ -47,25 +50,42 @@ public:
 
 	void removeScoreboard(string id) {
 		for (Node<Scoreboard*> s : list) {
-			if (s.data->getCourseId().compare(id) == 0) list.remove(s.data);
+			if (s.data->getCourseId() == id) list.remove(s.data);
 		}
 	}
 	Scoreboard* findScoreboard(string courseId) {
 		for (Node<Scoreboard*> c : list) {
-			if (c.data->getCourseId().compare(courseId) == 0) {
+			if (c.data->getCourseId() == courseId) {
 				return c.data;
 			}
 		}
 	}
 	void updateScoreboard(string courseId, string line);
-	void printOneScoreboard(string courseId);
-	void printAllScoreboard();
+	void printScoreboard(string courseId);
+	void printAllScoreboard() {
+		for (auto sb : list) {
+			cout << setw(10) << sb->getCourseID();
+			sb->print();
+		}
+	}
+
 	void printStudentInfo();
+
+	void printCourseThisSem() {
+		for (auto sb : list) {
+			sb->printInfo();
+		}
+		cout << "=============================\n";
+		cout << "Press anything to return to menu\n";
+		
+	}
 
 	void readStudentFromCSVLine(string buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
+	void updateFileData();
 
-	void readScoreboard(string filename);
-	Student* readStudentFromFile(string studentID);
+	void readScoreboardFromFile(string filename);
 };
+Student* readStudentFromFile(string studentID);
+
 

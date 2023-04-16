@@ -21,6 +21,7 @@ public:
             return;
         }
         curSem = new Semester(n + 1);
+        curSem->setYear(_start, _end);
         semesters.push_back(curSem);
     }
     Semester *getCurrentSemester() 

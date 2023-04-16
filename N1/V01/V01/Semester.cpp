@@ -11,6 +11,7 @@ Semester::~Semester()
 void Semester::addCourse() {
     Course* course = new Course();
     course->input();
+    course->setSemester(number, year1, year2);
     listOfCourses.push_back(course);
 }
 

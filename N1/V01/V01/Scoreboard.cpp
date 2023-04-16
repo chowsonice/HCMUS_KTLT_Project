@@ -1,12 +1,14 @@
 #include "Scoreboard.h"
+#include <iomanip>
 
-Scoreboard::Scoreboard(string courseId, float midtermMark, float otherMark, float finalMark, float totalMark) {
-	this->courseId = courseId;
-	this->totalMark = totalMark;
-	this->finalMark = finalMark;
-	this->midtermMark = midtermMark;
-	this->otherMark = otherMark;
-}
+//Scoreboard::Scoreboard(string courseId, string courseName, float midtermMark, float otherMark, float finalMark, float totalMark) {
+//	this->courseId = courseId;
+//	this->courseName = courseName;
+//	this->totalMark = totalMark;
+//	this->finalMark = finalMark;
+//	this->midtermMark = midtermMark;
+//	this->otherMark = otherMark;
+//}
 
 Scoreboard::~Scoreboard() {}
 
@@ -50,23 +52,14 @@ void Scoreboard::setOtherMark(float otherMark) {
 }
 
 ostream& operator<<(ostream& os, const Scoreboard& s){
-	os	<< "Course ID: " << s.courseId << endl;
-	if (!s.updated) return os;
-	os	<< "Total Mark: " << s.totalMark << endl
-		<< "Final Mark: " << s.finalMark << endl
-		<< "Midterm Mark: " << s.midtermMark << endl
-		<< "Other Mark: " << s.otherMark << endl;
+	os << s.courseId << "," << s.courseName << "," << s.time << "," << s.midtermMark << "," << s.otherMark << "," << s.finalMark << "," << s.totalMark << endl;
 	return os;
 }
 
 void Scoreboard::print() {
-	cout << (midtermMark / 10 < 1) ? "0" : "" ;
-	cout << midtermMark << " ";
-	cout << (otherMark / 10 < 1) ? "0" : "";
-	cout << otherMark << " ";
-	cout << (finalMark / 10 < 1) ? "0" : "";
-	cout << finalMark << " ";
-	cout << (totalMark / 10 < 1) ? "0" : "";
-	cout << totalMark << " ";
+	cout << setw(10) << max(midtermMark, float(0)) << "| ";
+	cout << setw(10) << max(otherMark,float(0)) << "| ";
+	cout << setw(10) << max(finalMark, float(0)) << "| ";
+	cout << setw(10) << max(totalMark, float(0)) << "| ";
 	cout << endl;
 }

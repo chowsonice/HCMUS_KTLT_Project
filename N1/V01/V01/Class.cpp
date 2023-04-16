@@ -20,17 +20,22 @@ int Class::getNumberOfStudents() {
 }
 
 void Class::importStudentsFromCSV() {
+
     string filenameInfoStu = "csv_file/" + className + "_info.csv";
+    string outfile;
+
     ifstream file(filenameInfoStu);
-    ofstream facc;
-    facc.open("student_account/StudentAccount.txt", fstream::app);
+    ofstream fout;
+
     if (!file.is_open()) {
         cout << "Cannot open file" << endl;
         return;
     }
+
     string line;
     getline(file, line, '\n');
     numberOfStudents = 0;
+
     while (getline(file, line)) {
         numberOfStudents++;
 
@@ -40,8 +45,8 @@ void Class::importStudentsFromCSV() {
         list.push_back(newStudent);
 
         //creating account
-        string username, password;
-        for (int i = 0; i < 6; i++) {
+        string username, password, temp = line;
+        for (int i = 0; i < 7; i++) {
             string token = line.substr(0, line.find(","));
             switch (i) {
             case 1:
@@ -57,12 +62,20 @@ void Class::importStudentsFromCSV() {
             }
             line.erase(0, token.length() + 1);
         }
-        facc << username << " " << password << endl;
+        outfile = "student_account/" + username + ".txt";
+
+        fout.open(outfile);
+        if (!fout.is_open()) {
+            throw "Cannot open files to store informations. Please try again later.";
+            return;
+        }
+        fout << password << endl;
+        fout << temp << endl;
+        
+        fout.close();
     }
     file.close();
-    facc.close();
 }
-
 
 void Class::exportStudentsToCSV() {
     stringstream ss;

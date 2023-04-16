@@ -6,7 +6,6 @@
 using namespace std;
 
 int checkLogin(string username, string password) {
-
 	ifstream fin("staff_account/StaffAccount.txt");
 
 	string buffer1, buffer2;
@@ -21,19 +20,23 @@ int checkLogin(string username, string password) {
 		else continue;
 	}
 	fin.close();
-	fin.open("student_account/StudentAccount.txt");
+
+	string filename = "student_account/" + username + ".txt";
+	fin.open(filename);
 	
-	while (fin >> buffer1 >> buffer2) {
-		if (buffer1.compare(username) == 0) {
-			if (buffer2.compare(password) == 0) {
-				return 2;
-			}
-			else break;
-		} else continue;
+	if (!fin.is_open()) {
+		throw "Student doesn't exist.\n";
+		return -1;
+	}
+
+	fin >> buffer2;
+	if (buffer2.compare(password) == 0) {
+		return 2;
 	}
 	return -1;
 }
 
+//need to fix
 bool Account::changePassword(string& oldPassword, string& newPassword)
 {
     if (password != oldPassword)

@@ -3,7 +3,6 @@
 
 Student::~Student() {}
 
-
 int Student::getNo() const {
     return no;
 }
@@ -25,11 +24,14 @@ const string Student::getDateOfBirth() const {
 const string Student::getSocialID() const {
     return socialID;
 }
-void Student::addScoreboard(string courseInfo) {
-    Scoreboard* s = new Scoreboard(courseInfo);
+
+void Student::addScoreboard(string courseInfo, string courseName, string courseTime) {
+    Scoreboard* s = new Scoreboard(courseInfo, courseName, courseTime);
     list.push_back(s);
 }
-
+void Student::addScoreboard(Scoreboard* s) {
+    list.push_back(s);
+}
 //const Scoreboard* Student::getScoreboard() const {
 //    return scoreboard;
 //}
@@ -68,13 +70,16 @@ void Student::setSocialID(string socialID)
 {
     this->socialID = socialID;
 }
+
 ostream& operator<<(ostream& os, const Student& s) {
     if (s.no == 0) return os;
     os << to_string(s.no) << " " << s.studentID << " " << s.firstName << " " << s.lastName << " " << s.gender << " ";
     os << s.dateOfBirth << " " << s.socialID;
     return os;
 }
+
 void Student::readStudentFromCSVLine(string line) {
+    if (this == nullptr) return;
     const string delim = ",";
     for (int i = 0; i < 7; i++) {
         string token = line.substr(0, line.find(delim));
@@ -104,24 +109,27 @@ void Student::readStudentFromCSVLine(string line) {
         line.erase(0, token.length() + delim.length());
     }
 }
-// Nay de doc CSV mot dong, giong cai readCSVline cua Student o phia tren
+
 void Student::updateScoreboard(string courseId, string line) {
+    
     for (auto i = list.begin(); i != list.end(); ++i) {
-        if ((*i)->getCourseId().compare(courseId) == 0) {
+        if ((*i)->getCourseId() == courseId) {
             (*i)->updateScoreboard(line);
             return;
         } 
     }
+    updateFileData();
 }
 
-void Student::printOneScoreboard(string courseId) {
-    for (auto i = list.begin(); i != list.end(); ++i) {
-        if ((*i)->getCourseId().compare(courseId) == 0) {
-            cout << *(*i);
+void Student::printScoreboard(string courseId) {
+    for (auto i : list) {
+        if (i->getCourseId() == courseId) {
+            i->print();
             return;
         }
     }
 }
+
 void Student::printStudentInfo() {
     cout << "Student ID: " << studentID << endl;
     cout << "First name: " << firstName << endl;
@@ -131,98 +139,75 @@ void Student::printStudentInfo() {
     cout << "Social ID: " << socialID << endl;
 }
 
+// readScoreboard tach ra, chinh va gop lai thanh updateScoreboard nha
 
-void Student::readScoreboard(string filename)
+Student* readStudentFromFile(string studentID)
 {
-    string no;
-    string gender;
-    string noCredits;
-
-    ifstream scorefile;
-    scorefile.open(filename);
-    //No, id, firstName, lastName, gender, dob, noCredits, courseID, midTerm, lab, endTerm, final
-    if (scorefile.is_open())
-    {
-        while (scorefile)
-        {
-            getline(scorefile, no, ',');
-            this->no = stoi(no);
-            getline(scorefile, studentID, ',');
-            getline(scorefile, firstName, ',');
-            getline(scorefile, lastName, ',');
-            getline(scorefile, gender, ',');
-            this->gender = (char)gender.c_str();
-            getline(scorefile, dateOfBirth, ',');
-            getline(scorefile, noCredits, ',');
-
-            Scoreboard* data = new Scoreboard();
-
-            string courseId;
-            getline(scorefile, courseId, ',');
-            data->setCourseId(courseId);
-
-            string midtermMark;
-            getline(scorefile, midtermMark, ',');  
-            data->setMidtermMark(stof(midtermMark));
-
-            string otherMark;
-            getline(scorefile, otherMark, ',');
-            data->setOtherMark(stof(otherMark));
-
-            string finalMark;
-            getline(scorefile, finalMark, ',');
-            data->setFinalMark(stof(finalMark));
-
-            string totalMark;
-            getline(scorefile, totalMark, ',');
-            data->setTotalMark(stof(totalMark));
-
-            list.push_back(data);
-        }
-    }
-    scorefile.close();
-}
-
-Student* Student::readStudentFromFile(string studentID)
-{
-    string fileName = "student_data/" + studentID + ".txt";
+    string fileName = "student_account/" + studentID + ".txt";
     ifstream file(fileName);
 
     if (!file) {
-        cerr << "Can not opent Student data\n";
+        cerr << "Can not open Student data\n";
         return nullptr;
     }
-    string line, value;
-    Student* student = new Student(studentID, "", "", ' ', "", "");
+    string line;
+    Student* student = new Student();
+
+    file.ignore(1000, '\n');
+    getline(file, line);
+    student->readStudentFromCSVLine(line);
+
+    string buffer, temp; int len;
     while (getline(file, line)) {
-        istringstream iss(line);
-        iss >> value;
-        if (value == "Student ID") {
-            iss >> value;
-            student->studentID = value;
-        }
-        else if (value == "First name") {
-            iss >> value;
-            student->firstName = value;
-        }
-        else if (value == "Last name") {
-            iss >> value;
-            student->lastName = value;
-        }
-        else if (value == "Gender:") {
-            iss >> value;
-            student->gender = value[0];
-        }
-        else if (value == "Date of birth") {
-            iss >> value;
-            iss >> value;
-            student->dateOfBirth = value;
-        }
-        else if (value == "Social ID") {
-            iss >> value;
-            student->socialID = value;
-        }
+        len = 0;
+        Scoreboard* sb = new Scoreboard();
+        stringstream ss(line);
+
+        getline(ss, temp, ',');
+        len += temp.length();
+        sb->setCourseId(temp);
+
+        getline(ss, temp, ',');
+        len += temp.length();
+        sb->setCourseName(temp);
+
+        getline(ss, temp, ',');
+        len += temp.length();
+        sb->setCourseTime(temp);
+
+        line.erase(0, len + 3);
+        sb->updateScoreboard(line);
+
+        student->addScoreboard(sb);
     }
+
     file.close();
     return student;
 }
+
+void Student::updateFileData() {
+    string source = "student_account/" + studentID + ".txt";
+    
+    ifstream fin(source);
+    ofstream fout;
+
+    if (!fin.is_open()) {
+        throw "Cannot find files to update to update. Please try again later.";
+        return;
+    }
+
+    string password;
+    getline(fin, password);
+    fin.close();
+
+    fout.open(source);
+    fout << password << endl;
+    fout << no << "," << studentID << "," << firstName << "," << lastName << "," << gender << "," << dateOfBirth << "," << socialID << endl;
+
+    for (Scoreboard* c : list) {
+        fout << *c << endl;
+    }
+    fout.close();
+}
+
+

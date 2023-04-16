@@ -8,6 +8,7 @@ struct Semester
 {
     LinkedList<Course*> listOfCourses;
 private:
+    int year1, year2;
     int number;
 public:
     Semester() : number(0) {}
@@ -15,6 +16,10 @@ public:
     Semester(int number) : number(number) {}
     friend ostream& operator<<(ostream& os, const Semester &s);
     ~Semester();
+    void setYear(int y1, int y2) {
+        year1 = y1;
+        year2 = y2;
+    }
     void addCourse();
     void printListOfCourses() {
         for (Node<Course*> c : listOfCourses) cout << *c.data << endl;
@@ -25,3 +30,4 @@ public:
         }
     }
 };
+
