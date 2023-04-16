@@ -12,6 +12,14 @@ Student* University::findStudent(string id)
 	return nullptr;
 }
 
+void University::printListOfClasses() {
+	Node<Class*>* cur = listOfClasses.head;
+	while (cur != nullptr) {
+		cout << cur->data->getClassName() << endl;
+		cur = cur->next;
+	}
+}
+
 void University::addClass()
 {
 

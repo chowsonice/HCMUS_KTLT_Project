@@ -25,7 +25,6 @@ public:
 	bool importStudentsFromCSV(string filename, University& u);
 	void setCourseId(const string id);
 	void setCourseName(const string name);
-	void setClassName(const string className);
 	void setClassId(const string classId);
 	void setTeacherName(const string teacherName);
 	void setNumOfCredits(const int credits);

@@ -14,6 +14,7 @@ public:
 			}
 		}
 	}
+	void printListOfClasses();
 	void addClass();
 	friend ostream& operator<<(ostream& os, const University& s);
 };
