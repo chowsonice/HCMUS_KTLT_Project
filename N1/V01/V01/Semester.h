@@ -11,9 +11,9 @@ private:
     int year1, year2;
     int number;
 public:
-    Semester() : number(0) {}
+    Semester() : number(0), year1(0), year2(0) {}
     Semester(int number, LinkedList<Course*> listOfCourses);
-    Semester(int number) : number(number) {}
+    Semester(int number) : number(number), year1(0), year2(0) {}
     friend ostream& operator<<(ostream& os, const Semester &s);
     ~Semester();
     void setYear(int y1, int y2) {

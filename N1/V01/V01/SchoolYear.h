@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Semester.h"
+#include <time.h>
 using namespace std;
 
 class SchoolYear {
@@ -10,7 +11,7 @@ private:
     LinkedList<Semester*> semesters;
     Semester* curSem = nullptr;
 public:
-    SchoolYear() : _start(2022), _end(2023) {}
+    SchoolYear() : _start(0), _end(1) {}
     SchoolYear(int start, int end);
     friend ostream& operator<<(ostream& os, SchoolYear sy);
     void createNewSemester() 

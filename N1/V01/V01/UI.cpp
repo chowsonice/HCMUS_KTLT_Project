@@ -173,16 +173,34 @@ void staffMenu() {
 		cout << "Currently, it's ___" << endl;
 		cout << "=============================\n";
 		cout << "0. Log out\n";
-		cout << "1. View your courses this semester\n";
-		cout << "2. View your scoreboards\n";
-		cout << "3. View profile\n";
+		cout << "1. Create a new school year\n";
+		cout << "2. Create a new semester\n";
+		//cout << "3. Create a new class\n";
 		cout << "=============================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
+
+		int b1, b2;
+		SchoolYear* curyear;
+
 		switch (choice) {
 		case 0:
 			return;
 		case 1:
+			cout << "Enter starting year, enter 0 if current year:\n";
+			cin >> b1;
+			cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
+			if (b1 == 0) {
+				time_t t = time(NULL);
+				struct tm curtime;
+				auto buf = localtime_s(&curtime, &t);
+				const int b1 = (curtime.tm_year) + 1900;
+				curyear = new SchoolYear(b1, b1+1);
+			}
+			else {
+				curyear = new SchoolYear(b1, b1+1);
+			}
+			years.push_back(curyear);
 			break;
 		case 2:
 			break;
