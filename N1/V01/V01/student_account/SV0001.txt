@@ -1,0 +1,6 @@
+01122003
+1,SV0001,Han,Nguyen,F,01/12/2003,543538
+CSC10001,Lap trinh huong doi tuong,WED 1,5,7,-1,-1
+PSY10001,Tam ly dai cuong,MON 1,10,-1,-1,-1
+AP10001,Ki Thuat Lap Trinh,WED 3,10,10,-1,-1
+PE10001,The duc,THU 1,10,8,-1,-1

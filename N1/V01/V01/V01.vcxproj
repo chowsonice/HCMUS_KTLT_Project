@@ -154,7 +154,7 @@
   <ItemGroup>
     <None Include="csv_file\21CLC01_CSC10001.csv" />
     <None Include="csv_file\21CLC01_info.csv" />
-    <None Include="csv_file\21CLC01_score.csv" />
+    <None Include="csv_file\21CLC01_CSC10001_score.csv" />
     <None Include="csv_file\21CLC02_CSC10002.csv" />
     <None Include="csv_file\21CLC02_info.csv" />
     <None Include="csv_file\21CLC02_score.csv" />
@@ -164,6 +164,21 @@
     <Text Include="Account.txt" />
     <Text Include="staff_account\StaffAccount.txt" />
     <Text Include="student_account\StudentAccount.txt" />
+    <Text Include="student_account\SV0001.txt" />
+    <Text Include="student_account\SV0002.txt" />
+    <Text Include="student_account\SV0003.txt" />
+    <Text Include="student_account\SV0004.txt" />
+    <Text Include="student_account\SV0005.txt" />
+    <Text Include="student_account\SV0006.txt" />
+    <Text Include="student_account\SV0007.txt" />
+    <Text Include="student_account\SV0008.txt" />
+    <Text Include="student_account\SV0009.txt" />
+    <Text Include="student_account\SV0010.txt" />
+    <Text Include="student_account\SV0011.txt" />
+    <Text Include="student_account\SV0012.txt" />
+    <Text Include="student_account\SV0013.txt" />
+    <Text Include="student_account\SV0014.txt" />
+    <Text Include="student_account\SV0015.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
