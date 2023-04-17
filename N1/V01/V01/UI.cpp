@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include "UI.h"
 
 
@@ -203,11 +203,100 @@ void staffMenu() {
 			years.push_back(curyear);
 			break;
 		case 2:
+			//cai nay minh chua hieu lam :((
+			//Semester * semNew = new Semester();
+			//menuNewSemesterInStaff(semNew);
 			break;
 		case 3:
 			break;
 		default:
 			throw "Invalid option.\n";
+		}
+	}
+	return;
+}
+
+void menuNewSemesterInStaff(Semester* semNew)
+{
+	system("cls");
+	int choice = -1;
+	while (choice != 0) {
+		system("cls");
+		cout << "\tNEW SEMESTER CONTROL" << endl;
+		cout << "=====================\n";
+		cout << "0. Log out\n";
+		cout << "1. Add a course\n";
+		cout << "2. View list of courses\n";
+		cout << "3. Update a course\n";
+		cout << "4. Add student to a course\n";
+		cout << "5. Remove a student from a course\n";
+		cout << "6. Delete a course\n";
+		cout << "=============================\n";
+		cout << "YOUR CHOICE: ";
+		cin >> choice;
+		string courseID, studentID;
+		Semester* sem1 = new Semester();
+		Course* course = nullptr;
+		Student* student = new Student();
+		switch (choice) {
+		case 0:
+			return;
+		case 1:
+			sem1->addCourse();
+			break;
+		case 2:
+			sem1->printListOfCourses();
+			break;
+		case 3:
+			sem1->printListOfCourses();
+			cout << "\nEnter course ID of the course to update: ";
+			cin >> courseID;
+			course = sem1->findCourse(courseID);
+			if (course == nullptr) {
+				cout << "Course not found.\n";
+				break;
+			}
+			course->updateCourse(*course);
+			break;
+		case 4:
+			sem1->printListOfCourses();
+			cout << "\nEnter course ID to add student to the course: ";
+			cin >> courseID;
+			course = sem1->findCourse(courseID);
+			if (course == nullptr) {
+				cout << "Course not found.\n";
+				break;
+			}
+			cout << "Enter student ID to add student to "
+				<< courseID << ": ";
+			cin >> studentID;
+			//nghĩ chưa ra ạ, hình như thíu hàm tìm học sinh từ studentid ó
+			
+			course->addStudent(student);
+			break;
+		case 5:
+			sem1->printListOfCourses();
+			cout << "\nEnter course ID to remove student out the course: ";
+			cin >> courseID;
+			course = sem1->findCourse(courseID);
+			if (course == nullptr) {
+				cout << "Course not found.\n";
+				break;
+			}
+			cout << "Enter student ID to remove student to "
+				<< courseID << ": ";
+			cin >> studentID;
+			course->removeStudent(studentID);
+			cout << "Removed!\n";
+			break;
+		case 6:
+			sem1->printListOfCourses();
+			cout << "\nEnter course ID to delete: ";
+			cin >> courseID;
+			//mình chưa có tháy cái rì mu
+			break;
+		default:
+			throw "Invalid option!\n";
 		}
 	}
 	return;

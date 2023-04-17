@@ -14,3 +14,4 @@ void staffMenu();
 void studentMenu(Account& main);
 void profile(Student*& s);
 void studentScoreboard(Student* s);
+void menuNewSemesterInStaff(Semester* semNew);
