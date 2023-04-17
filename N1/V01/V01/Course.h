@@ -47,4 +47,5 @@ public:
 	}
 
 	friend ostream& operator<<(ostream& os, const Course& s);
+	void updateCourse(Course& course);
 };

@@ -110,7 +110,7 @@ void Course::printListOfStudents() {
     }
 }
 
-void updateCourse(Course& course) {
+void Course::updateCourse(Course& course) {
     int option;
     string buffer;
 
