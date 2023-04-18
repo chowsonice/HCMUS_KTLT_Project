@@ -112,7 +112,7 @@ void profile(Student*& s) {
 	s->printStudentInfo();
 	cout << "=============================\n";
 	cout << "0. Return to menu\n";
-	cout << "1. Change password";
+	cout << "1. Change password\n";
 	cout << "-----------------------------\n";
 	cout << "YOUR CHOICE: ";
 	cin >> choice;
