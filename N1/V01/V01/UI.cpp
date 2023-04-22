@@ -218,8 +218,10 @@ void staffMenu() {
 
 void menuNewSemesterInStaff(Semester* semNew)
 {
+	string courseID, studentID;
 	system("cls");
 	int choice = -1;
+	extern University uni;
 	while (choice != 0) {
 		system("cls");
 		cout << "\tNEW SEMESTER CONTROL" << endl;
@@ -234,7 +236,6 @@ void menuNewSemesterInStaff(Semester* semNew)
 		cout << "=============================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
-		string courseID, studentID;
 		Semester* sem1 = new Semester();
 		Course* course = nullptr;
 		Student* student = new Student();
@@ -250,7 +251,7 @@ void menuNewSemesterInStaff(Semester* semNew)
 		case 3:
 			sem1->printListOfCourses();
 			cout << "\nEnter course ID of the course to update: ";
-			cin >> courseID;
+			getline(cin, courseID);
 			course = sem1->findCourse(courseID);
 			if (course == nullptr) {
 				cout << "Course not found.\n";
@@ -261,7 +262,7 @@ void menuNewSemesterInStaff(Semester* semNew)
 		case 4:
 			sem1->printListOfCourses();
 			cout << "\nEnter course ID to add student to the course: ";
-			cin >> courseID;
+			getline(cin, courseID);
 			course = sem1->findCourse(courseID);
 			if (course == nullptr) {
 				cout << "Course not found.\n";
@@ -269,15 +270,18 @@ void menuNewSemesterInStaff(Semester* semNew)
 			}
 			cout << "Enter student ID to add student to "
 				<< courseID << ": ";
-			cin >> studentID;
-			//nghĩ chưa ra ạ, hình như thíu hàm tìm học sinh từ studentid ó
-			
+			getline(cin, studentID);
+			student = uni.findStudent(studentID);
+			if (student == nullptr) {
+				cout << "Student not found!\n";
+				break;
+			}
 			course->addStudent(student);
 			break;
 		case 5:
 			sem1->printListOfCourses();
 			cout << "\nEnter course ID to remove student out the course: ";
-			cin >> courseID;
+			getline(cin, courseID);
 			course = sem1->findCourse(courseID);
 			if (course == nullptr) {
 				cout << "Course not found.\n";
@@ -285,14 +289,19 @@ void menuNewSemesterInStaff(Semester* semNew)
 			}
 			cout << "Enter student ID to remove student to "
 				<< courseID << ": ";
-			cin >> studentID;
+			getline(cin, studentID);
+			student = uni.findStudent(studentID);
+			if (student == nullptr) {
+				cout << "Student not found!\n";
+				break;
+			}
 			course->removeStudent(studentID);
 			cout << "Removed!\n";
 			break;
 		case 6:
 			sem1->printListOfCourses();
 			cout << "\nEnter course ID to delete: ";
-			cin >> courseID;
+			getline(cin, courseID);
 			//mình chưa có tháy cái rì mu
 			break;
 		default:
