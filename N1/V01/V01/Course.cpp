@@ -4,16 +4,16 @@
 #include <iomanip>
 using namespace std;
 
-bool Course::importStudentsFromCSV(string filename, University &u) {
+bool Course::importStudentsFromCSV(University &u) {
+    string filename = "csv_file/" + classId + "_" + courseId + ".csv";
+    
     ifstream fin(filename);
     if (!fin.is_open()) {
-        cout << "Cannot open file" << endl;
+        cout << "Cannot update students in course " << courseId << "." << endl;
         return false;
     }
-
     string line;
     getline(fin, line, '\n');
-
     while (getline(fin, line)) {
 
         const string delim = ",";
@@ -33,8 +33,6 @@ bool Course::importStudentsFromCSV(string filename, University &u) {
 }
 
 void Course::input() {
-    cin.ignore();
-
 	cout << "Course ID:";
     getline(cin, courseId);
 
@@ -60,8 +58,8 @@ void Course::input() {
     getline(cin, dayOfTheWeek);
 
 	cout << "Session no (1, 2, 3, 4): ";
-    getline(cin, buffer);
-	session = stoi(buffer);
+    cin >> session;
+    cin.ignore(1000, '\n');
 }
 
 void Course::setCourseId(const string courseId)
@@ -245,7 +243,25 @@ void Course::viewScoreboard()
 
 ostream& operator<<(ostream& os, const Course& s) 
 {
-	os << s.courseId << " " << s.name << " " << s.classId << " " << s.teacherName << " " << to_string(s.noCredits) << " "
-        << to_string(s.maxNoStudents) << " " << s.dayOfTheWeek << " " << s.session;
+	os << s.courseId << "\n" 
+        << s.name << "\n" 
+        << s.classId << "\n" 
+        << s.teacherName << "\n" 
+        << to_string(s.noCredits) << "\n" 
+        << to_string(s.maxNoStudents) << "\n" 
+        << s.dayOfTheWeek << " " << s.session;
     return os;
+}
+
+istream& operator>>(istream& is, Course& s) {
+    getline(is, s.courseId);
+    getline(is, s.name);
+    getline(is, s.classId);
+    getline(is, s.teacherName);
+    is >> s.noCredits >> s.maxNoStudents;
+    is.ignore(1000, '\n');
+    is >> s.dayOfTheWeek;
+    is >> s.session;
+    is.ignore(1000, '\n');
+    return is;
 }

@@ -72,7 +72,11 @@ void Student::setSocialID(string socialID)
 }
 
 ostream& operator<<(ostream& os, const Student& s) {
-    if (s.no == 0) return os;
+    if (s.no == 0 || &s == nullptr) {
+        throw "Class has no students.\n";
+        os << "";
+        return os;
+    }
     os << to_string(s.no) << " " << s.studentID << " " << s.firstName << " " << s.lastName << " " << s.gender << " ";
     os << s.dateOfBirth << " " << s.socialID;
     return os;

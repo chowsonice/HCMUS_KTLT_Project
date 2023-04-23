@@ -157,11 +157,13 @@
     <None Include="csv_file\21CLC01_CSC10001_score.csv" />
     <None Include="csv_file\21CLC02_CSC10002.csv" />
     <None Include="csv_file\21CLC02_info.csv" />
-    <None Include="csv_file\21CLC02_score.csv" />
+    <None Include="csv_file\21CLC02_CSC10002_score.csv" />
     <None Include="csv_file\students.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Account.txt" />
+    <Text Include="info\SchoolYear_info.txt" />
+    <Text Include="info\University_info.txt" />
     <Text Include="staff_account\StaffAccount.txt" />
     <Text Include="student_account\StudentAccount.txt" />
     <Text Include="student_account\SV0001.txt" />

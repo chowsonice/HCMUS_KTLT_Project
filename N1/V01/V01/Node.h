@@ -44,12 +44,12 @@ public:
 	LinkedList() : head(nullptr) {}
 	LinkedList(Node<T>* nodeData) : head(new Node<T>(*nodeData)) {}
 	LinkedList(const LinkedList<T>& list) : head(list.head) {}
-	~LinkedList();
 	void push_back(const T data);
 	void pop(const int& no);
 	void remove(T data);
 	void pop_back();
 	void pop_front();
+	void clear();
 
 	class Iterator {
 	public:
@@ -92,7 +92,7 @@ public:
 		}
 		return os;
 	}
-	int size() {
+	int size() const {
 		int count = 0;
 		Node<T>* cur = head;
 		while (cur) {
@@ -103,7 +103,8 @@ public:
 	}
 };
 template<typename T>
-LinkedList<T>::~LinkedList() {
+void LinkedList<T>::clear() {
+	if (!this || !head) return;
 	Node<T>* curr = head;
 	while (curr) {
 		Node<T>* temp = curr;

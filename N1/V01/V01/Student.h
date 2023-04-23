@@ -37,7 +37,6 @@ public:
 
 	void addScoreboard(string courseInfo, string courseName, string time);
 	void addScoreboard(Scoreboard* s);
-
 	//const Scoreboard* getScoreboard() const;
 
 	void setNo(int no);
@@ -83,7 +82,6 @@ public:
 	void readStudentFromCSVLine(string buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);
 	void updateFileData();
-
 	void readScoreboardFromFile(string filename);
 };
 Student* readStudentFromFile(string studentID);

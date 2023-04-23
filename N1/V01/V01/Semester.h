@@ -15,6 +15,7 @@ public:
     Semester(int number, LinkedList<Course*> listOfCourses);
     Semester(int number) : number(number), year1(0), year2(0) {}
     friend ostream& operator<<(ostream& os, const Semester &s);
+    friend istream& operator>>(istream& is, Semester& s);
     ~Semester();
     void setYear(int y1, int y2) {
         year1 = y1;
@@ -22,7 +23,7 @@ public:
     }
     void addCourse();
     void printListOfCourses() {
-        for (Node<Course*> c : listOfCourses) cout << *c.data << endl;
+        for (Node<Course*> c : listOfCourses) c.data->viewCourseInfo();
     }
     Course* findCourse(string courseId) {
         for (Node<Course*> c : listOfCourses) {

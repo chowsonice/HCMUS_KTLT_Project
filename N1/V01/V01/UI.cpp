@@ -163,6 +163,7 @@ void studentScoreboard(Student* s) {
 	}
 }
 
+/*
 void staffMenu() {
 	system("cls");
 	int choice = 1;
@@ -214,8 +215,8 @@ void staffMenu() {
 		}
 	}
 	return;
-}
-
+}*/
+/*
 void menuNewSemesterInStaff(Semester* semNew)
 {
 	string courseID, studentID;
@@ -238,7 +239,7 @@ void menuNewSemesterInStaff(Semester* semNew)
 		cin >> choice;
 		Semester* sem1 = new Semester();
 		Course* course = nullptr;
-		Student* student = new Student();
+		Student* student = nullptr;
 		switch (choice) {
 		case 0:
 			return;
@@ -309,4 +310,14 @@ void menuNewSemesterInStaff(Semester* semNew)
 		}
 	}
 	return;
+}*/
+
+void saving(University& u, SchoolYear*& y) {
+	u.exportToFile();
+	y->exportToFile();
+}
+
+void loading(University& u, SchoolYear*& y) {
+	u.importFromFile();
+	y->importFromFile(u);
 }

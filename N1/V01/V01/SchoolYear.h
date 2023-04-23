@@ -29,4 +29,6 @@ public:
     {
         return curSem;
     }
+    void importFromFile(University& uni);
+    void exportToFile();
 };

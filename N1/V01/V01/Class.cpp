@@ -20,7 +20,6 @@ int Class::getNumberOfStudents() {
 }
 
 void Class::importStudentsFromCSV() {
-
     string filenameInfoStu = "csv_file/" + className + "_info.csv";
     string outfile;
 
@@ -28,7 +27,7 @@ void Class::importStudentsFromCSV() {
     ofstream fout;
 
     if (!file.is_open()) {
-        cout << "Cannot open file" << endl;
+        cout << "Cannot open file to import student's info." << endl;
         return;
     }
 
@@ -82,7 +81,7 @@ void Class::exportStudentsToCSV() {
     string filenameInfoStu = "output_file/" + className + "_info.csv";
     ofstream file(filenameInfoStu);
     if (!file.is_open()) {
-        cout << "Cannot open file" << endl;
+        cout << "Cannot open file to export students' information." << endl;
         return;
     }
     file << "No,id,firstName,lastName,gender,dob,socialID\n";

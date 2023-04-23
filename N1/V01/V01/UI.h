@@ -15,3 +15,5 @@ void studentMenu(Account& main);
 void profile(Student*& s);
 void studentScoreboard(Student* s);
 void menuNewSemesterInStaff(Semester* semNew);
+void loading(University& u, SchoolYear*& y);
+void saving(University& u, SchoolYear*& y);
