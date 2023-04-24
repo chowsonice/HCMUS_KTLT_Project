@@ -37,36 +37,36 @@ int checkLogin(string username, string password) {
 	return -1;
 }
 
-//need to fix
-bool Account::changePassword(string& oldPassword, string& newPassword)
-{
-    ifstream fin("Account.txt");
-    ofstream fout("temp.txt");
-    string line;
-
-    bool passwordChanged = false;
-    while (getline(fin, line)) {
-        string username, pass;
-        int typeOfUsers;
-        istringstream iss(line);
-        iss >> username >> pass >> typeOfUsers;
-        if (username == this->username && pass == oldPassword) {
-            passwordChanged = true;
-            pass = newPassword;
-        }
-        fout << username << " " << pass << " " << typeOfUsers << endl;
-    }
-
-    fin.close();
-    fout.close();
-
-    if (passwordChanged) {
-        remove("Account.txt");
-        rename("temp.txt", "Account.txt");
-        password = newPassword;
-        return true;
-    }
-    else {
-        return false;
-    }
-}
+//Account chuyen sang dang student_account/MSSV.txt roi, nen chinh lai nha
+//bool Account::changePassword(string& oldPassword, string& newPassword)
+//{
+//    ifstream fin("Account.txt");
+//    ofstream fout("temp.txt");
+//    string line;
+//
+//    bool passwordChanged = false;
+//    while (getline(fin, line)) {
+//        string username, pass;
+//        int typeOfUsers;
+//        istringstream iss(line);
+//        iss >> username >> pass >> typeOfUsers;
+//        if (username == this->username && pass == oldPassword) {
+//            passwordChanged = true;
+//            pass = newPassword;
+//        }
+//        fout << username << " " << pass << " " << typeOfUsers << endl;
+//    }
+//
+//    fin.close();
+//    fout.close();
+//
+//    if (passwordChanged) {
+//        remove("Account.txt");
+//        rename("temp.txt", "Account.txt");
+//        password = newPassword;
+//        return true;
+//    }
+//    else {
+//        return false;
+//    }
+//}
