@@ -52,6 +52,7 @@ public:
 	void clear();
 
 	class Iterator {
+		Node<T>* current;
 	public:
 		Iterator(Node<T>* n) : current(n) {}
 		Iterator& operator++() {
@@ -59,9 +60,9 @@ public:
 			return *this;
 		}
 		Iterator operator+(int c) {
-			auto cur = begin();
+			Iterator cur = current;
 			for (int i = 0; i < c; i++) {
-				cur++;
+				++cur;
 			}
 			return cur;
 		}
@@ -72,8 +73,6 @@ public:
 			return current->data;
 		}
 
-	private:
-		Node<T>* current;
 	};
 
 	Iterator begin() const {
@@ -82,8 +81,9 @@ public:
 	Iterator end() const {
 		return Iterator(nullptr);
 	}
-
-
+	T operator[](int i) {
+		return *(Iterator(head) + i);
+	}
 	friend ostream& operator<<(ostream& os, LinkedList<T> const& l) {
 		Node<T>* cur = l.head;
 		while (cur != nullptr) {
