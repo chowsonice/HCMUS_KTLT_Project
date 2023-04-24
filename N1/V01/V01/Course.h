@@ -19,9 +19,7 @@ class Course
 	LinkedList<Student*> listOfStudents;
 public:
 	Course() : sem(0), year1(0), year2(0), courseId(""), name(""), classId(""), teacherName(""), noCredits(0), maxNoStudents(50), dayOfTheWeek(""), session(0) {}
-	~Course() {
-		listOfStudents.head = nullptr;
-	}
+	~Course();
 	bool importStudentsFromCSV(University& u);
 	void setCourseId(const string id);
 	void setCourseName(const string name);
@@ -32,9 +30,7 @@ public:
 	void setDayOfWeek(const string day);
 	void setSession(const int sess);
 
-	string getCourseId() {
-		return courseId;
-	}
+	string getCourseId();
 	void printListOfStudents();
 	void input();
 
@@ -42,18 +38,8 @@ public:
 	void removeStudent(string id);
 	void importScoreboard();
 	void viewScoreboard();
-	void viewCourseInfo() {
-		cout << courseId << endl;
-		cout << name << endl;
-		cout << classId << endl;
-		cout << teacherName << endl;
-		cout << noCredits << endl;
-		cout << maxNoStudents << endl;
-		cout << dayOfTheWeek << " " << session << endl;
-	}
-	void setSemester(int s, int y1, int y2) {
-		sem = s; year1 = y1; year2 = y2;
-	}
+	void viewCourseInfo();
+	void setSemester(int s, int y1, int y2);
 	friend istream& operator>>(istream& os, Course& s);
 	friend ostream& operator<<(ostream& os, const Course& s);
 	void updateCourse(Course& course);

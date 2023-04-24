@@ -32,6 +32,10 @@ bool Course::importStudentsFromCSV(University &u) {
     return true;
 }
 
+Course::~Course() {
+    listOfStudents.head = nullptr;
+}
+
 void Course::input() {
 	cout << "Course ID:";
     getline(cin, courseId);
@@ -100,6 +104,10 @@ void Course::setDayOfWeek(const string dayOfTheWeek)
 void Course::setSession(int session)
 {
     this->session = session;
+}
+
+string Course::getCourseId() {
+    return courseId;
 }
 
 void Course::printListOfStudents() {
@@ -239,6 +247,20 @@ void Course::viewScoreboard()
         s->printScoreboard(courseId);
         cout << "\n";
     }
+}
+
+void Course::viewCourseInfo() {
+    cout << courseId << endl;
+    cout << name << endl;
+    cout << classId << endl;
+    cout << teacherName << endl;
+    cout << noCredits << endl;
+    cout << maxNoStudents << endl;
+    cout << dayOfTheWeek << " " << session << endl;
+}
+
+void Course::setSemester(int s, int y1, int y2) {
+    sem = s; year1 = y1; year2 = y2;
 }
 
 ostream& operator<<(ostream& os, const Course& s) 
