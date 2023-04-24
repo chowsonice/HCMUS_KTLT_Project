@@ -162,7 +162,6 @@ void studentScoreboard(Student* s) {
 		throw "Invalid option.\n";
 	}
 }
-
 /*
 void staffMenu() {
 	system("cls");
@@ -174,9 +173,12 @@ void staffMenu() {
 		cout << "Currently, it's ___" << endl;
 		cout << "=============================\n";
 		cout << "0. Log out\n";
-		cout << "1. Create a new school year\n";
-		cout << "2. Create a new semester\n";
-		//cout << "3. Create a new class\n";
+		cout << "1. View a list of classes\n";
+		cout << "2. View list of students in a class\n";
+		cout << "3. View listof students in a course\n";
+		cout << "4. Create a new school year\n";
+		cout << "5. Create a new semester\n";
+		//cout << "6. Create a new class\n";
 		cout << "=============================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
@@ -188,6 +190,11 @@ void staffMenu() {
 		case 0:
 			return;
 		case 1:
+			uni.printListOfClasses();
+			break;
+		case 2:
+
+		case 4:
 			cout << "Enter starting year, enter 0 if current year:\n";
 			cin >> b1;
 			cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
@@ -203,12 +210,12 @@ void staffMenu() {
 			}
 			years.push_back(curyear);
 			break;
-		case 2:
+		case 5:
 			//cai nay minh chua hieu lam :((
 			//Semester * semNew = new Semester();
 			//menuNewSemesterInStaff(semNew);
 			break;
-		case 3:
+		case 6:
 			break;
 		default:
 			throw "Invalid option.\n";
@@ -216,101 +223,101 @@ void staffMenu() {
 	}
 	return;
 }*/
-/*
-void menuNewSemesterInStaff(Semester* semNew)
-{
-	string courseID, studentID;
-	system("cls");
-	int choice = -1;
-	extern University uni;
-	while (choice != 0) {
-		system("cls");
-		cout << "\tNEW SEMESTER CONTROL" << endl;
-		cout << "=====================\n";
-		cout << "0. Log out\n";
-		cout << "1. Add a course\n";
-		cout << "2. View list of courses\n";
-		cout << "3. Update a course\n";
-		cout << "4. Add student to a course\n";
-		cout << "5. Remove a student from a course\n";
-		cout << "6. Delete a course\n";
-		cout << "=============================\n";
-		cout << "YOUR CHOICE: ";
-		cin >> choice;
-		Semester* sem1 = new Semester();
-		Course* course = nullptr;
-		Student* student = nullptr;
-		switch (choice) {
-		case 0:
-			return;
-		case 1:
-			sem1->addCourse();
-			break;
-		case 2:
-			sem1->printListOfCourses();
-			break;
-		case 3:
-			sem1->printListOfCourses();
-			cout << "\nEnter course ID of the course to update: ";
-			getline(cin, courseID);
-			course = sem1->findCourse(courseID);
-			if (course == nullptr) {
-				cout << "Course not found.\n";
-				break;
-			}
-			course->updateCourse(*course);
-			break;
-		case 4:
-			sem1->printListOfCourses();
-			cout << "\nEnter course ID to add student to the course: ";
-			getline(cin, courseID);
-			course = sem1->findCourse(courseID);
-			if (course == nullptr) {
-				cout << "Course not found.\n";
-				break;
-			}
-			cout << "Enter student ID to add student to "
-				<< courseID << ": ";
-			getline(cin, studentID);
-			student = uni.findStudent(studentID);
-			if (student == nullptr) {
-				cout << "Student not found!\n";
-				break;
-			}
-			course->addStudent(student);
-			break;
-		case 5:
-			sem1->printListOfCourses();
-			cout << "\nEnter course ID to remove student out the course: ";
-			getline(cin, courseID);
-			course = sem1->findCourse(courseID);
-			if (course == nullptr) {
-				cout << "Course not found.\n";
-				break;
-			}
-			cout << "Enter student ID to remove student to "
-				<< courseID << ": ";
-			getline(cin, studentID);
-			student = uni.findStudent(studentID);
-			if (student == nullptr) {
-				cout << "Student not found!\n";
-				break;
-			}
-			course->removeStudent(studentID);
-			cout << "Removed!\n";
-			break;
-		case 6:
-			sem1->printListOfCourses();
-			cout << "\nEnter course ID to delete: ";
-			getline(cin, courseID);
-			//mình chưa có tháy cái rì mu
-			break;
-		default:
-			throw "Invalid option!\n";
-		}
-	}
-	return;
-}*/
+
+//void menuNewSemesterInStaff(Semester* semNew)
+//{
+//	string courseID, studentID;
+//	system("cls");
+//	int choice = -1;
+//	extern University uni;
+//	while (choice != 0) {
+//		system("cls");
+//		cout << "\tNEW SEMESTER CONTROL" << endl;
+//		cout << "=====================\n";
+//		cout << "0. Log out\n";
+//		cout << "1. Add a course\n";
+//		cout << "2. View list of courses\n";
+//		cout << "3. Update a course\n";
+//		cout << "4. Add student to a course\n";
+//		cout << "5. Remove a student from a course\n";
+//		cout << "6. Delete a course\n";
+//		cout << "=============================\n";
+//		cout << "YOUR CHOICE: ";
+//		cin >> choice;
+//		Semester* sem1 = new Semester();
+//		Course* course = nullptr;
+//		Student* student = nullptr;
+//		switch (choice) {
+//		case 0:
+//			return;
+//		case 1:
+//			sem1->addCourse();
+//			break;
+//		case 2:
+//			sem1->printListOfCourses();
+//			break;
+//		case 3:
+//			sem1->printListOfCourses();
+//			cout << "\nEnter course ID of the course to update: ";
+//			getline(cin, courseID);
+//			course = sem1->findCourse(courseID);
+//			if (course == nullptr) {
+//				cout << "Course not found.\n";
+//				break;
+//			}
+//			course->updateCourse(*course);
+//			break;
+//		case 4:
+//			sem1->printListOfCourses();
+//			cout << "\nEnter course ID to add student to the course: ";
+//			getline(cin, courseID);
+//			course = sem1->findCourse(courseID);
+//			if (course == nullptr) {
+//				cout << "Course not found.\n";
+//				break;
+//			}
+//			cout << "Enter student ID to add student to "
+//				<< courseID << ": ";
+//			getline(cin, studentID);
+//			student = uni.findStudent(studentID);
+//			if (student == nullptr) {
+//				cout << "Student not found!\n";
+//				break;
+//			}
+//			course->addStudent(student);
+//			break;
+//		case 5:
+//			sem1->printListOfCourses();
+//			cout << "\nEnter course ID to remove student out the course: ";
+//			getline(cin, courseID);
+//			course = sem1->findCourse(courseID);
+//			if (course == nullptr) {
+//				cout << "Course not found.\n";
+//				break;
+//			}
+//			cout << "Enter student ID to remove student to "
+//				<< courseID << ": ";
+//			getline(cin, studentID);
+//			student = uni.findStudent(studentID);
+//			if (student == nullptr) {
+//				cout << "Student not found!\n";
+//				break;
+//			}
+//			course->removeStudent(studentID);
+//			cout << "Removed!\n";
+//			break;
+//		case 6:
+//			sem1->printListOfCourses();
+//			cout << "\nEnter course ID to delete: ";
+//			getline(cin, courseID);
+//			//mình chưa có tháy cái rì mu
+//			break;
+//		default:
+//			throw "Invalid option!\n";
+//		}
+//	}
+//	return;
+//}
 
 void saving(University& u, SchoolYear*& y) {
 	u.exportToFile();
