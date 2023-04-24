@@ -10,10 +10,12 @@ using namespace std;
 
 void loginScreen(Account& main);
 void change_passwordScreen(Account& main);
-void staffMenu();
+void staffMenu(University& uni, LinkedList<SchoolYear*>& years);
 void studentMenu(Account& main);
 void profile(Student*& s);
 void studentScoreboard(Student* s);
-void menuNewSemesterInStaff(Semester* semNew);
-void loading(University& u, SchoolYear*& y);
-void saving(University& u, SchoolYear*& y);
+void menuNewSemesterInStaff(University& uni, Semester* semNew);
+void loading(University& u, LinkedList<SchoolYear*>& y);
+void saving(University& u, LinkedList<SchoolYear*>& y);
+Semester* createNewSemester(LinkedList<SchoolYear*> years, SchoolYear*& curyear);
+void printStudentsInClass(University& uni);
