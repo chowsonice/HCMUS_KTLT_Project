@@ -57,12 +57,9 @@ void change_passwordScreen(Account& main) {
 	getline(cin, oldPassword);
 	cout << "Please enter your new password: ";
 	getline(cin, newPassword);
-	
+
 	if (main.changePassword(oldPassword, newPassword))
 	{
-		ofstream fout("Account.txt", ios::out | ios::trunc);
-		fout << main.getUsername() << " " << newPassword << " " << main.getType() << endl;
-		fout.close();
 		cout << "Password changed successfully." << endl;
 	}
 	else

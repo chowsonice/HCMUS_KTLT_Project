@@ -181,6 +181,7 @@
     <Text Include="student_account\SV0013.txt" />
     <Text Include="student_account\SV0014.txt" />
     <Text Include="student_account\SV0015.txt" />
+    <Text Include="temp.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
