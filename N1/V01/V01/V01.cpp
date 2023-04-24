@@ -11,10 +11,10 @@
 #include "University.h"
 
 
-int main()
-{
-    SchoolYear* year = new SchoolYear;
-    University uni;
+    int main()
+    {
+        SchoolYear* year = new SchoolYear;
+        University uni;
 
     //uni.addClass();
     //uni.addClass();
@@ -35,11 +35,11 @@ int main()
     cout << *sem;
     //sem->printListOfCourses();
 
-    //Account main;
+    Account main;
     //Semester* cursem = new Semester();
     //try {
-    //    loginScreen(main);
-    //    //change_passwordScreen(main);
+    //   loginScreen(main);
+       change_passwordScreen(main);
     //}
     //catch (const char* error) {
     //    cout << "ERROR: " << error << endl;

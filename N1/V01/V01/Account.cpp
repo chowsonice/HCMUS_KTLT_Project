@@ -3,6 +3,7 @@
 #include "Account.h"
 #include <string.h>
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 int checkLogin(string username, string password) {
@@ -39,14 +40,33 @@ int checkLogin(string username, string password) {
 //need to fix
 bool Account::changePassword(string& oldPassword, string& newPassword)
 {
-    if (password != oldPassword)
-        return false;
+    ifstream fin("Account.txt");
+    ofstream fout("temp.txt");
+    string line;
 
-    password = newPassword;
+    bool passwordChanged = false;
+    while (getline(fin, line)) {
+        string username, pass;
+        int typeOfUsers;
+        istringstream iss(line);
+        iss >> username >> pass >> typeOfUsers;
+        if (username == this->username && pass == oldPassword) {
+            passwordChanged = true;
+            pass = newPassword;
+        }
+        fout << username << " " << pass << " " << typeOfUsers << endl;
+    }
 
-    ofstream fout("Account.txt", ios::out | ios::trunc);
-    fout << username << " " << newPassword << " " << typeOfUsers << endl;
+    fin.close();
     fout.close();
 
-    return true;
+    if (passwordChanged) {
+        remove("Account.txt");
+        rename("temp.txt", "Account.txt");
+        password = newPassword;
+        return true;
+    }
+    else {
+        return false;
+    }
 }
