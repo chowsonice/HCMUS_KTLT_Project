@@ -178,6 +178,12 @@ void Course::updateCourse(Course& course) {
     }
 }
 
+void Course::deleteCourse(Course* course)
+{
+    delete course;
+    course = nullptr;
+}
+
 void Course::addStudent(Student *student)
 {
 	if (listOfStudents.size() >= maxNoStudents)

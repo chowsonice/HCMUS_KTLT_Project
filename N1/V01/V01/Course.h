@@ -43,4 +43,5 @@ public:
 	friend istream& operator>>(istream& os, Course& s);
 	friend ostream& operator<<(ostream& os, const Course& s);
 	void updateCourse(Course& course);
+	void deleteCourse(Course* course);
 };
