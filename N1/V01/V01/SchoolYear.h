@@ -29,6 +29,9 @@ public:
     {
         return curSem;
     }
-    void importFromFile(University& uni);
-    void exportToFile();
+    int getCurrentNSemester() {
+        return semesters.size();
+    }
+    friend void importFromFile(University& uni, LinkedList<SchoolYear*>& years);
+    friend void exportToFile(LinkedList<SchoolYear*> years);
 };
