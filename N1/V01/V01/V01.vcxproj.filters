@@ -87,8 +87,8 @@
     <None Include="csv_file\21CLC01_CSC10001_score.csv" />
     <None Include="csv_file\21CLC02_CSC10002.csv" />
     <None Include="csv_file\21CLC02_info.csv" />
-    <None Include="csv_file\21CLC02_score.csv" />
     <None Include="csv_file\students.csv" />
+    <None Include="csv_file\21CLC02_CSC10002_score.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Account.txt" />
@@ -109,5 +109,8 @@
     <Text Include="student_account\SV0013.txt" />
     <Text Include="student_account\SV0014.txt" />
     <Text Include="student_account\SV0015.txt" />
+    <Text Include="info\SchoolYear_info.txt" />
+    <Text Include="info\University_info.txt" />
+    <Text Include="temp.txt" />
   </ItemGroup>
 </Project>

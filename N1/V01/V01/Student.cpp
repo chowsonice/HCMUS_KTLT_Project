@@ -161,7 +161,8 @@ Student* readStudentFromFile(string studentID)
     getline(file, line);
     student->readStudentFromCSVLine(line);
 
-    string buffer, temp; int len;
+    string buffer, temp; 
+    size_t len = 0; // Change int len to size_t
     while (getline(file, line)) {
         len = 0;
         Scoreboard* sb = new Scoreboard();

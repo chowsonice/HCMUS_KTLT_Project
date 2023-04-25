@@ -4,6 +4,8 @@ Semester::Semester(int number, LinkedList<Course*> listOfCourses)
 {
     this->number = number;
     this->listOfCourses = LinkedList<Course*>(listOfCourses);
+    year1 = 0;
+    year2 = 0;
 }
 Semester::~Semester()
 {}
@@ -28,6 +30,7 @@ Course* Semester::findCourse(string courseId) {
     for (Node<Course*> c : listOfCourses) {
         if (c.data->getCourseId().compare(courseId) == 0) return c.data;
     }
+    return nullptr;
 }
 
 ostream& operator<<(ostream& os, const Semester& s) {

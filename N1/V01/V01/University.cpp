@@ -18,6 +18,7 @@ Class* University::findClass(string id) {
 			return c.data;
 		}
 	}
+	return nullptr;
 }
 
 void University::printListOfClasses() {

@@ -58,14 +58,14 @@ void change_passwordScreen(Account& main) {
 	cout << "Please enter your new password: ";
 	getline(cin, newPassword);
 
-	if (main.changePassword(oldPassword, newPassword))
+	/*if (main.changePassword(oldPassword, newPassword))
 	{
 		cout << "Password changed successfully." << endl;
 	}
 	else
 	{
 		cout << "Password change failed." << endl;
-	}
+	}*/
 }
 
 void studentMenu(Account& main) {
@@ -188,7 +188,7 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
 		cin.ignore(1000, '\n');
-		int b1, b2;
+		int b1;
 		string buffer;
 		switch (choice) {
 		case 0:

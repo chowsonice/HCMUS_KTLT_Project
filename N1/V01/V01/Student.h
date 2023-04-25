@@ -58,6 +58,7 @@ public:
 				return c.data;
 			}
 		}
+		return nullptr;
 	}
 	void updateScoreboard(string courseId, string line);
 	void printScoreboard(string courseId);
