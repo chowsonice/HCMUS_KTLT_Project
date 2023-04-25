@@ -173,7 +173,7 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		cout << "0. Log out\n";
 		cout << "1. View a list of classes\n";
 		cout << "2. View list of students in a class\n";
-		cout << "3. View listof students in a course\n";
+		cout << "3. View list of students in a course\n";
 		cout << "4. Create a new school year\n";
 		cout << "5. Create a new semester\n";
 		//cout << "6. Create a new class\n";
@@ -364,7 +364,11 @@ void menuNewSemesterInStaff(University& uni, Semester* semNew)
 			sem1->printListOfCourses();
 			cout << "\nEnter course ID to delete: ";
 			getline(cin, courseID);
-			//mình chưa có tháy cái rì mu
+			course = sem1->findCourse(courseID);
+			course->deleteCourse(course);
+			cout << "Da xoa " << courseID << " \n";
+			//e ma nha, cai course nam trong 1 sem thi co nhieu
+			//courseID giong nhau ma nhi :((
 			break;
 		default:
 			throw "Invalid option!\n";
