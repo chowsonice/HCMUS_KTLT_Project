@@ -176,14 +176,14 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		cout << "3. View list of students in a course\n";
 		cout << "4. Create a new school year\n";
 		cout << "5. Create a new semester\n";
-		//cout << "6. Create a new class\n";
+		cout << "6. Create a new class\n";
 		cout << "=============================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
 		cin.ignore(1000, '\n');
 		int b1, b2;
-		SchoolYear* curyear;
-		Semester* cursem;
+		SchoolYear* curyear = nullptr;
+		Semester* cursem = nullptr;
 
 		switch (choice) {
 		case 0:
@@ -222,6 +222,14 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			menuNewSemesterInStaff(uni, cursem);
 			break;
 		case 6:
+			if (years.size() <= 1 || cursem == nullptr) {
+				cout << "Can not create a new class. Please create a school year and semester first.\n";
+				_getch();
+				break;
+			}
+			else {
+				uni.addClass();
+			}
 			break;
 		default:
 			throw "Invalid option.\n";
