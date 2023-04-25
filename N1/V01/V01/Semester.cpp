@@ -8,11 +8,26 @@ Semester::Semester(int number, LinkedList<Course*> listOfCourses)
 Semester::~Semester()
 {}
 
+void Semester::setYear(int y1, int y2) {
+    year1 = y1;
+    year2 = y2;
+}
+
 void Semester::addCourse() {
     Course* course = new Course();
     course->input();
     course->setSemester(number, year1, year2);
     listOfCourses.push_back(course);
+}
+
+void Semester::printListOfCourses() {
+    for (Node<Course*> c : listOfCourses) c.data->viewCourseInfo();
+}
+
+Course* Semester::findCourse(string courseId) {
+    for (Node<Course*> c : listOfCourses) {
+        if (c.data->getCourseId().compare(courseId) == 0) return c.data;
+    }
 }
 
 ostream& operator<<(ostream& os, const Semester& s) {

@@ -19,6 +19,15 @@ int Class::getNumberOfStudents() {
     return numberOfStudents;
 }
 
+Student* Class::findStudent(string id) {
+    for (Node<Student*> s : list) {
+        if (s.data->getId().compare(id) == 0) {
+            return s.data;
+        }
+    }
+    return nullptr;
+}
+
 void Class::importStudentsFromCSV() {
     string filenameInfoStu = "csv_file/" + className + "_info.csv";
     string outfile;
@@ -112,4 +121,9 @@ void Class::printScoreboardOfClass(string id)
         if (s == nullptr) cout << "00 00 00 00\n";
         else s->print();
     }
+}
+
+ostream& operator<<(ostream& os, Class c) {
+    os << "Class " << c.className << "\n" << "Number of students: " << c.numberOfStudents << "\n";
+    return os;
 }

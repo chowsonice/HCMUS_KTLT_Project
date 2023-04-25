@@ -12,6 +12,14 @@ Student* University::findStudent(string id)
 	return nullptr;
 }
 
+Class* University::findClass(string id) {
+	for (Node<Class*> c : listOfClasses) {
+		if (c.data->getClassName().compare(id) == 0) {
+			return c.data;
+		}
+	}
+}
+
 void University::printListOfClasses() {
 	Node<Class*>* cur = listOfClasses.head;
 	while (cur != nullptr) {

@@ -10,13 +10,7 @@ public:
 		listOfClasses.clear();
 	}
 	Student* findStudent(string id);
-	Class* findClass(string id) {
-		for (Node<Class*> c : listOfClasses) {
-			if (c.data->getClassName().compare(id) == 0) {
-				return c.data;
-			}
-		}
-	}
+	Class* findClass(string id);
 	void printListOfClasses();
 	void addClass();
 	void exportToFile();

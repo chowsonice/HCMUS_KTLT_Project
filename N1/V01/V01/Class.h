@@ -26,21 +26,11 @@ public:
     string getClassName() const;
     int getNumberOfStudents();
 
-    Student* findStudent(string id) {
-        for (Node<Student*> s : list) {
-            if (s.data->getId().compare(id) == 0) {
-                return s.data;
-            }
-        }
-        return nullptr;
-    }
+    Student* findStudent(string id);
     void importStudentsFromCSV();
     void exportStudentsToCSV();
 
-    friend ostream& operator<<(ostream& os, Class c) {
-        os << "Class " << c.className << "\n" << "Number of students: " << c.numberOfStudents << "\n";
-        return os;
-    }
+    friend ostream& operator<<(ostream& os, Class c);
 
     void printListOfStudents();
     void printScoreboardOfClass(string id);

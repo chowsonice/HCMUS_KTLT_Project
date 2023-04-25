@@ -17,18 +17,9 @@ public:
     friend ostream& operator<<(ostream& os, const Semester &s);
     friend istream& operator>>(istream& is, Semester& s);
     ~Semester();
-    void setYear(int y1, int y2) {
-        year1 = y1;
-        year2 = y2;
-    }
+    void setYear(int y1, int y2);
     void addCourse();
-    void printListOfCourses() {
-        for (Node<Course*> c : listOfCourses) c.data->viewCourseInfo();
-    }
-    Course* findCourse(string courseId) {
-        for (Node<Course*> c : listOfCourses) {
-            if (c.data->getCourseId().compare(courseId) == 0) return c.data;
-        }
-    }
+    void printListOfCourses();
+    Course* findCourse(string courseId);
 };
 
