@@ -30,43 +30,19 @@ public:
 	float getOtherMark() const;
 
 	void setCourseId(const string courseId);
-	void setCourseName(string name) {
-		courseName = name;
-	}
-	void setCourseTime(string courseTime) {
-		time = courseTime;
-	}
+	void setCourseName(string name);
+	void setCourseTime(string courseTime);
 	void setTotalMark(float totalMark);
 	void setFinalMark(float finalMark);
 	void setMidtermMark(float midtermMark);
 	void setOtherMark(float otherMark);
 
-	void printInfo() {
-		cout << "---------------------------\n";
-		cout << "Name: " << courseName << endl;
-		cout << "Course ID: " << courseId << endl;
-		cout << "Time: " << time << endl;
-	}
-	void updateScoreboard(string line) {
-		stringstream ss(line); char c;
-		if (!(ss >> midtermMark) || (midtermMark < -1 || midtermMark > 10)) throw "Invalid grade!";
-		ss >> c;
-		if (!(ss >> otherMark) || (otherMark < -1 || otherMark > 10)) throw "Invalid grade!";
-		ss >> c;
-		if (!(ss >> finalMark) || (finalMark < -1 || finalMark > 10)) throw "Invalid grade!";
-		ss >> c;
-		if (!(ss >> totalMark) || (totalMark < -1 || totalMark > 10)) throw "Invalid grade!";
-		if (midtermMark == -1 || finalMark == -1 || otherMark == -1 || totalMark == -1) return;
-		updated = true;
-	}
+	void printInfo();
+	void updateScoreboard(string line);
 
-	bool checkUpdated() {
-		return updated;
-	}
+	bool checkUpdated();
 	friend ostream& operator<<(ostream& os, const Scoreboard& s);
-	string getCourseID() {
-		return courseId;
-	}
+	string getCourseID();
 	void print();
 
 };

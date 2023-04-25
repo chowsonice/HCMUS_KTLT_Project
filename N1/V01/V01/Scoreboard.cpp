@@ -35,6 +35,14 @@ void Scoreboard::setCourseId(string courseId) {
 	this->courseId = courseId;
 }
 
+void Scoreboard::setCourseName(string name) {
+	courseName = name;
+}
+
+void Scoreboard::setCourseTime(string courseTime) {
+	time = courseTime;
+}
+
 void Scoreboard::setTotalMark(float totalMark) {
 	this->totalMark = totalMark; 
 }
@@ -51,9 +59,37 @@ void Scoreboard::setOtherMark(float otherMark) {
 	this->otherMark = otherMark; 
 }
 
+void Scoreboard::printInfo() {
+	cout << "---------------------------\n";
+	cout << "Name: " << courseName << endl;
+	cout << "Course ID: " << courseId << endl;
+	cout << "Time: " << time << endl;
+}
+
+void Scoreboard::updateScoreboard(string line) {
+	stringstream ss(line); char c;
+	if (!(ss >> midtermMark) || (midtermMark < -1 || midtermMark > 10)) throw "Invalid grade!";
+	ss >> c;
+	if (!(ss >> otherMark) || (otherMark < -1 || otherMark > 10)) throw "Invalid grade!";
+	ss >> c;
+	if (!(ss >> finalMark) || (finalMark < -1 || finalMark > 10)) throw "Invalid grade!";
+	ss >> c;
+	if (!(ss >> totalMark) || (totalMark < -1 || totalMark > 10)) throw "Invalid grade!";
+	if (midtermMark == -1 || finalMark == -1 || otherMark == -1 || totalMark == -1) return;
+	updated = true;
+}
+
+bool Scoreboard::checkUpdated() {
+	return updated;
+}
+
 ostream& operator<<(ostream& os, const Scoreboard& s){
 	os << s.courseId << "," << s.courseName << "," << s.time << "," << s.midtermMark << "," << s.otherMark << "," << s.finalMark << "," << s.totalMark << endl;
 	return os;
+}
+
+string Scoreboard::getCourseID() {
+	return courseId;
 }
 
 void Scoreboard::print() {
