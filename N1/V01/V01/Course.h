@@ -45,4 +45,5 @@ public:
 	friend ostream& operator<<(ostream& os, const Course& s);
 	void updateCourse(Course& course);
 	void deleteCourse(Course* course);
+	void exportStudentListToCSV(string courseID);
 };

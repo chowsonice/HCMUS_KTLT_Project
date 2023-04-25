@@ -189,6 +189,33 @@ void Course::deleteCourse(Course* course)
     course = nullptr;
 }
 
+void Course::exportStudentListToCSV(string courseID)
+{
+    if (listOfStudents.size() == 0) {
+        cout << "No students found in the course!\n";
+        return;
+    }
+    string fileName = "student_list_" + courseID + ".csv";
+    ofstream outFile(fileName);
+    if (!outFile.is_open()) {
+        cout << "Faile to create CSV file.\n";
+        return;
+    }
+
+    outFile << "Sutdent ID, First Name, Last Name, Birthday\n";
+    Node<Student*>* curr = listOfStudents.head;
+    while (curr != nullptr) {
+        Student* student = curr->data;
+        outFile << student->getId() << ","
+            << student->getFirstName() << ","
+            << student->getLastName() << ","
+            << student->getDateOfBirth() << endl;
+        curr = curr->next;
+    }
+    outFile.close();
+    cout << "Export student list of " << courseID << " successfully.\n";
+}
+
 void Course::addStudent(Student *student)
 {
 	if (listOfStudents.size() >= maxNoStudents)
