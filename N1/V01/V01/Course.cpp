@@ -110,6 +110,11 @@ string Course::getCourseId() {
     return courseId;
 }
 
+string Course::getName()
+{
+    return string();
+}
+
 void Course::printListOfStudents() {
     for (Node<Student*> s : listOfStudents) {
         cout << *s.data << "\n";

@@ -31,6 +31,7 @@ public:
 	void setSession(const int sess);
 
 	string getCourseId();
+	string getName();
 	void printListOfStudents();
 	void input();
 
