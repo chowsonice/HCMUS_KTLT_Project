@@ -167,7 +167,7 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 	int choice = 1;
 	SchoolYear* curyear = nullptr;
 	Semester* cursem = nullptr;
-	
+	Course* course = nullptr;
 	while (choice != 0) {
 		system("cls");
 		cout << "Currently, it's ___" << endl;
@@ -179,12 +179,17 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		cout << "4. Create a new school year\n";
 		cout << "5. Create a new semester\n";
 		cout << "6. Create a new class\n";
+		cout << "7. Export list of student from course to CSV\n";
+		cout << "8. Import scoreboard of course\n";
+		cout << "9. View scoreboard of course\n";
+		cout << "10. View scoreboard of class\n";
+		cout << "11. Update student's result\n";
 		cout << "=============================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
 		cin.ignore(1000, '\n');
 		int b1, b2;
-
+		string buffer;
 		switch (choice) {
 		case 0:
 			return;
@@ -230,6 +235,48 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			}
 			else {
 				uni.addClass();
+			}
+			break;
+		case 7:
+			cursem->printListOfCourses();
+			cout << "Enter course ID: ";
+			getline(cin, buffer);
+			course = cursem->findCourse(buffer);
+			if (course != nullptr) {
+				course->exportStudentListToCSV(buffer);
+			}
+			else {
+				cout << "Could not find course!\n";
+			}
+			break;
+		case 8:
+			cursem->printListOfCourses();
+			cout << "Enter course ID: ";
+			getline(cin, buffer);
+			course = cursem->findCourse(buffer);
+			if (course != nullptr) {
+				try {
+					course->importScoreboard();
+					cout << "Scoreboard imported successfully!\n";
+				}
+				catch (const char* err) {
+					cout << "Error: " << err << endl;
+				}
+			}
+			else {
+				cout << "Could not find course!\n";
+			}
+			break;
+		case 9:
+			cursem->printListOfCourses();
+			cout << "Enter course ID: ";
+			getline(cin, buffer);
+			course = cursem->findCourse(buffer);
+			if (course != nullptr) {
+				course->viewScoreboard();
+			}
+			else {
+				cout << "Could not find course!\n";
 			}
 			break;
 		default:
