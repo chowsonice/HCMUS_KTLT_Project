@@ -279,6 +279,9 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 				cout << "Could not find course!\n";
 			}
 			break;
+		case 10:
+			viewScoreboardOfClass(uni);
+			break;
 		default:
 			throw "Invalid option.\n";
 		}
@@ -332,6 +335,22 @@ void printStudentsInClass(University& uni){
 		cout << "List of students in class " << pclass->getClassName() << ":\n";
 		pclass->printListOfStudents();
 	}
+}
+
+void viewScoreboardOfClass(University& uni) {
+	string classID, courseID;
+	cout << "Enter a class:\n";
+	getline(cin, classID);
+	Class* c = uni.findClass(classID);
+	while (c == nullptr) {
+		cout << "Such class doesn't exist.\nPlease try again or enter 0 to return to menu.\n";
+		getline(cin, classID);
+		if (classID == "0") return;
+		else c = uni.findClass(classID);
+	}
+	cout << "Enter course ID of the course you want to see: ";
+	getline(cin, courseID);
+	c->printScoreboardOfClass(courseID);
 }
 
 Semester* createNewSemester(LinkedList<SchoolYear*> years, SchoolYear*& curyear) {

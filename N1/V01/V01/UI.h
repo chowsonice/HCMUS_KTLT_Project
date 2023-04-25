@@ -20,3 +20,4 @@ void saving(University& u, LinkedList<SchoolYear*>& y);
 Semester* createNewSemester(LinkedList<SchoolYear*> years, SchoolYear*& curyear);
 void printStudentsInClass(University& uni);
 void printStudentsInCourse(Semester* semester);
+void viewScoreboardOfClass(University& uni);
