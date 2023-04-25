@@ -165,6 +165,8 @@ void studentScoreboard(Student* s) {
 void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 	system("cls");
 	int choice = 1;
+	SchoolYear* curyear = nullptr;
+	Semester* cursem = nullptr;
 	
 	while (choice != 0) {
 		system("cls");
@@ -182,8 +184,6 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		cin >> choice;
 		cin.ignore(1000, '\n');
 		int b1, b2;
-		SchoolYear* curyear = nullptr;
-		Semester* cursem = nullptr;
 
 		switch (choice) {
 		case 0:
@@ -197,6 +197,7 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			printStudentsInClass(uni);
 			break;
 		case 3:
+			printStudentsInCourse(cursem);
 			break;
 		case 4:
 			cout << "Enter starting year, enter 0 if current year:\n";
@@ -236,6 +237,37 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		}
 	}
 	return;
+}
+
+void printStudentsInCourse(Semester* semester) {
+	system("cls");
+
+	if (!semester) {
+		cout << "There are no semesters available.\n";
+		cout << "Press anything to return to menu.\n";
+		_getch();
+		return;
+	}
+
+	string choice;
+	cout << "Choose a semester:\n";
+	semester->printListOfCourses();
+	cout << "Your choice: ";
+	getline(cin, choice);
+
+	Course* selectedCourse = semester->findCourse(choice);
+
+	if (!selectedCourse) {
+		cout << "Invalid course selection.\n";
+		cout << "Press anything to return to menu.\n";
+		_getch();
+		return;
+	}
+
+	cout << "List of students in " << selectedCourse->getName() << "(" << selectedCourse->getCourseId() << ")" << ":" << endl;
+	selectedCourse->printListOfStudents();
+	cout << "Press anything to return to menu.\n";
+	_getch();
 }
 
 void printStudentsInClass(University& uni){
