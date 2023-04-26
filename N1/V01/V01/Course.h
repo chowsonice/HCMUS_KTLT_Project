@@ -35,6 +35,7 @@ public:
 	void printListOfStudents();
 	void input();
 
+	Student* findStudent(string id);
 	void addStudent(Student *student);
 	void removeStudent(string id);
 	void importScoreboard();

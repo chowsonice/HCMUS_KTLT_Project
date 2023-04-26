@@ -283,18 +283,18 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		case 10:
 			viewScoreboardOfClass(uni);
 			break;
-		/*case 11:
+		case 11:
 			cursem->printListOfCourses();
 			cout << "Enter course ID: ";
 			getline(cin, buffer);
 			course = cursem->findCourse(buffer);
 			if (course != nullptr) {
-				course->viewScoreboard();
+				updateStudentResult(course, buffer);
 			}
 			else {
 				cout << "Could not find course!\n";
 			}
-			break;*/
+			break;
 		default:
 			throw "Invalid option.\n";
 		}
@@ -366,19 +366,20 @@ void viewScoreboardOfClass(University& uni) {
 	c->printScoreboardOfClass(courseID);
 }
 
-//void updateStudentResult(Course* course) {
-//	cout << "Choose a student to update result:\n";
-//	course->printListOfStudents();
-//	string id;
-//	getline(cin, id);
-//
-//	
-//	else {
-//		pclass = uni.listOfClasses[choiceclass];
-//		cout << "List of students in class " << pclass->getClassName() << ":\n";
-//		pclass->printListOfStudents();
-//	}
-//}
+void updateStudentResult(Course* course, string courseID) {
+	cout << "Enter a studentID to update result:\n";
+	course->printListOfStudents();
+	string choice;
+	getline(cin, choice);
+	Student* st = course->findStudent(choice);
+	if (!st) return;
+	else {
+		string line;
+		cout << "Enter which line need to update: ";
+		getline(cin, line);
+		st->updateScoreboard(courseID, line);
+	}
+}
 
 Semester* createNewSemester(LinkedList<SchoolYear*> years, SchoolYear*& curyear) {
 	cout << "Choose a school year that this semester belongs to:\n";

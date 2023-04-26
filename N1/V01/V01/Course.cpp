@@ -216,6 +216,15 @@ void Course::exportStudentListToCSV(string courseID)
     cout << "Export student list of " << courseID << " successfully.\n";
 }
 
+Student* Course::findStudent(string id) {
+    for (Node<Student*> s : listOfStudents) {
+        if (s.data->getId().compare(id) == 0) {
+            return s.data;
+        }
+    }
+    return nullptr;
+}
+
 void Course::addStudent(Student *student)
 {
 	if (listOfStudents.size() >= maxNoStudents)
