@@ -13,12 +13,8 @@ public:
 	Account(string usrname, string pass, int type): username(usrname), password(pass), typeOfUsers(type) {}
 
 	//bool changePassword(string& oldPassword, string& newPassword);
-	int getType() {
-		return typeOfUsers;
-	}
-	string getUsername() {
-		return username;
-	}
+	int getType();
+	string getUsername();
 	~Account() {}
 };
 

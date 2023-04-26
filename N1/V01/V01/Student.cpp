@@ -71,6 +71,37 @@ void Student::setSocialID(string socialID)
     this->socialID = socialID;
 }
 
+void Student::removeScoreboard(string id) {
+    for (Node<Scoreboard*> s : list) {
+        if (s.data->getCourseId() == id) list.remove(s.data);
+    }
+}
+
+Scoreboard* Student::findScoreboard(string courseId) {
+    for (Node<Scoreboard*> c : list) {
+        if (c.data->getCourseId() == courseId) {
+            return c.data;
+        }
+    }
+    return nullptr;
+}
+
+void Student::printCourseThisSem() {
+    for (auto sb : list) {
+        sb->printInfo();
+    }
+    cout << "=============================\n";
+    cout << "Press anything to return to menu\n";
+
+}
+
+void Student::printAllScoreboard() {
+    for (auto sb : list) {
+        cout << setw(10) << sb->getCourseID();
+        sb->print();
+    }
+}
+
 ostream& operator<<(ostream& os, const Student& s) {
     if (s.no == 0 || &s == nullptr) {
         throw "Class has no students.\n";

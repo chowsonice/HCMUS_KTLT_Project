@@ -11,6 +11,28 @@ ostream& operator<<(ostream& os, SchoolYear sy) {
     os << sy._start << " - " << sy._end;
     return os;
 }
+
+void SchoolYear::createNewSemester()
+{
+    int n = semesters.size();
+    if (n >= 3) {
+        cout << "Cannot add another semester to this school year!\n Create a new one and try again.\n";
+        return;
+    }
+    curSem = new Semester(n + 1);
+    curSem->setYear(_start, _end);
+    semesters.push_back(curSem);
+}
+
+Semester* SchoolYear::getCurrentSemester()
+{
+    return curSem;
+}
+
+int SchoolYear::getCurrentNSemester() {
+    return semesters.size();
+}
+
 void importFromFile(University &uni, LinkedList<SchoolYear*>& years) {
     ifstream fin("info/SchoolYear_info.txt");
     while (!fin.eof()) {

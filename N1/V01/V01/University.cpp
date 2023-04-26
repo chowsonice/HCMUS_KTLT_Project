@@ -1,5 +1,9 @@
 #include "University.h"
 
+University::~University() {
+	listOfClasses.clear();
+}
+
 Student* University::findStudent(string id)
 {
 	Node<Class*>* node = listOfClasses.head;

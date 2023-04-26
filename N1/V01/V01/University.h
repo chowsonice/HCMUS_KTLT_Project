@@ -6,9 +6,7 @@ using namespace std;
 struct University {
 	LinkedList<Class*> listOfClasses;
 public:
-	~University() {
-		listOfClasses.clear();
-	}
+	~University();
 	Student* findStudent(string id);
 	Class* findClass(string id);
 	void printListOfClasses();

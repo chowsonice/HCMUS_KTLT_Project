@@ -47,38 +47,15 @@ public:
 	void setDateOfBirth(string dateOfBirth);
 	void setSocialID(string socialID);
 
-	void removeScoreboard(string id) {
-		for (Node<Scoreboard*> s : list) {
-			if (s.data->getCourseId() == id) list.remove(s.data);
-		}
-	}
-	Scoreboard* findScoreboard(string courseId) {
-		for (Node<Scoreboard*> c : list) {
-			if (c.data->getCourseId() == courseId) {
-				return c.data;
-			}
-		}
-		return nullptr;
-	}
+	void removeScoreboard(string id);
+	Scoreboard* findScoreboard(string courseId);
 	void updateScoreboard(string courseId, string line);
 	void printScoreboard(string courseId);
-	void printAllScoreboard() {
-		for (auto sb : list) {
-			cout << setw(10) << sb->getCourseID();
-			sb->print();
-		}
-	}
+	void printAllScoreboard();
 
 	void printStudentInfo();
 
-	void printCourseThisSem() {
-		for (auto sb : list) {
-			sb->printInfo();
-		}
-		cout << "=============================\n";
-		cout << "Press anything to return to menu\n";
-		
-	}
+	void printCourseThisSem();
 
 	void readStudentFromCSVLine(string buffer);
 	friend ostream& operator<<(ostream& os, const Student& s);

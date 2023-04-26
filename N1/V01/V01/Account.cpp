@@ -6,6 +6,14 @@
 #include <sstream>
 using namespace std;
 
+int Account::getType() {
+	return typeOfUsers;
+}
+
+string Account::getUsername() {
+	return username;
+}
+
 int checkLogin(string username, string password) {
 	ifstream fin("staff_account/StaffAccount.txt");
 
