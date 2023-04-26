@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#pragma warning(disable: 6031)
+#include <iostream>
 #include "UI.h"
 
 
