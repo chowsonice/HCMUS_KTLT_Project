@@ -33,6 +33,7 @@ void Class::importStudentsFromCSV() {
     string outfile;
 
     ifstream file(filenameInfoStu);
+    ifstream fileacc;
     ofstream fout;
 
     if (!file.is_open()) {
@@ -52,24 +53,20 @@ void Class::importStudentsFromCSV() {
         newStudent->readStudentFromCSVLine(line);
         list.push_back(newStudent);
 
+        //check if account exists
+        fileacc.open("student_account/" + newStudent->getId() + ".txt");
+        if (fileacc.is_open()) continue;
+        
         //creating account
-        string username, password, temp = line;
-        for (int i = 0; i < 7; i++) {
-            string token = line.substr(0, line.find(","));
-            switch (i) {
-            case 1:
-                username = token;
-                break;
-            case 5:
-                for (int i = 0; i < 3; i++) {
-                    string token2 = token.substr(0, token.find("/"));
-                    password += token2;
-                    token.erase(0, token2.length() + 1);
-                }
-                break;
-            }
-            line.erase(0, token.length() + 1);
+        string username, password, token;
+        username = newStudent->getId();
+        token = newStudent->getDateOfBirth();
+        for (int i = 0; i < 3; i++) {
+            string token2 = token.substr(0, token.find("/"));
+            password += token2;
+            token.erase(0, token2.length() + 1);
         }
+        
         outfile = "student_account/" + username + ".txt";
 
         fout.open(outfile);
@@ -78,7 +75,7 @@ void Class::importStudentsFromCSV() {
             return;
         }
         fout << password << endl;
-        fout << temp << endl;
+        fout << line << endl;
         
         fout.close();
     }

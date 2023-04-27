@@ -19,6 +19,7 @@ int main()
 
     loading(uni, years);
 
+    cout << "HELLO?";
     Account main;
     try {
         loginScreen(main);

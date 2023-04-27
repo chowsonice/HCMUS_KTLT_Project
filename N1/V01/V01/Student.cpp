@@ -24,7 +24,6 @@ const string Student::getDateOfBirth() const {
 const string Student::getSocialID() const {
     return socialID;
 }
-
 void Student::addScoreboard(string courseInfo, string courseName, string courseTime) {
     Scoreboard* s = new Scoreboard(courseInfo, courseName, courseTime);
     list.push_back(s);
@@ -113,7 +112,8 @@ ostream& operator<<(ostream& os, const Student& s) {
     return os;
 }
 
-void Student::readStudentFromCSVLine(string line) {
+void Student::readStudentFromCSVLine(string linetemp) {
+    string line = linetemp;
     if (this == nullptr) return;
     const string delim = ",";
     for (int i = 0; i < 7; i++) {

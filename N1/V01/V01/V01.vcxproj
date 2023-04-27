@@ -163,10 +163,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Account.txt" />
-    <Text Include="info\SchoolYear_info.txt" />
     <Text Include="info\University_info.txt" />
     <Text Include="staff_account\StaffAccount.txt" />
-    <Text Include="student_account\StudentAccount.txt" />
     <Text Include="student_account\SV0001.txt" />
     <Text Include="student_account\SV0002.txt" />
     <Text Include="student_account\SV0003.txt" />
