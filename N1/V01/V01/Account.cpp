@@ -17,6 +17,7 @@ string Account::getUsername() {
 int checkLogin(string username, string password) {
 	ifstream fin("staff_account/StaffAccount.txt");
 
+	cout << password << endl;
 	string buffer1, buffer2;
 
 	while (fin >> buffer1 >> buffer2) {
@@ -45,36 +46,30 @@ int checkLogin(string username, string password) {
 	return -1;
 }
 
-//Account chuyen sang dang student_account/MSSV.txt roi, nen chinh lai nha
-//bool Account::changePassword(string& oldPassword, string& newPassword)
-//{
-//    ifstream fin("Account.txt");
-//    ofstream fout("temp.txt");
-//    string line;
-//
-//    bool passwordChanged = false;
-//    while (getline(fin, line)) {
-//        string username, pass;
-//        int typeOfUsers;
-//        istringstream iss(line);
-//        iss >> username >> pass >> typeOfUsers;
-//        if (username == this->username && pass == oldPassword) {
-//            passwordChanged = true;
-//            pass = newPassword;
-//        }
-//        fout << username << " " << pass << " " << typeOfUsers << endl;
-//    }
-//
-//    fin.close();
-//    fout.close();
-//
-//    if (passwordChanged) {
-//        remove("Account.txt");
-//        rename("temp.txt", "Account.txt");
-//        password = newPassword;
-//        return true;
-//    }
-//    else {
-//        return false;
-//    }
-//}
+bool Account::changePassword(const string oldpass, const string newpass)
+{
+	if (oldpass != password) return false;
+
+	string source = "student_account/" + username + ".txt";
+    ifstream fin(source);
+	ofstream fout;
+
+	string line, file;
+
+	fin.ignore(1000, '\n');
+	file = newpass + '\n';
+
+	while (!fin.eof()) {
+		getline(fin, line);
+		file += line + "\n";
+	}
+
+	fin.close();
+	fout.open(source);
+
+	fout << file;
+    fout.close();
+
+	password = newpass;
+	return true;
+}

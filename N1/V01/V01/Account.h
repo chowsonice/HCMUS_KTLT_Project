@@ -12,7 +12,7 @@ public:
 	Account() : username(""), password(""), typeOfUsers(0) {}
 	Account(string usrname, string pass, int type): username(usrname), password(pass), typeOfUsers(type) {}
 
-	//bool changePassword(string& oldPassword, string& newPassword);
+	bool changePassword(const string oldpass, const string newpass);
 	int getType();
 	string getUsername();
 	~Account() {}
