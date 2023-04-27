@@ -1,5 +1,6 @@
 #include "SchoolYear.h"
 
+Semester* SchoolYear::curSem = nullptr;
 SchoolYear::SchoolYear(int start, int end) 
 {
     _start = start;
@@ -35,6 +36,9 @@ int SchoolYear::getCurrentNSemester() {
 
 void importFromFile(University &uni, LinkedList<SchoolYear*>& years) {
     ifstream fin("info/SchoolYear_info.txt");
+    if (!fin.is_open()) {
+        return;
+    }
     while (!fin.eof()) {
         SchoolYear* y = new SchoolYear();
         int n = 0;

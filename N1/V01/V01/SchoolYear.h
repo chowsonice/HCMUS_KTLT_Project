@@ -9,7 +9,7 @@ private:
     int _start;
     int _end;
     LinkedList<Semester*> semesters;
-    Semester* curSem = nullptr;
+    static Semester* curSem;
 public:
     SchoolYear() : _start(0), _end(1) {}
     SchoolYear(int start, int end);
@@ -17,7 +17,12 @@ public:
     void createNewSemester();
     Semester* getCurrentSemester();
     int getCurrentNSemester();
-
+    bool operator==(Semester* s) {
+        int year1, year2;
+        s->getYear(year1, year2);
+        if (_start == year1 && _end == year2) return true;
+        else return false;
+    }
     friend void importFromFile(University& uni, LinkedList<SchoolYear*>& years);
     friend void exportToFile(LinkedList<SchoolYear*> years);
 };
