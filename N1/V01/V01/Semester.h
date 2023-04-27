@@ -18,8 +18,17 @@ public:
     friend istream& operator>>(istream& is, Semester& s);
     ~Semester();
     void setYear(int y1, int y2);
+    void getYear(int& y1, int& y2) {
+        y1 = year1;
+        y2 = year2;
+    }
     void addCourse();
     void printListOfCourses();
+    void printInfoOfCourses();
+    void deleteCourse(string id);
     Course* findCourse(string courseId);
+    void printInfo() {
+        cout << "semester " << number << ", school year " << year1 << " - " << year2 << endl;
+    }
 };
 

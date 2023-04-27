@@ -23,14 +23,25 @@ void Semester::addCourse() {
 }
 
 void Semester::printListOfCourses() {
+    for (Node<Course*> c : listOfCourses) cout << c.data->getCourseId();
+}
+void Semester::printInfoOfCourses() {
     for (Node<Course*> c : listOfCourses) c.data->viewCourseInfo();
 }
-
 Course* Semester::findCourse(string courseId) {
     for (Node<Course*> c : listOfCourses) {
         if (c.data->getCourseId().compare(courseId) == 0) return c.data;
     }
     return nullptr;
+}
+void Semester::deleteCourse(string id) {
+    int i = 1;
+    for (Course* c : listOfCourses) {
+        if (c->getCourseId() == id) {
+            listOfCourses.pop(i);
+        }
+        i++;
+    }
 }
 
 ostream& operator<<(ostream& os, const Semester& s) {
@@ -56,5 +67,4 @@ istream& operator>>(istream& is, Semester& s){
     }
     return is;
 }
-
 

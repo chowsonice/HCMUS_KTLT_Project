@@ -20,6 +20,7 @@ class Course
 public:
 	Course() : sem(0), year1(0), year2(0), courseId(""), name(""), classId(""), teacherName(""), noCredits(0), maxNoStudents(50), dayOfTheWeek(""), session(0) {}
 	~Course();
+
 	bool importStudentsFromCSV(University& u);
 	void setCourseId(const string id);
 	void setCourseName(const string name);
@@ -44,7 +45,6 @@ public:
 	void setSemester(int s, int y1, int y2);
 	friend istream& operator>>(istream& os, Course& s);
 	friend ostream& operator<<(ostream& os, const Course& s);
-	void updateCourse(Course& course);
-	void deleteCourse(Course* course);
+	void updateCourse(University& u);
 	void exportStudentListToCSV(string courseID);
 };

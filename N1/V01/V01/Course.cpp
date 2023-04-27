@@ -121,7 +121,7 @@ void Course::printListOfStudents() {
     }
 }
 
-void Course::updateCourse(Course& course) {
+void Course::updateCourse(University& uni) {
     int option;
     string buffer;
 
@@ -135,58 +135,55 @@ void Course::updateCourse(Course& course) {
     cout << "7. Day of the week" << endl;
     cout << "8. Session no" << endl;
     cin >> option;
+    cin.ignore(1000, '\n');
 
     switch (option) {
         case 1:
             cout << "Enter new course ID: ";
             getline(cin, buffer);
-            course.setCourseId(buffer);
+            setCourseId(buffer);
             break;
         case 2:
             cout << "Enter new course name: ";
             getline(cin, buffer);
-            course.setCourseName(buffer);
+            setCourseName(buffer);
             break;
         case 3:
             cout << "Enter new class ID: ";
             getline(cin, buffer);
-            course.setClassId(buffer);
+            setClassId(buffer);
+            listOfStudents.clear();
+            importStudentsFromCSV(uni);
             break;
         case 4:
             cout << "Enter new teacher's name: ";
             getline(cin, buffer);
-            course.setTeacherName(buffer);
+            setTeacherName(buffer);
             break;
         case 5:
             cout << "Enter new number of credits: ";
             getline(cin, buffer);
-            course.setNumOfCredits(stoi(buffer));
+            setNumOfCredits(stoi(buffer));
             break;
         case 6:
             cout << "Enter new max number of students: ";
             getline(cin, buffer);
-            course.setMaxStudents(stoi(buffer));
+            setMaxStudents(stoi(buffer));
             break;
         case 7:
             cout << "Enter new day of the week: ";
             getline(cin, buffer);
-            course.setDayOfWeek(buffer);
+            setDayOfWeek(buffer);
             break;
         case 8:
             cout << "Enter new session no: ";
             getline(cin, buffer);
-            course.setSession(stoi(buffer));
+            setSession(stoi(buffer));
             break;
         default:
             cout << "Invalid option." << endl;
             break;
     }
-}
-
-void Course::deleteCourse(Course* course)
-{
-    delete course;
-    course = nullptr;
 }
 
 void Course::exportStudentListToCSV(string courseID)
@@ -297,13 +294,13 @@ void Course::viewScoreboard()
 }
 
 void Course::viewCourseInfo() {
-    cout << courseId << endl;
-    cout << name << endl;
-    cout << classId << endl;
-    cout << teacherName << endl;
-    cout << noCredits << endl;
-    cout << maxNoStudents << endl;
-    cout << dayOfTheWeek << " " << session << endl;
+    cout << "Course ID: " << courseId << endl;
+    cout << "Course's name: " << name << endl;
+    cout << "Class ID: " << classId << endl;
+    cout << "Teacher's name: " << teacherName << endl;
+    cout << "Number of credits: " << noCredits << endl;
+    cout << "Maximum number of students: " << maxNoStudents << endl;
+    cout << "Session: " << dayOfTheWeek << " " << session << endl;
 }
 
 void Course::setSemester(int s, int y1, int y2) {
