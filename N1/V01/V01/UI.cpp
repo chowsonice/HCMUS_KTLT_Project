@@ -193,21 +193,21 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		if (!cursem) cout << "___" << endl;
 		else cursem->printInfo();
 
-		cout << "=============================\n";
-		cout << "0. Log out\n";
-		cout << "1. View a list of classes\n";
-		cout << "2. View list of students in a class\n";
-		cout << "3. View list of students in a course\n";
-		cout << "4. Create a new school year\n";
-		cout << "5. Create a new semester\n";
-		cout << "6. Create a new class\n";
-		cout << "7. Export list of student from course to CSV\n";
-		cout << "8. Import scoreboard of course\n";
-		cout << "9. View scoreboard of course\n";
-		cout << "10. View scoreboard of class\n";
-		cout << "11. Update student's result\n";
-		if (cursem) cout << "12. Change semester's information\n";
-		cout << "=============================\n";
+		cout << "========================================================\n";
+		cout << "||    0. Log out                                      ||\n";
+		cout << "||    1. View a list of classes                       ||\n";
+		cout << "||    2. View list of students in a class             ||\n";
+		cout << "||    3. View list of students in a course            ||\n";
+		cout << "||    4. Create a new school year                     ||\n";
+		cout << "||    5. Create a new semester                        ||\n";
+		cout << "||    6. Create a new class                           ||\n";
+		cout << "||    7. Export list of student from course to CSV    ||\n";
+		cout << "||    8. Import scoreboard of course                  ||\n";
+		cout << "||    9. View scoreboard of course                    ||\n";
+		cout << "||    10. View scoreboard of class                    ||\n";
+		cout << "||    11. Update student's result                     ||\n";
+		if (cursem) cout << "||    12. Change semester's information               ||\n";
+		cout << "========================================================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
 		cin.ignore(1000, '\n');
@@ -448,16 +448,16 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 
 	while (choice != 0) {
 		system("cls");
-		cout << "\tNEW SEMESTER CONTROL" << endl;
-		cout << "=============================\n";
-		cout << "0. RETURN\n";
-		cout << "1. Add a course\n";
-		cout << "2. View list of courses\n";
-		cout << "3. Update a course\n";
-		cout << "4. Add student to a course\n";
-		cout << "5. Remove a student from a course\n";
-		cout << "6. Delete a course\n";
-		cout << "=============================\n";
+		cout << "              SEMESTER CONTROL\n";
+		cout << "=============================================\n";
+		cout << "||    0. RETURN                            ||\n";
+		cout << "||    1. Add a course                      ||\n";
+		cout << "||    2. View list of courses              ||\n";
+		cout << "||    3. Update a course                   ||\n";
+		cout << "||    4. Add student to a course           ||\n";
+		cout << "||    5. Remove a student from a course    ||\n";
+		cout << "||    6. Delete a course                   ||\n";
+		cout << "=============================================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
 		cin.ignore(1000, '\n');
@@ -498,9 +498,8 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			getline(cin, studentID);
 			student = uni.findStudent(studentID);
 			
-			//student = course->findStudent(studentID);
 			if (student == nullptr) {
-				cout << "Student not found!\n";
+				cout << "Student not found in this University!\n";
 				cout << "PRESS ANYTHING TO RETURN.\n";
 				_getch();
 				break;
@@ -536,14 +535,27 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			getline(cin, studentID);
 			student = uni.findStudent(studentID);
 			if (student == nullptr) {
-				cout << "Student not found!\n";
+				cout << "Student not found in the University!\n";
+				cout << "PRESS ANYTHING TO RETURN.\n";
+				_getch();
 				break;
 			}
-			course->removeStudent(studentID);
-			cout << "Removed!\n";
-			cout << "PRESS ANYTHING TO RETURN.\n";
-			_getch();
-			break;
+			else {
+				Student* tempStu = course->findStudent(studentID);
+				if (tempStu == nullptr) {
+					cout << "Student ID " << studentID << " is not in this course.\n";
+					cout << "PRESS ANYTHING TO RETURN.\n";
+					_getch();
+					break;
+				}
+				else {
+					course->removeStudent(studentID);
+					cout << "Removed!\n";
+					cout << "PRESS ANYTHING TO RETURN.\n";
+					_getch();
+					break;
+				}
+			}
 		case 6:
 			sem1->printListOfCourses();
 			cout << "\nEnter course ID to delete: ";

@@ -35,7 +35,7 @@ int checkLogin(string username, string password) {
 	fin.open(filename);
 	
 	if (!fin.is_open()) {
-		throw "Student doesn't exist.\n";
+		throw "Account doesn't exist.\n";
 		return -1;
 	}
 
