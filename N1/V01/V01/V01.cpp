@@ -11,29 +11,42 @@
 #include "University.h"
 
 
-int main()
+int main() 
 {
-
     LinkedList<SchoolYear*> years;
     University uni;
-
     loading(uni, years);
 
-    cout << "HELLO?";
     Account main;
-    try {
-        loginScreen(main);
-        //change_passwordScreen(main);
+    bool exitProgram = false;
+    while (!exitProgram) {
+        try {
+            loginScreen(main);
+        }
+        catch (const char* error) {
+            cout << "ERROR: " << error << endl;
+            continue;
+        }
+
+        if (main.getType() == 1) {
+            staffMenu(uni, years);
+        }
+        else if (main.getType() == 2) {
+            studentMenu(main);
+        }
+
+        int choice;
+        cout << "Do you want to login again?\n";
+        cout << "1. Yes\n";
+        cout << "2. No\n";
+        cin >> choice;
+        system("cls");
+
+        if (choice == 2) {
+            exitProgram = true;
+        }
     }
-    catch (const char* error) {
-        cout << "ERROR: " << error << endl;
-        return -1;
-    }
-    if (main.getType() == 1) {
-        staffMenu(uni, years);
-    }
-    else if (main.getType() == 2) {
-        studentMenu(main);
-    }
+
     return 0;
 }
+
