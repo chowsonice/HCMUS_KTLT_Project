@@ -37,13 +37,13 @@ Course::~Course() {
 }
 
 void Course::input() {
-	cout << "Course ID:";
+	cout << "Course ID: ";
     getline(cin, courseId);
 
-	cout << "Name:";
+	cout << "Name: ";
     getline(cin, name);
 
-	cout << "Class ID:";
+	cout << "Class ID: ";
     getline(cin, classId);
 
 	cout << "Teacher's name: ";
@@ -300,7 +300,8 @@ void Course::viewCourseInfo() {
     cout << "Teacher's name: " << teacherName << endl;
     cout << "Number of credits: " << noCredits << endl;
     cout << "Maximum number of students: " << maxNoStudents << endl;
-    cout << "Session: " << dayOfTheWeek << " " << session << endl;
+    cout << "Session: " << dayOfTheWeek << " " << "[" << session << "]" << endl;
+    cout << "-------------------------------\n";
 }
 
 void Course::setSemester(int s, int y1, int y2) {

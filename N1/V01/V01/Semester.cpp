@@ -23,10 +23,10 @@ void Semester::addCourse() {
 }
 
 void Semester::printListOfCourses() {
-    for (Node<Course*> c : listOfCourses) cout << c.data->getCourseId();
+    for (Node<Course*> c : listOfCourses) cout << c.data->getCourseId() << endl;
 }
 void Semester::printInfoOfCourses() {
-    for (Node<Course*> c : listOfCourses) c.data->viewCourseInfo();
+    for (Node<Course*> c : listOfCourses) c.data->viewCourseInfo() ;
 }
 Course* Semester::findCourse(string courseId) {
     for (Node<Course*> c : listOfCourses) {

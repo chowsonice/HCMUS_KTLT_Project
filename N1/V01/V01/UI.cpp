@@ -230,17 +230,21 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		case 4:
 			cout << "Enter starting year, enter 0 if current year:\n";
 			cin >> b1;
-			cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
 			
 			if (b1 == 0) {
 				time_t t = time(NULL);
 				struct tm curtime;
 				auto buf = localtime_s(&curtime, &t);
-				const int b1 = (curtime.tm_year) + 1900;
+				const int cur_year = (curtime.tm_year) + 1900;
+				b1 = cur_year;
 				curyear = new SchoolYear(b1, b1+1);
+				cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
+
 			}
 			else {
 				curyear = new SchoolYear(b1, b1+1);
+				cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
+
 			}
 			years.push_back(curyear);
 			_getch();
@@ -493,13 +497,30 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 				<< courseID << ": ";
 			getline(cin, studentID);
 			student = uni.findStudent(studentID);
+			
+			//student = course->findStudent(studentID);
 			if (student == nullptr) {
 				cout << "Student not found!\n";
+				cout << "PRESS ANYTHING TO RETURN.\n";
+				_getch();
 				break;
 			}
-			course->addStudent(student);
-			cout << "Student " << student->getId() << " added to the course.\n";
-			break;
+			else {
+				Student* tempStu = course->findStudent(studentID);
+				if (tempStu != nullptr) {
+					cout << "Student ID " << studentID << "is already in the course.\n";
+					cout << "PRESS ANYTHING TO RETURN.\n";
+					_getch();
+					break;
+				}
+				else {
+					course->addStudent(student);
+					cout << "Student ID " << student->getId() << " added to the course.\n";
+					cout << "PRESS ANYTHING TO RETURN.\n";
+					_getch();
+					break;
+				}
+			}
 		case 5:
 			sem1->printListOfCourses();
 			cout << "\nEnter course ID to remove student out of the course: ";
@@ -509,6 +530,7 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 				cout << "Course not found.\n";
 				break;
 			}
+			course->printListOfStudents();
 			cout << "Enter student ID to remove student to "
 				<< courseID << ": ";
 			getline(cin, studentID);
