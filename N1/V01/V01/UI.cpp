@@ -254,7 +254,7 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			if (cursem) menuNewSemesterInStaff(uni, cursem);
 			break;
 		case 6:
-			if (years.size() <= 1 || cursem == nullptr) {
+			if (years.size() == 0 || curyear == nullptr || cursem == nullptr) {
 				cout << "Cannot create a new class. Please create a school year and semester first.\n";
 				_getch();
 				break;
@@ -479,7 +479,9 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			getline(cin, courseID);
 			course = sem1->findCourse(courseID);
 			if (course == nullptr) {
-				cout << "Course not found.\n";
+				cout << "Course not found!\n";
+				cout << "PRESS ANYTHING TO RETURN.";
+				_getch();
 				break;
 			}
 			course->updateCourse(uni);
