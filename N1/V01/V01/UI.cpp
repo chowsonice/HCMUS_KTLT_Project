@@ -552,7 +552,6 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 				}
 				else {
 					course->removeStudent(studentID);
-					cout << "Removed!\n";
 					cout << "PRESS ANYTHING TO RETURN.\n";
 					_getch();
 					break;
@@ -562,11 +561,21 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			sem1->printListOfCourses();
 			cout << "\nEnter course ID to delete: ";
 			getline(cin, courseID);
-			sem1->deleteCourse(courseID);
+
+			course = sem1->findCourse(courseID);
+			if (course == nullptr) {
+				cout << "Course not found.\n";
+				_getch();
+				break;
+			}
+
+			sem1->deleteCourse(courseID); // co ve cho nay sai
 			cout << "Removed course " << courseID << ".\n";
 			//e ma nha, cai course nam trong 1 sem thi co nhieu
 			//courseID giong nhau ma nhi :(( -> khong co nha, 1 sem moi lop moi course ID ma, nhung ma thay k noi phan biet gi thi thoi
 			// -> k phai SQL dau
+			cout << "PRESS ANYTHING TO RETURN.\n";
+			_getch();
 			break;
 		default:
 			throw "Invalid option!\n";
