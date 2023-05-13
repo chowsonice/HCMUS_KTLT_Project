@@ -371,7 +371,7 @@ void printStudentsInClass(University& uni){
 	cin >> choiceclass;
 	if (choiceclass <= 0 || choiceclass > uni.listOfClasses.size()) return;
 	else {
-		pclass = uni.listOfClasses[choiceclass];
+		pclass = uni.listOfClasses[choiceclass - 1];
 		cout << "List of students in class " << pclass->getClassName() << ":\n";
 		pclass->printListOfStudents();
 		_getch();
@@ -509,7 +509,7 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			else {
 				Student* tempStu = course->findStudent(studentID);
 				if (tempStu != nullptr) {
-					cout << "Student ID " << studentID << "is already in the course.\n";
+					cout << "Student ID " << studentID << " is already in the course.\n";
 					cout << "PRESS ANYTHING TO RETURN.\n";
 					_getch();
 					break;
