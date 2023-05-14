@@ -55,7 +55,11 @@ void Class::importStudentsFromCSV() {
 
         //check if account exists
         fileacc.open("student_account/" + newStudent->getId() + ".txt");
-        if (fileacc.is_open()) continue;
+        if (fileacc.is_open()) {
+            fileacc.close();
+            continue;
+        }
+        fileacc.close();
         
         //creating account
         string username, password, token;
@@ -108,15 +112,15 @@ void Class::printListOfStudents() {
 
 void Class::printScoreboardOfClass(string id)
 {
-    if (!updated) {
-        cout << "No updated scoreboard yet.\n";
-        return;
-    }
-    for (Node<Student*> cur : list) {
-        cout << "Student ID: " << cur.data->getId() << endl;
-        Scoreboard *s = cur.data->findScoreboard(id);
-        if (s == nullptr) cout << "00 00 00 00\n";
-        else s->print();
+    //if (!updated) {
+    //    cout << "No updated scoreboard yet.\n";
+    //    return;
+    //}
+    cout << "|" << setw(10) << "  ID  " << "|" << setw(15) << "  First name  " << "|" << setw(15) << "  Last name  " << "|" << setw(10) << " Midterm "
+        << "|" << setw(10) << " Other " << "|" << setw(10) << " Final " << "|" << setw(10) << " Total " << "|" << endl;
+    for (Student* s : list) {
+        cout << "|" << setw(10) << s->getId() << "|" << setw(15) << s->getFirstName() << "|" << setw(15) << s->getLastName() << "|";
+        s->printScoreboard(id);
     }
 }
 

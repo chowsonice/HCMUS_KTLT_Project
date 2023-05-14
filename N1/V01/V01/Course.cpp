@@ -4,12 +4,11 @@
 #include <iomanip>
 using namespace std;
 
-bool Course::importStudentsFromCSV(University &u) {
+bool Course::importStudentsFromCSV(int semester, int year, University &u) {
     string filename = "csv_file/" + classId + "_" + courseId + ".csv";
     
     ifstream fin(filename);
     if (!fin.is_open()) {
-        cout << "Cannot update students in course " << courseId << "." << endl;
         return false;
     }
     string line;
@@ -24,9 +23,10 @@ bool Course::importStudentsFromCSV(University &u) {
         }
         Student* newStudent = u.findStudent(token);
         string time = dayOfTheWeek + " " + "S" + to_string(session);
-        newStudent->addScoreboard(courseId, name, time);
+        Scoreboard* sb = new Scoreboard(courseId, name, time);
+        sb->setSemester(semester, year);
+        newStudent->addScoreboard(sb);
         listOfStudents.push_back(newStudent);
-
     }
     fin.close();
     return true;
@@ -121,7 +121,7 @@ void Course::printListOfStudents() {
     }
 }
 
-void Course::updateCourse(University& uni) {
+void Course::updateCourse(int semester, int year, University& uni) {
     int option;
     string buffer;
 
@@ -153,7 +153,7 @@ void Course::updateCourse(University& uni) {
             getline(cin, buffer);
             setClassId(buffer);
             listOfStudents.clear();
-            importStudentsFromCSV(uni);
+            importStudentsFromCSV(semester, year, uni);
             break;
         case 4:
             cout << "Enter new teacher's name: ";
@@ -192,7 +192,7 @@ void Course::exportStudentListToCSV(string courseID)
         cout << "No students found in the course!\n";
         return;
     }
-    string fileName = "student_list_" + courseID + ".csv";
+    string fileName = "export_csv/" + courseID + "_" + classId + ".csv";
     ofstream outFile(fileName);
     if (!outFile.is_open()) {
         cout << "Faile to create CSV file.\n";
@@ -253,25 +253,23 @@ void Course::removeStudent(string id)
 }
 
 void Course::importScoreboard() {
-    string filename = classId + "_" + ".csv", buffer;
+    string filename = "csv_file/" + classId + "_" + courseId + "_score" + ".csv", buffer;
 
     ifstream fin(filename);
     fin.ignore(1000, '\n');
 
-    int ib = 0; string id; char c;
+    int ib = 0; string id, num;
     for (Student* s : listOfStudents) {
         getline(fin, buffer);
         stringstream ss(buffer);
-        ss >> ib >> c;
+        getline(ss, num, ',');
         getline(ss, id, ',');
-        buffer.erase(0, id.length() + 1);
-        cout << buffer;
+        buffer.erase(0, id.length() + num.length() + 2);
         if (s->getId() != id) {
-            throw "Scoreboard is unsuitable for this course.\n";
+            throw "Student list and scoreboard are uncompatible.";
             return;
         }
-        else 
-            s->updateScoreboard(courseId, buffer);
+        else s->updateScoreboard(courseId, buffer);
     }
 }
 
@@ -284,12 +282,11 @@ void Course::viewScoreboard()
 	}
 	cout << "Scoreboard of course " << courseId << ": " << endl;
     cout << "|" << setw(10) << "  ID  " << "|" << setw(15) << "  First name  " << "|" << setw(15) << "  Last name  " << "|" << setw(10) << " Midterm "
-        << "|" << setw(10) << " Other " << "|" << setw(10) << " Final " << "|" << setw(10) << " Total " << endl;
+        << "|" << setw(10) << " Other " << "|" << setw(10) << " Final " << "|" << setw(10) << " Total " << "|" <<  endl;
 
     for (Student* s : listOfStudents) {
-        cout << "| " << setw(10) << s->getId() << "| " << setw(15) << s->getFirstName() << "| " << setw(15) << s->getLastName() << "| ";
+        cout << "|" << setw(10) << s->getId() << "|" << setw(15) << s->getFirstName() << "|" << setw(15) << s->getLastName() << "|";
         s->printScoreboard(courseId);
-        cout << "\n";
     }
 }
 
@@ -310,13 +307,14 @@ void Course::setSemester(int s, int y1, int y2) {
 
 ostream& operator<<(ostream& os, const Course& s) 
 {
-	os << s.courseId << "\n" 
-        << s.name << "\n" 
-        << s.classId << "\n" 
-        << s.teacherName << "\n" 
-        << to_string(s.noCredits) << "\n" 
-        << to_string(s.maxNoStudents) << "\n" 
-        << s.dayOfTheWeek << " " << s.session;
+    os << s.courseId << "\n"
+        << s.name << "\n"
+        << s.classId << "\n"
+        << s.teacherName << "\n"
+        << to_string(s.noCredits) << "\n"
+        << to_string(s.maxNoStudents) << "\n"
+        << s.dayOfTheWeek << " " << s.session << "\n"
+        << s.updated;
     return os;
 }
 
@@ -329,6 +327,7 @@ istream& operator>>(istream& is, Course& s) {
     is.ignore(1000, '\n');
     is >> s.dayOfTheWeek;
     is >> s.session;
+    is >> s.updated;
     is.ignore(1000, '\n');
     return is;
 }

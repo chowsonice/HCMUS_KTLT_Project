@@ -49,12 +49,15 @@ void importFromFile(University &uni, LinkedList<SchoolYear*>& years) {
             Semester* s = new Semester();
             y->curSem = s;
             fin >> *s;
+            fin.ignore(1000, '\n');
+            s->setYear(y->_start, y->_end);
             for (Course* c : s->listOfCourses) {
-                c->importStudentsFromCSV(uni);
+                c->importStudentsFromCSV(n, y->_start, uni);
+                if (c->updated) c->importScoreboard();
             }
             y->semesters.push_back(s);
         }
-        years.push_back(y);
+        if (y->_start != 0) years.push_back(y);
     }
     
 }
@@ -64,7 +67,7 @@ void exportToFile(LinkedList<SchoolYear*> years){
         fout << y->_start << " " << y->_end << endl;
         fout << y->semesters.size() << endl;
         for (Semester* s : y->semesters) {
-            fout << *s << endl;
+            fout << *s;
         }
     }
 }

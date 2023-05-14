@@ -31,6 +31,14 @@ float Scoreboard::getMidtermMark() const {
 float Scoreboard::getOtherMark() const {
 	return otherMark; 
 }
+int Scoreboard::getSemester() const
+{
+	return semester;
+}
+int Scoreboard::getSchoolYear() const
+{
+	return year;
+}
 void Scoreboard::setCourseId(string courseId) {
 	this->courseId = courseId;
 }
@@ -59,6 +67,11 @@ void Scoreboard::setOtherMark(float otherMark) {
 	this->otherMark = otherMark; 
 }
 
+void Scoreboard::setSemester(int s, int y) {
+	semester = s;
+	year = y;
+}
+
 void Scoreboard::printInfo() {
 	cout << "---------------------------\n";
 	cout << "Name: " << courseName << endl;
@@ -75,7 +88,7 @@ void Scoreboard::updateScoreboard(string line) {
 	if (!(ss >> finalMark) || (finalMark < -1 || finalMark > 10)) throw "Invalid grade!";
 	ss >> c;
 	if (!(ss >> totalMark) || (totalMark < -1 || totalMark > 10)) throw "Invalid grade!";
-	if (midtermMark == -1 || finalMark == -1 || otherMark == -1 || totalMark == -1) return;
+	//if (midtermMark == -1 || finalMark == -1 || otherMark == -1 || totalMark == -1) return;
 	updated = true;
 }
 
@@ -93,9 +106,8 @@ string Scoreboard::getCourseID() {
 }
 
 void Scoreboard::print() {
-	cout << setw(10) << max(midtermMark, float(0)) << "| ";
-	cout << setw(10) << max(otherMark,float(0)) << "| ";
-	cout << setw(10) << max(finalMark, float(0)) << "| ";
-	cout << setw(10) << max(totalMark, float(0)) << "| ";
-	cout << endl;
+	cout << setw(10) << ((midtermMark < 0) ? "" : to_string(midtermMark)) << "|";
+	cout << setw(10) << ((otherMark < 0) ? "" : to_string(otherMark)) << "|";
+	cout << setw(10) << ((finalMark < 0) ? "" : to_string(finalMark)) << "|";
+	cout << setw(10) << ((totalMark < 0) ? "" : to_string(totalMark)) << "|";
 }

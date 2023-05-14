@@ -205,8 +205,8 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		cout << "||    8. Import scoreboard of course                  ||\n";
 		cout << "||    9. View scoreboard of course                    ||\n";
 		cout << "||    10. View scoreboard of class                    ||\n";
-		cout << "||    11. Update student's result                     ||\n";
-		if (cursem) cout << "||    12. Change semester's information               ||\n";
+		cout << "||    11. Update a student's results                  ||\n";
+		if (cursem) cout << "||    11. Change semester's information               ||\n";
 		cout << "========================================================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
@@ -228,23 +228,34 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			printStudentsInCourse(cursem);
 			break;
 		case 4:
-			cout << "Enter starting year, enter 0 if current year:\n";
-			cin >> b1;
-			
-			if (b1 == 0) {
-				time_t t = time(NULL);
-				struct tm curtime;
-				auto buf = localtime_s(&curtime, &t);
-				const int cur_year = (curtime.tm_year) + 1900;
-				b1 = cur_year;
-				curyear = new SchoolYear(b1, b1+1);
-				cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
-
+			cout << "Enter starting year, enter 1 if current year, 0 to exit:\n";
+			if (cin >> b1) {
+				if (b1 == 1) {
+					time_t t = time(NULL);
+					struct tm curtime;
+					auto buf = localtime_s(&curtime, &t);
+					const int cur_year = (curtime.tm_year) + 1900;
+					b1 = cur_year;
+					curyear = new SchoolYear(b1, b1 + 1);
+					cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
+				}
+				else if (b1 == 0) {
+					cout << "Cancelled. Returning to menu...\n";
+					_getch();
+					break;
+				}
+				else if (b1 > 0) {
+					curyear = new SchoolYear(b1, b1 + 1);
+					cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
+				}
+				else {
+					cout << "Illegal input.\n";
+				}
 			}
 			else {
-				curyear = new SchoolYear(b1, b1+1);
-				cout << "School year " << b1 << " - " << b1 + 1 << " is created.\n This will be the default school year";
-
+				cout << "Cancelled. Returning to menu...\n";
+				break;
+				_getch();
 			}
 			years.push_back(curyear);
 			_getch();
@@ -254,8 +265,8 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			if (cursem) menuNewSemesterInStaff(uni, cursem);
 			break;
 		case 6:
-			if (years.size() <= 1 || cursem == nullptr) {
-				cout << "Cannot create a new class. Please create a school year and semester first.\n";
+			if (years.size() < 1) {
+				cout << "Cannot create a new class. Please create a school year first.\n";
 				_getch();
 				break;
 			}
@@ -292,6 +303,7 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			else {
 				cout << "Could not find course!\n";
 			}
+			_getch();
 			break;
 		case 9:
 			cursem->printListOfCourses();
@@ -300,29 +312,23 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			course = cursem->findCourse(buffer);
 			if (course != nullptr) {
 				course->viewScoreboard();
+				_getch();
 			}
 			else {
 				cout << "Could not find course!\n";
 			}
+			_getch();
 			break;
 		case 10:
 			viewScoreboardOfClass(uni);
+			_getch();
 			break;
 		case 11:
-			cursem->printListOfCourses();
-			cout << "Enter course ID: ";
-			getline(cin, buffer);
-			course = cursem->findCourse(buffer);
-			if (course != nullptr) {
-				course->viewScoreboard();
-			}
-			else {
-				cout << "Could not find course!\n";
-			}
 			break;
 		case 12:
 			if (cursem) menuNewSemesterInStaff(uni, cursem);
 			else cout << "NO SEMESTER AVAILABLE. PLEASE CREATE ONE AND TRY AGAIN LATER.\n";
+			_getch();
 			break;
 		default:
 			throw "Invalid option.\n";
@@ -365,13 +371,15 @@ void printStudentsInCourse(Semester* semester) {
 void printStudentsInClass(University& uni){
 	cout << "Choose which class:\n";
 	int i = 1, choiceclass = 0;
-	uni.printListOfClasses();
+	for (Class* c : uni.listOfClasses) {
+		cout << i++ << ": " << c->getClassName() << endl;
+	}
 	i = 1; 
 	Class* pclass = nullptr;
 	cin >> choiceclass;
 	if (choiceclass <= 0 || choiceclass > uni.listOfClasses.size()) return;
 	else {
-		pclass = uni.listOfClasses[choiceclass];
+		pclass = uni.listOfClasses[choiceclass-1];
 		cout << "List of students in class " << pclass->getClassName() << ":\n";
 		pclass->printListOfStudents();
 		_getch();
@@ -389,9 +397,11 @@ void viewScoreboardOfClass(University& uni) {
 		if (classID == "0") return;
 		else c = uni.findClass(classID);
 	}
-	cout << "Enter course ID of the course you want to see: ";
-	getline(cin, courseID);
-	c->printScoreboardOfClass(courseID);
+	if (c) {
+		cout << "Enter course ID of the course you want to see: ";
+		getline(cin, courseID);
+		c->printScoreboardOfClass(courseID);
+	}
 }
 
 //void updateStudentResult(Course* course) {
@@ -416,6 +426,7 @@ Semester* createNewSemester(LinkedList<SchoolYear*> years, SchoolYear*& curyear)
 		cout << i << ": " << *y << endl;
 		i++;
 	}
+	cin >> inp;
 	while (inp < 1 || inp > years.size()) {
 		cin >> inp;
 		cin.ignore(1000, '\n');
@@ -423,19 +434,25 @@ Semester* createNewSemester(LinkedList<SchoolYear*> years, SchoolYear*& curyear)
 			cout << "Exitting...\n";
 			return nullptr;
 		}
-		cout << "Invalid choice. Please enter again.\n";
+		cout << "Invalid choice. Please enter again.\nEnter 0  if cancel.\n";
+		_getch();
 	}
 	i = 1;
 	for (SchoolYear* y : years) {
-		if (i == inp) curyear = y;
+		if (i == inp) {
+			curyear = y;
+			break;
+		}
 		else i++;
 	}
 	if (curyear) {
 		curyear->createNewSemester();
 		Semester* cursem = curyear->getCurrentSemester();
 		cout << "Default semester is " << curyear->getCurrentNSemester() << " of school year " << *curyear << ".\n";
+		_getch();
 		return cursem;
 	}
+	cin.ignore(1000, '\n');
 	return nullptr;
 }
 
@@ -466,7 +483,8 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 		case 0:
 			return;
 		case 1:
-			sem1->addCourse();
+			sem1->addCourse(uni);
+			_getch();
 			break;
 		case 2:
 			sem1->printInfoOfCourses();
@@ -482,7 +500,8 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 				cout << "Course not found.\n";
 				break;
 			}
-			course->updateCourse(uni);
+			course->updateCourse(sem1->getN(), sem1->getYear(), uni);
+			_getch();
 			break;
 		case 4:
 			sem1->printListOfCourses();
@@ -527,6 +546,7 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			course = sem1->findCourse(courseID);
 			if (course == nullptr) {
 				cout << "Course not found.\n";
+				_getch();
 				break;
 			}
 			course->printListOfStudents();
@@ -565,6 +585,7 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			//e ma nha, cai course nam trong 1 sem thi co nhieu
 			//courseID giong nhau ma nhi :(( -> khong co nha, 1 sem moi lop moi course ID ma, nhung ma thay k noi phan biet gi thi thoi
 			// -> k phai SQL dau
+			_getch();
 			break;
 		default:
 			throw "Invalid option!\n";

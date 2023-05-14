@@ -30,6 +30,7 @@ void Student::addScoreboard(string courseInfo, string courseName, string courseT
 }
 void Student::addScoreboard(Scoreboard* s) {
     list.push_back(s);
+    updateFileData();
 }
 //const Scoreboard* Student::getScoreboard() const {
 //    return scoreboard;
@@ -86,8 +87,17 @@ Scoreboard* Student::findScoreboard(string courseId) {
 }
 
 void Student::printCourseThisSem() {
+    int cursem = 0, curyear = 0;
     for (auto sb : list) {
-        sb->printInfo();
+        if (sb->getSemester() > cursem && sb->getSchoolYear() > curyear) {
+            cursem = sb->getSemester();
+            curyear = sb->getSchoolYear();
+        }
+    }
+    for (auto sb : list) {
+        if (sb->getSemester() == cursem && sb->getSchoolYear() == curyear) {
+            sb->printInfo();
+        }
     }
     cout << "=============================\n";
     cout << "Press anything to return to menu\n";
@@ -146,11 +156,10 @@ void Student::readStudentFromCSVLine(string linetemp) {
 }
 
 void Student::updateScoreboard(string courseId, string line) {
-    
     for (auto i = list.begin(); i != list.end(); ++i) {
         if ((*i)->getCourseId() == courseId) {
             (*i)->updateScoreboard(line);
-            return;
+            break;
         } 
     }
     updateFileData();
@@ -160,9 +169,10 @@ void Student::printScoreboard(string courseId) {
     for (auto i : list) {
         if (i->getCourseId() == courseId) {
             i->print();
-            return;
+            break;
         }
     }
+    cout << endl;
 }
 
 void Student::printStudentInfo() {
@@ -228,7 +238,7 @@ void Student::updateFileData() {
     ofstream fout;
 
     if (!fin.is_open()) {
-        throw "Cannot find files to update to update. Please try again later.";
+        cout << "Cannot find files to update to update. Please try again later." << endl;
         return;
     }
 

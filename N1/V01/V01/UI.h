@@ -22,3 +22,4 @@ void printStudentsInClass(University& uni);
 void printStudentsInCourse(Semester* semester);
 void viewScoreboardOfClass(University& uni);
 void updateStudentResult(Course* course, string courseID);
+

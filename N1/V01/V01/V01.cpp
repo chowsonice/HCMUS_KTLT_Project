@@ -34,7 +34,7 @@ int main()
         else if (main.getType() == 2) {
             studentMenu(main);
         }
-
+        saving(uni, years);
         int choice;
         cout << "Do you want to login again?\n";
         cout << "1. Yes\n";

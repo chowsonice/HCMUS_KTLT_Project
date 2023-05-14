@@ -22,7 +22,13 @@ public:
         y1 = year1;
         y2 = year2;
     }
-    void addCourse();
+    int getN() {
+        return number;
+    }
+    int getYear() {
+        return year1;
+    }
+    void addCourse(University& uni);
     void printListOfCourses();
     void printInfoOfCourses();
     void deleteCourse(string id);

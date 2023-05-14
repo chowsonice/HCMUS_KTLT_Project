@@ -15,10 +15,14 @@ void Semester::setYear(int y1, int y2) {
     year2 = y2;
 }
 
-void Semester::addCourse() {
+void Semester::addCourse(University& uni) {
     Course* course = new Course();
     course->input();
     course->setSemester(number, year1, year2);
+    if (!course->importStudentsFromCSV(number, year1, uni)) {
+        cout << "No list of students for this course available.\nPlease check again.\n";
+        return;
+    }
     listOfCourses.push_back(course);
 }
 
