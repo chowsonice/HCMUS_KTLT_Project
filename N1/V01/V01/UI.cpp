@@ -74,7 +74,6 @@ void studentMenu(Account& main) {
 	Student* s = readStudentFromFile(main.getUsername());
 	while (choice != 0) {
 		system("cls");
-		cout << "Currently, it's ___" << endl;
 		cout << "=============================\n";
 		cout << "0. Log out\n";
 		cout << "1. View your courses this semester\n";

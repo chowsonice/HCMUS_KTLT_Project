@@ -30,11 +30,11 @@ int main()
         if (main.getType() == 1) {
             loading(uni, years);
             staffMenu(uni, years);
+            saving(uni, years);
         }
         else if (main.getType() == 2) {
             studentMenu(main);
         }
-        saving(uni, years);
         int choice;
         cout << "Do you want to login again?\n";
         cout << "1. Yes\n";
