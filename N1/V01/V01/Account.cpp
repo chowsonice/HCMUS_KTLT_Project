@@ -16,8 +16,6 @@ string Account::getUsername() {
 
 int checkLogin(string username, string password) {
 	ifstream fin("staff_account/StaffAccount.txt");
-
-	cout << password << endl;
 	string buffer1, buffer2;
 
 	while (fin >> buffer1 >> buffer2) {

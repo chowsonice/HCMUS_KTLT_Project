@@ -27,7 +27,7 @@ void Semester::addCourse(University& uni) {
 }
 
 void Semester::printListOfCourses() {
-    for (Node<Course*> c : listOfCourses) cout << c.data->getCourseId() << endl;
+    for (Node<Course*> c : listOfCourses) cout << c.data->getClassId() << " - " << c.data->getCourseId() << endl;
 }
 void Semester::printInfoOfCourses() {
     for (Node<Course*> c : listOfCourses) c.data->viewCourseInfo() ;

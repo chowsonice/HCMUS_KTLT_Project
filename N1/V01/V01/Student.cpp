@@ -204,8 +204,12 @@ Student* readStudentFromFile(string studentID)
 
     string buffer, temp; 
     size_t len = 0; // Change int len to size_t
+    int num = 0;
 
-    while (!file.eof()) {
+    file >> num;
+    file.ignore(1000, '\n');
+
+    for (int i = 0; i < num; i++) {
         getline(file, line);
         len = 0;
         Scoreboard* sb = new Scoreboard();
@@ -253,6 +257,7 @@ void Student::updateFileData() {
     fout << password << endl;
     fout << no << "," << studentID << "," << firstName << "," << lastName << "," << gender << "," << dateOfBirth << "," << socialID << endl;
 
+    fout << list.size() << endl;
     for (Scoreboard* c : list) {
         fout << *c << endl;
     }
