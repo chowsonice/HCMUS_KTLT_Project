@@ -92,6 +92,31 @@ void Scoreboard::updateScoreboard(string line) {
 	updated = true;
 }
 
+void Scoreboard::updateScoreboard() {
+	float score = -1;
+	cout << "Enter midterm mark, if unchange enter -1: ";
+	if (!(cin >> score) || (score < -1 || score > 10)) throw "Invalid grade!";
+	else {
+		if (score != -1) midtermMark = score;
+	}
+	cout << "Enter other mark, if unchange enter -1: ";
+	if (!(cin >> score) || (score < -1 || score > 10)) throw "Invalid grade!";
+	else {
+		if (score != -1) otherMark = score;
+	}
+	cout << "Enter final mark, if unchange enter -1: ";
+	if (!(cin >> score) || (score < -1 || score > 10)) throw "Invalid grade!";
+	else {
+		if (score != -1) finalMark = score;
+	}
+	cout << "Enter total mark, if unchange enter -1: ";
+	if (!(cin >> score) || (score < -1 || score > 10)) throw "Invalid grade!";
+	else {
+		if (score != -1) totalMark = score;
+	}
+	updated = true;
+}
+
 bool Scoreboard::checkUpdated() {
 	return updated;
 }

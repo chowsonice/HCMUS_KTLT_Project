@@ -32,17 +32,18 @@ void Semester::printListOfCourses() {
 void Semester::printInfoOfCourses() {
     for (Node<Course*> c : listOfCourses) c.data->viewCourseInfo() ;
 }
-Course* Semester::findCourse(string courseId) {
-    for (Node<Course*> c : listOfCourses) {
-        if (c.data->getCourseId().compare(courseId) == 0) return c.data;
+Course* Semester::findCourse(string courseId, string classId) {
+    for (Course* c : listOfCourses) {
+        if (c->getCourseId() == courseId && c->getClassId() == classId) return c;
     }
     return nullptr;
 }
-void Semester::deleteCourse(string id) {
+void Semester::deleteCourse(string courseID, string classID) {
     int i = 1;
     for (Course* c : listOfCourses) {
-        if (c->getCourseId() == id) {
+        if (c->getCourseId() == courseID && c->getClassId() == classID) {
             listOfCourses.pop(i);
+            return;
         }
         i++;
     }

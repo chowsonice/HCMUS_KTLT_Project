@@ -2,7 +2,6 @@
 #include <iostream>
 #include "UI.h"
 
-
 void loginScreen(Account &main) {
 	string usrn, pass;
 	int count = 0, type = -1;
@@ -206,13 +205,14 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		cout << "||    9. View scoreboard of course                    ||\n";
 		cout << "||    10. View scoreboard of class                    ||\n";
 		cout << "||    11. Update a student's results                  ||\n";
-		if (cursem) cout << "||    11. Change semester's information               ||\n";
+		if (cursem) cout << "||    12. Change semester's information               ||\n";
 		cout << "========================================================\n";
 		cout << "YOUR CHOICE: ";
 		cin >> choice;
 		cin.ignore(1000, '\n');
 		int b1;
-		string buffer;
+		string buffer, classID, studentID;
+		Student* s = nullptr; Scoreboard* sb = nullptr;
 		switch (choice) {
 		case 0:
 			return;
@@ -275,10 +275,11 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			}
 			break;
 		case 7:
-			cursem->printListOfCourses();
-			cout << "Enter course ID: ";
+			cout << "Enter class ID: ";
+			getline(cin, classID);
+			cout << "\nEnter course ID: ";
 			getline(cin, buffer);
-			course = cursem->findCourse(buffer);
+			course = cursem->findCourse(buffer, classID);
 			if (course != nullptr) {
 				course->exportStudentListToCSV(buffer);
 			}
@@ -287,10 +288,13 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			}
 			break;
 		case 8:
+			cout << "===========LIST OF COURSES===========\n";
 			cursem->printListOfCourses();
+			cout << "\nEnter class ID: ";
+			getline(cin, classID);
 			cout << "Enter course ID: ";
 			getline(cin, buffer);
-			course = cursem->findCourse(buffer);
+			course = cursem->findCourse(buffer, classID);
 			if (course != nullptr) {
 				try {
 					course->importScoreboard();
@@ -306,10 +310,13 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			_getch();
 			break;
 		case 9:
+			cout << "LIST OF COURSES\n";
 			cursem->printListOfCourses();
-			cout << "Enter course ID: ";
+			cout << "Enter class ID: ";
+			getline(cin, classID);
+			cout << "\nEnter course ID: ";
 			getline(cin, buffer);
-			course = cursem->findCourse(buffer);
+			course = cursem->findCourse(buffer, classID);
 			if (course != nullptr) {
 				course->viewScoreboard();
 				_getch();
@@ -324,6 +331,27 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			_getch();
 			break;
 		case 11:
+			cout << "Enter class ID of course: ";
+			getline(cin, classID);
+			cout << "Enter course ID: ";
+			getline(cin, buffer);
+			course = cursem->findCourse(buffer, classID);
+			cout << "============LIST OF STUDENTS============\n";
+			course->printListOfStudents();
+			cout << "\nEnter student's ID: ";
+			getline(cin, studentID);
+			s = course->findStudent(studentID);
+			if (s) {
+				int score = -1;
+				sb = s->findScoreboard(buffer);
+				if (sb) {
+					cout << "|" << setw(10) << studentID << "|";
+					sb->print();
+					sb->updateScoreboard();
+				}
+			}
+			else cout << "Student didn't participate in this course exists.\n";
+			_getch();
 			break;
 		case 12:
 			if (cursem) menuNewSemesterInStaff(uni, cursem);
@@ -347,13 +375,15 @@ void printStudentsInCourse(Semester* semester) {
 		return;
 	}
 
-	string choice;
-	cout << "Choose a semester:\n";
+	string courseID, classID;
+	cout << "LIST OF COURSES\n";
 	semester->printListOfCourses();
-	cout << "Your choice: ";
-	getline(cin, choice);
+	cout << "Enter class ID: ";
+	getline(cin, classID);
+	cout << "Enter course ID: ";
+	getline(cin, courseID);
 
-	Course* selectedCourse = semester->findCourse(choice);
+	Course* selectedCourse = semester->findCourse(courseID, classID);
 
 	if (!selectedCourse) {
 		cout << "Invalid course selection.\n";
@@ -379,7 +409,7 @@ void printStudentsInClass(University& uni){
 	cin >> choiceclass;
 	if (choiceclass <= 0 || choiceclass > uni.listOfClasses.size()) return;
 	else {
-		pclass = uni.listOfClasses[choiceclass-1];
+		pclass = uni.listOfClasses[choiceclass - 1];
 		cout << "List of students in class " << pclass->getClassName() << ":\n";
 		pclass->printListOfStudents();
 		_getch();
@@ -458,7 +488,7 @@ Semester* createNewSemester(LinkedList<SchoolYear*> years, SchoolYear*& curyear)
 
 void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 {
-	string courseID, studentID;
+	string courseID, studentID, classID;
 	Course* course = nullptr;
 	Student* student = nullptr;
 	int choice = -1;
@@ -492,22 +522,30 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			_getch();
 			break;
 		case 3:
+			cout << "===========LIST OF COURSES=============\n";
 			sem1->printListOfCourses();
-			cout << "\nEnter course ID of the course to update: ";
+			cout << "\nEnter class ID: ";
+			getline(cin, classID);
+			cout << "\nEnter course ID: ";
 			getline(cin, courseID);
-			course = sem1->findCourse(courseID);
+			course = sem1->findCourse(courseID, classID);
 			if (course == nullptr) {
-				cout << "Course not found.\n";
+				cout << "Course not found!\n";
+				cout << "PRESS ANYTHING TO RETURN.";
+				_getch();
 				break;
 			}
 			course->updateCourse(sem1->getN(), sem1->getYear(), uni);
 			_getch();
 			break;
 		case 4:
+			cout << "==========LIST OF COURSES===========\n";
 			sem1->printListOfCourses();
-			cout << "\nEnter course ID to add student to the course: ";
+			cout << "\nEnter class ID of the course: ";
+			getline(cin, classID);
+			cout << "\nEnter course ID: ";
 			getline(cin, courseID);
-			course = sem1->findCourse(courseID);
+			course = sem1->findCourse(courseID, classID);
 			if (course == nullptr) {
 				cout << "Course not found.\n";
 				break;
@@ -526,7 +564,7 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			else {
 				Student* tempStu = course->findStudent(studentID);
 				if (tempStu != nullptr) {
-					cout << "Student ID " << studentID << "is already in the course.\n";
+					cout << "Student ID " << studentID << " is already in the course.\n";
 					cout << "PRESS ANYTHING TO RETURN.\n";
 					_getch();
 					break;
@@ -541,14 +579,17 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 			}
 		case 5:
 			sem1->printListOfCourses();
-			cout << "\nEnter course ID to remove student out of the course: ";
+			cout << "Enter class ID: ";
+			getline(cin, classID);
+			cout << "\nEnter course ID: ";
 			getline(cin, courseID);
-			course = sem1->findCourse(courseID);
+			course = sem1->findCourse(courseID, classID);
 			if (course == nullptr) {
 				cout << "Course not found.\n";
 				_getch();
 				break;
 			}
+			cout << "=============LIST OF STUDENTS===============";
 			course->printListOfStudents();
 			cout << "Enter student ID to remove student to "
 				<< courseID << ": ";
@@ -570,21 +611,29 @@ void menuNewSemesterInStaff(University& uni, Semester*& sem1)
 				}
 				else {
 					course->removeStudent(studentID);
-					cout << "Removed!\n";
 					cout << "PRESS ANYTHING TO RETURN.\n";
 					_getch();
 					break;
 				}
 			}
 		case 6:
+			cout << "LIST OF COURSES\n";
 			sem1->printListOfCourses();
+			cout << "Enter class ID: ";
+			getline(cin, classID);
 			cout << "\nEnter course ID to delete: ";
 			getline(cin, courseID);
-			sem1->deleteCourse(courseID);
+
+			course = sem1->findCourse(courseID, classID);
+			if (course == nullptr) {
+				cout << "Course not found.\n";
+				_getch();
+				break;
+			}
+
+			sem1->deleteCourse(courseID, classID); // co ve cho nay sai
 			cout << "Removed course " << courseID << ".\n";
-			//e ma nha, cai course nam trong 1 sem thi co nhieu
-			//courseID giong nhau ma nhi :(( -> khong co nha, 1 sem moi lop moi course ID ma, nhung ma thay k noi phan biet gi thi thoi
-			// -> k phai SQL dau
+			cout << "PRESS ANYTHING TO RETURN.\n";
 			_getch();
 			break;
 		default:

@@ -110,6 +110,10 @@ string Course::getCourseId() {
     return courseId;
 }
 
+string Course::getClassId() {
+    return classId;
+}
+
 string Course::getName()
 {
     return string();

@@ -31,8 +31,8 @@ public:
     void addCourse(University& uni);
     void printListOfCourses();
     void printInfoOfCourses();
-    void deleteCourse(string id);
-    Course* findCourse(string courseId);
+    void deleteCourse(string courseID, string classID);
+    Course* findCourse(string courseId, string classId);
     void printInfo() {
         cout << "semester " << number << ", school year " << year1 << " - " << year2 << endl;
     }
