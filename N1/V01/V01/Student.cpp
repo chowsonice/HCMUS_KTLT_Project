@@ -228,7 +228,6 @@ Student* readStudentFromFile(string studentID)
         sb->setCourseTime(temp);
 
         line.erase(0, len + 3);
-        cout << line << endl;
         sb->updateScoreboard(line);
 
         student->addScoreboard(sb);
