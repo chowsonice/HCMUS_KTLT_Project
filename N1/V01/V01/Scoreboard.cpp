@@ -81,18 +81,18 @@ void Scoreboard::printInfo() {
 
 void Scoreboard::updateScoreboard(string line) {
 	stringstream ss(line); char c;
-	if (!(ss >> midtermMark) || (midtermMark < -1 || midtermMark > 10)) throw "Invalid grade!";
+	if (!(ss >> midtermMark) || (midtermMark < -1) || (midtermMark > 10)) cout << "Invalid grade";
 	ss >> c;
-	if (!(ss >> otherMark) || (otherMark < -1 || otherMark > 10)) throw "Invalid grade!";
+	if (!(ss >> otherMark) || (otherMark < -1) || (otherMark > 10)) cout << "Invalid grade!";
 	ss >> c;
-	if (!(ss >> finalMark) || (finalMark < -1 || finalMark > 10)) throw "Invalid grade!";
+	if (!(ss >> finalMark) || (finalMark < -1) || (finalMark > 10)) cout << "Invalid grade!";
 	ss >> c;
-	if (!(ss >> totalMark) || (totalMark < -1 || totalMark > 10)) throw "Invalid grade!";
+	if (!(ss >> totalMark) || (totalMark < -1) || (totalMark > 10)) cout << "Invalid grade!";
 	//if (midtermMark == -1 || finalMark == -1 || otherMark == -1 || totalMark == -1) return;
 	updated = true;
 }
 
-void Scoreboard::updateScoreboard() {
+void Scoreboard::editScoreboard() {
 	float score = -1;
 	cout << "Enter midterm mark, if unchange enter -1: ";
 	if (!(cin >> score) || (score < -1 || score > 10)) throw "Invalid grade!";

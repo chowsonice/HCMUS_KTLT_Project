@@ -43,8 +43,7 @@ public:
 
 	void printInfo();
 	void updateScoreboard(string line);
-
-	void updateScoreboard();
+	void editScoreboard();
 
 	bool checkUpdated();
 	friend ostream& operator<<(ostream& os, const Scoreboard& s);

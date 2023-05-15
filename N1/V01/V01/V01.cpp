@@ -15,7 +15,6 @@ int main()
 {
     LinkedList<SchoolYear*> years;
     University uni;
-    loading(uni, years);
 
     Account main;
     bool exitProgram = false;
@@ -29,6 +28,7 @@ int main()
         }
 
         if (main.getType() == 1) {
+            loading(uni, years);
             staffMenu(uni, years);
         }
         else if (main.getType() == 2) {

@@ -204,7 +204,9 @@ Student* readStudentFromFile(string studentID)
 
     string buffer, temp; 
     size_t len = 0; // Change int len to size_t
-    while (getline(file, line)) {
+
+    while (!file.eof()) {
+        getline(file, line);
         len = 0;
         Scoreboard* sb = new Scoreboard();
         stringstream ss(line);
@@ -222,6 +224,7 @@ Student* readStudentFromFile(string studentID)
         sb->setCourseTime(temp);
 
         line.erase(0, len + 3);
+        cout << line << endl;
         sb->updateScoreboard(line);
 
         student->addScoreboard(sb);

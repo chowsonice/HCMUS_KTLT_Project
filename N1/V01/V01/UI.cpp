@@ -347,7 +347,7 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 				if (sb) {
 					cout << "|" << setw(10) << studentID << "|";
 					sb->print();
-					sb->updateScoreboard();
+					sb->editScoreboard();
 				}
 			}
 			else cout << "Student didn't participate in this course exists.\n";
