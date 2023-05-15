@@ -275,6 +275,8 @@ void Course::importScoreboard() {
         }
         else s->updateScoreboard(courseId, buffer);
     }
+
+    updated = true;
 }
 
 void Course::viewScoreboard()
