@@ -190,20 +190,20 @@ void Course::updateCourse(int semester, int year, University& uni) {
     }
 }
 
-void Course::exportStudentListToCSV(string courseID)
+void Course::exportStudentListToCSV()
 {
     if (listOfStudents.size() == 0) {
         cout << "No students found in the course!\n";
         return;
     }
-    string fileName = "export_csv/" + courseID + "_" + classId + ".csv";
+    string fileName = "export_csv/" + courseId + "_" + classId + ".csv";
     ofstream outFile(fileName);
     if (!outFile.is_open()) {
-        cout << "Faile to create CSV file.\n";
+        cout << "Failed to create CSV file.\n";
         return;
     }
 
-    outFile << "Sutdent ID, First Name, Last Name, Birthday\n";
+    outFile << "Student ID, First Name, Last Name, Birthday\n";
     Node<Student*>* curr = listOfStudents.head;
     while (curr != nullptr) {
         Student* student = curr->data;
@@ -214,7 +214,7 @@ void Course::exportStudentListToCSV(string courseID)
         curr = curr->next;
     }
     outFile.close();
-    cout << "Export student list of " << courseID << " successfully.\n";
+    cout << "Export student list of " << courseId << " successfully.\n";
 }
 
 Student* Course::findStudent(string id) {

@@ -48,5 +48,5 @@ public:
 	friend istream& operator>>(istream& os, Course& s);
 	friend ostream& operator<<(ostream& os, const Course& s);
 	void updateCourse(int semester, int year, University& u);
-	void exportStudentListToCSV(string courseID);
+	void exportStudentListToCSV();
 };

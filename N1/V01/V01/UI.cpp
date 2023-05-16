@@ -276,15 +276,16 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 		case 7:
 			cout << "Enter class ID: ";
 			getline(cin, classID);
-			cout << "\nEnter course ID: ";
+			cout << "Enter course ID: ";
 			getline(cin, buffer);
 			course = cursem->findCourse(buffer, classID);
 			if (course != nullptr) {
-				course->exportStudentListToCSV(buffer);
+				course->exportStudentListToCSV();
 			}
 			else {
 				cout << "Could not find course!\n";
 			}
+			_getch();
 			break;
 		case 8:
 			cout << "===========LIST OF COURSES===========\n";
