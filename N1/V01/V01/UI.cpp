@@ -281,9 +281,11 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			course = cursem->findCourse(buffer, classID);
 			if (course != nullptr) {
 				course->exportStudentListToCSV(buffer);
+				_getch();
 			}
 			else {
 				cout << "Could not find course!\n";
+				_getch();
 			}
 			break;
 		case 8:
