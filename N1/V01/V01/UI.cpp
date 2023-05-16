@@ -284,6 +284,7 @@ void staffMenu(University& uni, LinkedList<SchoolYear*>& years) {
 			}
 			else {
 				cout << "Could not find course!\n";
+				_getch();
 			}
 			_getch();
 			break;
